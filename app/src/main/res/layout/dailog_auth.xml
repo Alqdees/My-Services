@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/shapebackground"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/code"
+        android:padding="15dp"
+        android:hint="ضع رمز التأكيد"
+        android:textColorHint="@color/purple_500"
+        android:layout_margin="10dp"
+        android:shadowRadius="@integer/material_motion_duration_long_1"
+
+        />
+
+    <androidx.constraintlayout.utils.widget.MotionButton
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/code"
+
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/shape_left"
+        android:text="تاكيد"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/resend"
+        style="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/code"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="50dp"
+        android:padding="4dp"
+        android:text="أعادة ارسال الرمز"
+        android:textColor="@color/purple_500"
+
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</RelativeLayout>

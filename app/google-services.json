@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "470738266549",
+    "firebase_url": "https://blood-types-77ce2-default-rtdb.firebaseio.com",
+    "project_id": "blood-types-77ce2",
+    "storage_bucket": "blood-types-77ce2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470738266549:android:55d4d4b0976d531a3211fc",
+        "android_client_info": {
+          "package_name": "com.Blood.types"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470738266549-8g3etedvndv9m5q6loe10mbhqnicmf35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Blood.types",
+            "certificate_hash": "776e33638dd61bb4ea8fe9b1b7cff20e6c040698"
+          }
+        },
+        {
+          "client_id": "470738266549-cklbt5tjnmsindoj2tp9vksj56cmotd3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwLmR_6r0CPKZrlzVyPA-_ZD4aLnhNXr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470738266549-cklbt5tjnmsindoj2tp9vksj56cmotd3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1265" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable-v24/shape_left.xml" value="0.1345" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/border_outline.xml" value="0.12" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/burder_dialog.xml" value="0.139" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/buttom.xml" value="0.1345" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/buttonselect.xml" value="0.12" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/circale_shape.xml" value="0.136" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/ic_add.xml" value="0.12" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/ic_baseline_app_registration_24.xml" value="0.139" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/ic_call.xml" value="0.139" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/ic_earch.xml" value="0.139" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/ic_home.xml" value="0.139" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/ic_info.xml" value="0.139" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1265" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/navbar.xml" value="0.12" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/navbar_shape.xml" value="0.12" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/person_add.xml" value="0.12" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/select.xml" value="0.12" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/shape_left.xml" value="0.12" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/shapebackground.xml" value="0.1345" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/toolbar.xml" value="0.12" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/font/textfont.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_doctor.xml" value="0.2234375" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_line.xml" value="0.2234375" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_login.xml" value="0.2234375" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_main.xml" value="0.20625" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_register.xml" value="0.2234375" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_select.xml" value="0.2" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_sendrequest.xml" value="0.2234375" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_show_information.xml" value="0.2234375" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_transportation_lines.xml" value="0.1" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_type.xml" value="0.2" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/cardview.xml" value="0.2" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/cardview_doctor.xml" value="0.2" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/cardview_transport.xml" value="0.16" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/custom_dialog.xml" value="0.2" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/custom_dialog_update.xml" value="0.1" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/dailog_auth.xml" value="0.176" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/dialog_info.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/dialog_main.xml" value="0.2" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/drop_down_item.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/menu/botton_navbar.xml" value="0.2234375" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/menu/custemoptions.xml" value="0.2234375" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1265" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1265" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

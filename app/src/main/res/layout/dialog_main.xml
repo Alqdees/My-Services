@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:barrierAllowsGoneWidgets="true"
+    android:background="@drawable/burder_dialog"
+    >
+
+        <androidx.constraintlayout.utils.widget.MotionButton
+            android:id="@+id/line_request"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_8ssp"
+            android:layout_marginTop="@dimen/_8ssp"
+            android:layout_marginEnd="@dimen/_8ssp"
+            android:layout_marginBottom="@dimen/_8ssp"
+            android:background="@drawable/buttonselect"
+            android:fontFamily="@font/somar"
+            android:text="طلب اضافة خط نقل"
+            android:textColor="@color/black"
+            android:padding="@dimen/_5ssp"
+            android:textSize="@dimen/_18ssp"
+            android:textStyle="bold" />
+        <androidx.constraintlayout.utils.widget.MotionButton
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/doctorAdd"
+            android:layout_below="@id/line_request"
+            android:text="طلب اضافة طبيب"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/buttonselect"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/_8ssp"
+            android:textSize="@dimen/_18ssp"
+            android:fontFamily="@font/somar"
+            />
+
+        <androidx.constraintlayout.utils.widget.MotionButton
+            android:id="@+id/add_blood"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_8ssp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_below="@id/doctorAdd"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/_18ssp"
+            android:fontFamily="@font/somar"
+            android:padding="@dimen/_10ssp"
+            android:background="@drawable/buttonselect"
+            android:text="أضافة متبرع دم" />
+
+</RelativeLayout>
