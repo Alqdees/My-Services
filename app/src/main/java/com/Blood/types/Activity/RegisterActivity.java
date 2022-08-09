@@ -45,6 +45,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -98,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
         // not change color in dark mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         db = FirebaseFirestore.getInstance();
-
+        auth = FirebaseAuth.getInstance();
         actionBar=getSupportActionBar();
         deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
@@ -148,7 +149,9 @@ public class RegisterActivity extends AppCompatActivity {
                     number = ET_number.getText().toString();
                     type = autoCompleteTextView.getText().toString();
                     location = ET_location.getText().toString();
-
+//                    String getnumber= number.replaceFirst(String.valueOf(0),"");
+//                    Log.d("TAG","+964"+getnumber);
+//                    Toast.makeText(RegisterActivity.this,"+964"+ getnumber, Toast.LENGTH_SHORT).show();
                     // here to check all the edit text to not Empty
                     if (TextUtils.isEmpty(name) ||
                             TextUtils.isEmpty(type)
@@ -167,7 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
                     else {
                         Et_otp.setVisibility(View.VISIBLE);
                         confirm.setVisibility(View.VISIBLE);
-                        sendVerifictionCode(number);
+                        sendVerifictionCode(ET_number.getText().toString().trim());
                     }
 
                 }
@@ -182,7 +185,7 @@ public class RegisterActivity extends AppCompatActivity {
                  AB_PLUS,AB_MINUS,
                  O_PLUS,O_MINUS
          };
-         auth = FirebaseAuth.getInstance();
+
          auth.setLanguageCode("EN");
         actionBar = getSupportActionBar();
 
@@ -247,8 +250,8 @@ public class RegisterActivity extends AppCompatActivity {
                                     addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                          sendVerifictionCode(number);
-
+//                                          sendVerifictionCode(number);
+                                            Toast.makeText(RegisterActivity.this, "Done", Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
@@ -451,49 +454,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
-//    mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-//
-//        @Override
-//        public void onVerificationCompleted(PhoneAuthCredential credential) {
-//            // This callback will be invoked in two situations:
-//            // 1 - Instant verification. In some cases the phone number can be instantly
-//            //     verified without needing to send or enter a verification code.
-//            // 2 - Auto-retrieval. On some devices Google Play services can automatically
-//            //     detect the incoming verification SMS and perform verification without
-//            //     user action.
-//            Log.d(TAG, "onVerificationCompleted:" + credential);
-//
-//            signInWithPhoneAuthCredential(credential);
-//        }
-//
-//        @Override
-//        public void onVerificationFailed(FirebaseException e) {
-//            // This callback is invoked in an invalid request for verification is made,
-//            // for instance if the the phone number format is not valid.
-//            Log.w(TAG, "onVerificationFailed", e);
-//
-//            if (e instanceof FirebaseAuthInvalidCredentialsException) {
-//                // Invalid request
-//            } else if (e instanceof FirebaseTooManyRequestsException) {
-//                // The SMS quota for the project has been exceeded
-//            }
-//
-//            // Show a message and update the UI
-//        }
-//
-//        @Override
-//        public void onCodeSent(@NonNull String verificationId,
-//                @NonNull PhoneAuthProvider.ForceResendingToken token) {
-//            // The SMS verification code has been sent to the provided phone number, we
-//            // now need to ask the user to enter the code and then construct a credential
-//            // by combining the code with a verification ID.
-//            Log.d(TAG, "onCodeSent:" + verificationId);
-//
-//            // Save verification ID and resending token so we can use them later
-//            mVerificationId = verificationId;
-//            mResendToken = token;
-//        }
-//    };
+
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks  mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
@@ -549,15 +510,39 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void sendVerifictionCode(String number) {
         String getnumber= number.replaceFirst(String.valueOf(0),"");
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(auth)
-                        .setPhoneNumber("+964"+getnumber)
-                        .setTimeout(60L, TimeUnit.SECONDS)
-                        .setActivity(this)
-                        .setCallbacks(mCallbacks)
-                        .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
-        Log.d("TAG",getnumber);
+
+
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                "+964" + getnumber,
+                60L,
+                TimeUnit.SECONDS,
+                RegisterActivity.this,
+                new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+                    }
+
+                    @Override
+                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                        Toast.makeText(RegisterActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                        Toast.makeText(RegisterActivity.this, ""+s, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+//        PhoneAuthOptions options =
+//                PhoneAuthOptions.newBuilder(auth)
+//                        .setPhoneNumber("+964"+number)
+//                        .setTimeout(60L, TimeUnit.SECONDS)
+//                        .setActivity(this)
+//                        .setCallbacks(mCallbacks)
+//                        .build();
+//        PhoneAuthProvider.verifyPhoneNumber(options);
+//        Log.d("TAG",number);
     }
 
 }
