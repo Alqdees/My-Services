@@ -68,13 +68,14 @@
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold" />
+
         <androidx.constraintlayout.utils.widget.MotionButton
             android:id="@+id/call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="243dp"
+            android:layout_height="68dp"
             android:layout_below="@+id/location"
             android:layout_centerInParent="true"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="82dp"
             android:background="@drawable/buttonselect"
             android:text="أضغط هنا للاتصال "
             android:textColor="@color/black"

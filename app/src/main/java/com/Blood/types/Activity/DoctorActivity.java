@@ -30,6 +30,7 @@ public class DoctorActivity extends AppCompatActivity {
     private ArrayList<Doctor> doctors;
     private ActionBar actionBar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,6 +1,7 @@
 package com.Blood.types.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.MotionButton;
@@ -8,16 +9,31 @@ import androidx.constraintlayout.utils.widget.MotionButton;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.Blood.types.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
 
 public class Sendrequest extends AppCompatActivity {
 
@@ -26,6 +42,7 @@ public class Sendrequest extends AppCompatActivity {
             specializationET,timeET,titleET;
     private MotionButton sendRequest;
     private DatabaseReference ref;
+    private FirebaseFirestore db;
 
 
 
@@ -41,6 +58,7 @@ public class Sendrequest extends AppCompatActivity {
         timeET = findViewById(R.id.time);
         titleET = findViewById(R.id.title);
         sendRequest= findViewById(R.id.addRequest);
+        db = FirebaseFirestore.getInstance();
         ref = FirebaseDatabase.
                 getInstance().getReferenceFromUrl
                         ("https://blood-types-77ce2-default-rtdb.firebaseio.com/");
@@ -55,13 +73,67 @@ public class Sendrequest extends AppCompatActivity {
                 @SuppressLint("HardwareIds")
                 String deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                         Settings.Secure.ANDROID_ID);
+//               HashMap<String,String> users = new HashMap<>();
+//                users.put("name", name);
+//                users.put("number", number);
+//                users.put("specialization", specialization);
+//                users.put("time", time);
+//                users.put("title", title);
+//                CollectionReference buyersReference = db.collection("Doctor");
+//                buyersReference.add(users);
+//                Query usersDataQuery = buyersReference.whereEqualTo(
+//                        "visible", "true");
+//
+//
+//
+//                usersDataQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//
+//                        if (task.isSuccessful()){
+//                            Toast.makeText(Sendrequest.this, "Done", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(Sendrequest.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentReference> task) {
+//                        if (task.isSuccessful()){
+//
+//                        }
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(Sendrequest.this, "Field", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+
+//                usersDataQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                String firstName = document.getString("firstName");
+//                                Log.d("TAG",firstName);
+//
+//                            }
+//                        }
+//                    }
+//                });
 
                 ref.child("Doctor").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        ref.child("Doctor").child(deviceId).child("userName").setValue(name);
+                        ref.child("Doctor").child(deviceId).child("name").setValue(name);
                         ref.child("Doctor").child(deviceId).child("number").setValue(number);
-                        ref.child("Doctor").child(deviceId).child("time").setValue(time);
+                        ref.child("Doctor").child(deviceId).child("presence").setValue(time);
                         ref.child("Doctor").child(deviceId).child("specialization").setValue(specialization);
                         ref.child("Doctor").child(deviceId).child("title").setValue(title);
                         Toast.makeText(Sendrequest.this,

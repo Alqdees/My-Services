@@ -3,9 +3,11 @@ package com.Blood.types.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,16 +54,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.type.setText(type);
         holder.location.setText(location);
         holder.getAdapterPosition();
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(context, ShowInformationActivity.class);
+//
+//                i.putExtra("name",name);
+//                i.putExtra("number",number);
+//                i.putExtra("type",type);
+//                i.putExtra("location",location);
+//                context.startActivity(i);
+//            }
+//        });
+        holder.call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, ShowInformationActivity.class);
 
-                i.putExtra("name",name);
-                i.putExtra("number",number);
-                i.putExtra("type",type);
-                i.putExtra("location",location);
-                context.startActivity(i);
+                Intent share = new Intent(Intent.ACTION_DIAL);
+                share.setData(Uri.parse("tel:"+number));
+                context.startActivity(share);
             }
         });
     }
@@ -73,12 +84,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class AdapterBelow extends RecyclerView.ViewHolder{
          TextView name,number,type,location;
+         private ImageButton call;
         public AdapterBelow(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             number = itemView.findViewById(R.id.Number);
             type = itemView.findViewById(R.id.type);
             location = itemView.findViewById(R.id.location);
+            call = itemView.findViewById(R.id.call);
 
         }
     }

@@ -53,10 +53,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseRemoteConfig remoteConfig;
     private int currentVersionCod;
     private Intent intent;
-
     private String Types;
     private ActionBar actionBar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

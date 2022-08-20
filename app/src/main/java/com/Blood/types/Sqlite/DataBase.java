@@ -24,7 +24,7 @@ public class DataBase extends SQLiteOpenHelper {
     public static final int Version = 1;
 
     @RequiresApi(api = Build.VERSION_CODES.P)
-    public DataBase( Context context) {
+    public DataBase(Context context) {
         super(context,DB_NAME,null,Version);
     }
 
