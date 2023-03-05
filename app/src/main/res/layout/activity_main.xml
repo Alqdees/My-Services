@@ -13,19 +13,17 @@
         android:layout_height="200dp"
         android:background="@drawable/toolbar"
         android:id="@+id/toolbar"
-
         >
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/somar"
             android:text="فصيلة الدم"
             android:textColor="@color/white"
-            android:textSize="@dimen/_22ssp" />
+            android:textSize="@dimen/_22sdp" />
 
     </RelativeLayout>
 
@@ -39,6 +37,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp" />
@@ -51,8 +53,9 @@
         android:layout_marginStart="40dp"
         android:layout_marginBottom="60dp"
         android:text="تعديل المعلومات"
-        android:textSize="@dimen/_22ssp"
-        android:backgroundTint="@color/white"
+        android:textSize="@dimen/_22sdp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/blue"
         android:fontFamily="@font/somar"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"

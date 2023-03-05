@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100ssp"
+        android:layout_height="@dimen/_100sdp"
         android:background="@drawable/toolbar"/>
 
 
@@ -36,7 +36,7 @@
             android:padding="8dp"
             android:text="أذا كنت تريد تغير فصيلة الدم فعليك حذف المعلومات أولا والتسجيل من جديد"
             android:textColor="@color/black"
-            android:textSize="@dimen/_15ssp"
+            android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="@dimen/_5ssp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:fontFamily="@font/somar"
             android:padding="8dp"
             android:text="ساهم في انقاذ حياة أنسان"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="12dp"
             android:hint="الاسم الرباعي"
             android:textColorHint="@color/black"
@@ -183,47 +183,47 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/selected"
-        android:id="@+id/otp"
-        >
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/otptext"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="@dimen/_10ssp"
-            android:layout_marginEnd="12dp"
-            android:hint="OTP"
-            android:textColorHint="@color/black"
-            app:hintTextColor="@color/black">
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/selected"-->
+<!--        android:id="@+id/otp"-->
+<!--        >-->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/otptext"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="12dp"-->
+<!--            android:layout_marginTop="@dimen/_10sdp"-->
+<!--            android:layout_marginEnd="12dp"-->
+<!--            android:hint="OTP"-->
+<!--            android:textColorHint="@color/black"-->
+<!--            app:hintTextColor="@color/black">-->
 
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/OTP_ET"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="text"
-                android:shadowColor="@color/black" />
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/OTP_ET"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:inputType="text"-->
+<!--                android:shadowColor="@color/black" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <androidx.constraintlayout.utils.widget.MotionButton
-            android:id="@+id/confirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-           android:layout_below="@+id/otptext"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/_8ssp"
-            android:background="@drawable/buttonselect"
-            android:text="تأكيد"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+<!--        <androidx.constraintlayout.utils.widget.MotionButton-->
+<!--            android:id="@+id/confirm"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--           android:layout_below="@+id/otptext"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:layout_marginTop="@dimen/_8ssp"-->
+<!--            android:background="@drawable/buttonselect"-->
+<!--            android:text="تأكيد"-->
+<!--            android:textSize="22sp"-->
+<!--            android:textStyle="bold" />-->
 
-    </RelativeLayout>
+<!--    </RelativeLayout>-->
 
 </RelativeLayout>

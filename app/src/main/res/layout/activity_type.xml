@@ -9,23 +9,27 @@
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100ssp"
+        android:layout_height="@dimen/_100sdp"
         android:background="@drawable/toolbar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="false"
 
         />
 
 
     <RelativeLayout
-        android:layout_width="354dp"
-        android:layout_height="456dp"
+        android:id="@+id/bloodType"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_350sdp"
         android:layout_below="@+id/toolbar"
         android:layout_centerInParent="true"
         android:layout_marginStart="25dp"
         android:layout_marginTop="-29dp"
         android:layout_marginEnd="25dp"
-        android:id="@+id/bloodType"
         android:background="@drawable/buttonselect"
-        android:padding="@dimen/_8ssp">
+        android:padding="@dimen/_8sdp">
 
         <TextView
             android:layout_width="match_parent"
@@ -34,7 +38,7 @@
             android:text="فصائل الدم"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/_28ssp"
+            android:textSize="@dimen/_28sdp"
 
             />
 
@@ -42,7 +46,7 @@
             android:id="@+id/liner1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_50ssp"
+            android:layout_marginTop="@dimen/_50sdp"
             android:orientation="horizontal"
             android:padding="4sp">
 
@@ -53,7 +57,7 @@
                 android:layout_marginEnd="4sp"
                 android:layout_weight="1"
                 android:text="A+"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_18sdp"
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
@@ -63,7 +67,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="A-"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_18sdp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -72,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/liner1"
-            android:layout_marginTop="@dimen/_22ssp"
+            android:layout_marginTop="@dimen/_22sdp"
             android:orientation="horizontal"
             android:padding="5dp">
 
@@ -83,7 +87,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:text="B+"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_18sdp"
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
@@ -93,7 +97,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="B-"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_18sdp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -102,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/liner2"
-            android:layout_marginTop="@dimen/_22ssp"
+            android:layout_marginTop="@dimen/_22sdp"
             android:orientation="horizontal"
             android:padding="5dp">
 
@@ -110,20 +114,20 @@
                 android:id="@+id/ABpluse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/_4sdp"
                 android:layout_weight="1"
                 android:text="AB+"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_18sdp"
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/ABminuse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="@dimen/_4sdp"
                 android:layout_weight="1"
                 android:text="AB-"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_18sdp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -132,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/liner3"
-            android:layout_marginTop="@dimen/_22ssp"
+            android:layout_marginTop="@dimen/_22sdp"
             android:orientation="horizontal"
             android:padding="5dp">
 
@@ -140,20 +144,20 @@
                 android:id="@+id/Opluse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/_4sdp"
                 android:layout_weight="1"
                 android:text="O+"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_18sdp"
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Ominuse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="@dimen/_4sdp"
                 android:layout_weight="1"
                 android:text="O-"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_18sdp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -162,16 +166,15 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addDonation"
-        android:layout_width="@dimen/_100ssp"
+        android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bloodType"
         android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:background="@drawable/buttonselect"
         android:fontFamily="@font/somar"
         android:text="أضافة متبرع"
         android:textColor="@color/black"
-
-        android:textSize="@dimen/_22ssp" />
+        android:textSize="@dimen/_22sdp" />
 
 </RelativeLayout>

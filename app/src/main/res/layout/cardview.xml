@@ -148,11 +148,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_50ssp"
-            android:layout_marginEnd="@dimen/_4ssp"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
             android:background="@drawable/buttonselect"
-            android:minWidth="@dimen/_40ssp"
-            android:minHeight="@dimen/_40ssp"
+            android:minWidth="@dimen/_40sdp"
+            android:minHeight="@dimen/_40sdp"
             android:src="@drawable/ic_call"
             tools:ignore="SpeakableTextPresentCheck" />
 

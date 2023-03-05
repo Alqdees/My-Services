@@ -9,7 +9,11 @@
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="@drawable/toolbar">
 
         <TextView
@@ -21,7 +25,7 @@
             android:fontFamily="@font/somar"
             android:text="خطوط النقل"
             android:textColor="@color/white"
-            android:textSize="@dimen/_22ssp" />
+            android:textSize="@dimen/_22sdp" />
 
 
     </RelativeLayout>
@@ -31,7 +35,7 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_40ssp"
+        android:layout_marginTop="@dimen/_40sdp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="3dp"
         android:background="@drawable/circale_shape"

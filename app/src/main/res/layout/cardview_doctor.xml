@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="@dimen/_10ssp"
-    app:cardMaxElevation="@dimen/_22ssp"
-    app:cardCornerRadius="@dimen/_8ssp"
+    app:cardElevation="@dimen/_10sdp"
+    app:cardMaxElevation="@dimen/_22sdp"
+    app:cardCornerRadius="@dimen/_8sdp"
     android:layout_margin="8dp"
-    android:layout_marginTop="@dimen/_8ssp"
+    android:layout_marginTop="@dimen/_8sdp"
     android:background="@drawable/circale_shape"
     >
 
@@ -33,7 +33,7 @@
                 android:text="  ألاسم:"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
 
 
@@ -41,12 +41,12 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_4ssp"
+                android:padding="@dimen/_4sdp"
                 android:fontFamily="@font/somar"
                 android:layout_weight="1"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_20ssp"
+                android:textSize="@dimen/_20sdp"
                 android:textStyle="bold" />
 
         </TableRow>
@@ -61,7 +61,7 @@
                 android:text="الاختصاص:"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
             <TextView
                 android:fontFamily="@font/somar"
@@ -76,7 +76,7 @@
                 android:layout_weight="1"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
         </TableRow>
 
@@ -93,7 +93,7 @@
                 android:text="اوقات الدوام:"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
             <TextView
                 android:fontFamily="@font/somar"
@@ -108,7 +108,7 @@
                 android:layout_weight="1"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
         </TableRow>
         <TableRow>
@@ -121,7 +121,7 @@
                 android:text="الرقم :"
                 android:fontFamily="@font/somar"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
                 android:padding="8dp"/>
             <TextView
@@ -133,7 +133,7 @@
                 android:layout_marginStart="1dp"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_16sdp"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:padding="8dp"/>
@@ -149,7 +149,7 @@
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
                 tools:ignore="TextViewEdits" />
             <TextView
@@ -163,7 +163,7 @@
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
                 tools:ignore="TextViewEdits" />
 
@@ -177,11 +177,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/_50ssp"
+            android:layout_marginTop="@dimen/_50sdp"
             android:background="@drawable/buttonselect"
-            android:layout_marginEnd="@dimen/_12ssp"
-            android:minWidth="@dimen/_40ssp"
-            android:minHeight="@dimen/_40ssp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:minWidth="@dimen/_40sdp"
+            android:minHeight="@dimen/_40sdp"
             android:src="@drawable/ic_call"
             tools:ignore="SpeakableTextPresentCheck" />
     </RelativeLayout>

@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="@dimen/_10ssp"
-    app:cardMaxElevation="@dimen/_22ssp"
-    app:cardCornerRadius="@dimen/_8ssp"
+    app:cardElevation="@dimen/_10sdp"
+    app:cardMaxElevation="@dimen/_22sdp"
+    app:cardCornerRadius="@dimen/_8sdp"
     android:layout_margin="8dp"
-    android:layout_marginTop="@dimen/_8ssp"
+    android:layout_marginTop="@dimen/_8sdp"
     android:background="@drawable/circale_shape"
     >
     <RelativeLayout
@@ -36,7 +36,7 @@
                     android:text="ألاسم :"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
 
 
@@ -46,10 +46,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/somar"
-                    android:padding="@dimen/_4ssp"
+                    android:padding="@dimen/_4sdp"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_20ssp"
+                    android:textSize="@dimen/_20sdp"
                     android:textStyle="bold" />
 
 
@@ -67,7 +67,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -81,7 +81,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
             </TableRow>
 
@@ -97,7 +97,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_16sdp"
                     android:textStyle="bold"
                     tools:ignore="TextViewEdits" />
 
@@ -112,7 +112,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_16sdp"
                     android:textStyle="bold"
                     tools:ignore="TextViewEdits" />
 
@@ -130,7 +130,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -146,7 +146,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
             </TableRow>
 
@@ -162,7 +162,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -178,7 +178,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
             </TableRow>
         </TableLayout>
@@ -189,11 +189,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/_50ssp"
-            android:layout_marginEnd="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
             android:background="@drawable/buttonselect"
-            android:minWidth="@dimen/_40ssp"
-            android:minHeight="@dimen/_40ssp"
+            android:minWidth="@dimen/_40sdp"
+            android:minHeight="@dimen/_40sdp"
             android:src="@drawable/ic_call"
             tools:ignore="SpeakableTextPresentCheck" />
 

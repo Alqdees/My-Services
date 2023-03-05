@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/_120sdp"
         android:background="@drawable/toolbar"
         android:id="@+id/toolbar"
 
@@ -18,11 +18,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:fontFamily="@font/somar"
             android:text="@string/doctor"
             android:textColor="@color/white"
-            android:textSize="@dimen/_22ssp" />
+            android:textSize="@dimen/_22sdp" />
 
 
     </RelativeLayout>
@@ -31,10 +31,10 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_40ssp"
+        android:layout_marginTop="@dimen/_40sdp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="3dp"
         android:background="@drawable/circale_shape"
-        android:padding="10dp" />
+        android:padding="@dimen/_6sdp" />
 
 </RelativeLayout>

@@ -4,40 +4,27 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Browser;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.Blood.types.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
-import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -62,10 +49,10 @@ public class RegisterActivity extends AppCompatActivity {
     private String deviceId;
     private String Type;
 
-    private PhoneAuthProvider.ForceResendingToken forceResendingToken;
-    private FloatingActionButton deleted_f;
+//    private PhoneAuthProvider.ForceResendingToken forceResendingToken;
+//    private FloatingActionButton deleted_f;
     private String[] types;
-    private String VerificationID;
+//    private String VerificationID;
 
     private Map<String, Object> users;
     private Intent intent;
@@ -178,10 +165,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         actionBar = getSupportActionBar();
 
-        confirm = findViewById(R.id.confirm);
-        Et_otp = findViewById(R.id.OTP_ET);
-        Et_otp.setVisibility(View.GONE);
-        confirm.setVisibility(View.GONE);
+//        confirm = findViewById(R.id.confirm);
+//        Et_otp = findViewById(R.id.OTP_ET);
+//        Et_otp.setVisibility(View.GONE);
+//        confirm.setVisibility(View.GONE);
         /////////////////////////////////////
 //        deviceId = Add a new document with a constants Android ID
 

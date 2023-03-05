@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.Blood.types.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -73,7 +74,7 @@ public class LineActivity extends AppCompatActivity {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
+//                            Snackbar.make(R.layout.cardview,"aaa",Snackbar.LENGTH_SHORT).show();
                         }
                     });
 
