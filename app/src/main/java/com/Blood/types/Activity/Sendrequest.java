@@ -62,6 +62,8 @@ public class Sendrequest extends AppCompatActivity {
         ref = FirebaseDatabase.
                 getInstance().getReferenceFromUrl
                         ("https://blood-types-77ce2-default-rtdb.firebaseio.com/");
+
+
         sendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,61 +75,6 @@ public class Sendrequest extends AppCompatActivity {
                 @SuppressLint("HardwareIds")
                 String deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                         Settings.Secure.ANDROID_ID);
-//               HashMap<String,String> users = new HashMap<>();
-//                users.put("name", name);
-//                users.put("number", number);
-//                users.put("specialization", specialization);
-//                users.put("time", time);
-//                users.put("title", title);
-//                CollectionReference buyersReference = db.collection("Doctor");
-//                buyersReference.add(users);
-//                Query usersDataQuery = buyersReference.whereEqualTo(
-//                        "visible", "true");
-//
-//
-//
-//                usersDataQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//
-//                        if (task.isSuccessful()){
-//                            Toast.makeText(Sendrequest.this, "Done", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(Sendrequest.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentReference> task) {
-//                        if (task.isSuccessful()){
-//
-//                        }
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(Sendrequest.this, "Field", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-
-//                usersDataQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                String firstName = document.getString("firstName");
-//                                Log.d("TAG",firstName);
-//
-//                            }
-//                        }
-//                    }
-//                });
-
                 ref.child("Doctor").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
