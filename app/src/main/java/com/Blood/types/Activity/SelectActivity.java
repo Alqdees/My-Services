@@ -67,27 +67,32 @@ public class SelectActivity extends AppCompatActivity {
         MotionButton addDoctor = v.findViewById(R.id.doctorAdd);
         MotionButton addBlood = v.findViewById(R.id.add_blood);
         builder.setView(v);
+        AlertDialog dialog = builder.show();
+
 
         addLine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SelectActivity.this,LineActivity.class));
+                dialog.dismiss();
             }
         });
         addDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
               startActivity(new Intent(SelectActivity.this,Sendrequest.class));
+                dialog.dismiss();
             }
         });
         addBlood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SelectActivity.this,RegisterActivity.class));
+                dialog.dismiss();
             }
         });
 
-        builder.create().show();
+        dialog.create();
 
     }
 }

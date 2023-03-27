@@ -19,7 +19,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,11 +36,11 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String O_PLUS = "O+";
     private static final String O_MINUS = "O-";
     private com.google.android.material.textfield.TextInputEditText
-            ET_name,ET_number, ET_location,Et_otp;
+            ET_name,ET_number, ET_location;
     private FirebaseFirestore db;
     private ActionBar actionBar;
-    AutoCompleteTextView autoCompleteTextView;
-    private androidx.constraintlayout.utils.widget.MotionButton register,deleted,confirm;
+    private AutoCompleteTextView autoCompleteTextView;
+    private androidx.constraintlayout.utils.widget.MotionButton register,deleted;
     private String name;
     private String number;
     private String type;
@@ -49,11 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String deviceId;
     private String Type;
 
-//    private PhoneAuthProvider.ForceResendingToken forceResendingToken;
-//    private FloatingActionButton deleted_f;
     private String[] types;
-//    private String VerificationID;
-
     private Map<String, Object> users;
     private Intent intent;
     private boolean isEditMode;
@@ -67,12 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-//
-//        FirebaseAuth.getInstance().getFirebaseAuthSettings()
-//                .setAppVerificationDisabledForTesting(true);
 
-
-//        String documentReference = db.collection(type).document(deviceId).getId();
         // not change color in dark mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         db = FirebaseFirestore.getInstance();
@@ -92,10 +82,6 @@ public class RegisterActivity extends AppCompatActivity {
         textView = findViewById(R.id.tv_information);
         textView.setVisibility(View.GONE);
         deleted.setVisibility(View.GONE);
-//        confirm = findViewById(R.id.confirm);
-//        confirm.setVisibility(View.GONE);
-//        Et_otp = findViewById(R.id.OTP_ET);
-//        Et_otp.setVisibility(View.GONE);
 //
 
 
@@ -114,9 +100,9 @@ public class RegisterActivity extends AppCompatActivity {
                 new ArrayAdapter<>(this,R.layout.drop_down_item,types);
         autoCompleteTextView = findViewById(R.id.typesAuto);
         autoCompleteTextView.setAdapter(arrayAdapter);
-//        auth.setLanguageCode("EN");
+
         if (isEditMode){
-//            getDataFirestore()
+
            updateAndgetData();
         }else {
             register.setOnClickListener(new View.OnClickListener() {
@@ -144,9 +130,6 @@ public class RegisterActivity extends AppCompatActivity {
                     else {
 
                         setData(name,number,type,location);
-//                        Et_otp.setVisibility(View.VISIBLE);
-//                        confirm.setVisibility(View.VISIBLE);
-//                        sendVerifictionCode(ET_number.getText().toString().trim());
                     }
 
                 }
@@ -165,27 +148,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         actionBar = getSupportActionBar();
 
-//        confirm = findViewById(R.id.confirm);
-//        Et_otp = findViewById(R.id.OTP_ET);
-//        Et_otp.setVisibility(View.GONE);
-//        confirm.setVisibility(View.GONE);
-        /////////////////////////////////////
-//        deviceId = Add a new document with a constants Android ID
-
-
-
-//         initialize variable
-
-//        confirm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String codOtp = Et_otp.getText().toString();
-//                if (TextUtils.isEmpty(codOtp)){
-//                    Toast.makeText(RegisterActivity.this,
-//                    "حقل التأكيد فارغ", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
 
     }
 
@@ -412,7 +374,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(RegisterActivity.this, "تم الحذف ", Toast.LENGTH_SHORT).show();
                                     finish();
-//                        onBackPressed();
                                 }
                             }
 
@@ -426,80 +387,5 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
-
-
-//    public PhoneAuthProvider.OnVerificationStateChangedCallbacks  mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-//        @Override
-//        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-//            String code = phoneAuthCredential.getSmsCode();
-//            if (code != null){
-//                verified(code);
-//                Log.d("CODESEND",code);
-//                Log.d("CODESEND", "onVerificationCompleted:" + phoneAuthCredential.getSmsCode());
-//
-////                signInbyCredential(phoneAuthCredential);
-//
-//            }
-//        }
-//        @Override
-//        public void onVerificationFailed(@NonNull FirebaseException e) {
-//            Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//            Log.d("ERROR",e.getMessage());
-//        }
-//
-//        @Override
-//        public void onCodeSent(@NonNull String s,
-//                @NonNull PhoneAuthProvider.ForceResendingToken token) {
-//            super.onCodeSent(s, token);
-//            VerificationID = s;
-//            forceResendingToken = token;
-//        }
-//    };
-
-//
-//    private void verified(String code) {
-//        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(this.VerificationID,code);
-//        signInbyCredential(credential);
-//
-//    }
-//
-//    private void signInbyCredential(PhoneAuthCredential credential) {
-//
-//
-//        auth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()){
-//                    FirebaseUser user = task.getResult().getUser();
-//                    Et_otp.setText(user.toString());
-//                    Toast.makeText(RegisterActivity.this, "Done", Toast.LENGTH_SHORT).show();
-//                    setData(name,number,type,location);
-//
-//                }
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                Log.d("ERROR",e.getMessage());
-//            }
-//        });
-//
-//    }
-//
-//    private void sendVerifictionCode(String number) {
-//        String getnumber= number.replaceFirst(0+"","");
-//        getnumber = "+964"+getnumber;
-//        PhoneAuthOptions options =
-//                PhoneAuthOptions.newBuilder(auth)
-//                        .setPhoneNumber(getnumber)
-//                        .setTimeout(60L, TimeUnit.SECONDS)
-//                        .setActivity(this)
-//                        .setCallbacks(mCallbacks)
-//                        .build();
-//        PhoneAuthProvider.verifyPhoneNumber(options);
-//        Log.d("TAG",getnumber);
-//    }
-//
 
 }

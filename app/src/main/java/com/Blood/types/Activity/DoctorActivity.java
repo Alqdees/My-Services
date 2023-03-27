@@ -5,20 +5,16 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
-
 import com.Blood.types.Adapter.AdapterDoctor;
-import com.Blood.types.Adapter.Adapter_Transport;
 import com.Blood.types.Model.Doctor;
-import com.Blood.types.Model.ModelTransport;
 import com.Blood.types.R;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -50,14 +46,14 @@ public class DoctorActivity extends AppCompatActivity {
     private void showData()
     {
 
-        db.collection("Doctor").orderBy("name", Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("Doctor").whereEqualTo("bool" ,true).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (error != null){
                             Toast.makeText(
                                     DoctorActivity.this, error.getMessage(),
                                     Toast.LENGTH_SHORT).show();
+                            Log.d("ERRORDOCTOR",error.getMessage());
                             return;
                         }else {
                             for (DocumentChange document: value.getDocumentChanges()) {

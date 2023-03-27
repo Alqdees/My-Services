@@ -47,7 +47,7 @@ public class Transportation_linesActivity extends AppCompatActivity {
     private void showData()
     {
 
-        db.collection("line").orderBy("name", Query.Direction.ASCENDING)
+        db.collection("line").whereEqualTo("bool",true)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -55,7 +55,7 @@ public class Transportation_linesActivity extends AppCompatActivity {
                             Toast.makeText(
                                     Transportation_linesActivity.this, error.getMessage(),
                                     Toast.LENGTH_SHORT).show();
-                            return;
+
                         }else {
                             for (DocumentChange document: value.getDocumentChanges()) {
                                 if (document.getType() == DocumentChange.Type.ADDED){

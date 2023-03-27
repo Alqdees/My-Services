@@ -24,21 +24,24 @@
             android:padding="@dimen/_5sdp"
             android:textSize="@dimen/_18sdp"
             android:textStyle="bold" />
+
         <androidx.constraintlayout.utils.widget.MotionButton
+            android:id="@+id/doctorAdd"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/doctorAdd"
             android:layout_below="@id/line_request"
-            android:text="طلب اضافة طبيب"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/buttonselect"
             android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_margin="@dimen/_8sdp"
-            android:textSize="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:background="@drawable/buttonselect"
             android:fontFamily="@font/somar"
-            />
+            android:text="طلب اضافة طبيب"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold" />
 
         <androidx.constraintlayout.utils.widget.MotionButton
             android:id="@+id/add_blood"

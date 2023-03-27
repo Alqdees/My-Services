@@ -33,7 +33,9 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_40sdp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="3dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/_1sdp"
         android:background="@drawable/circale_shape"
         android:padding="@dimen/_6sdp" />
 

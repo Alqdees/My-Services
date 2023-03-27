@@ -22,12 +22,12 @@
     <RelativeLayout
         android:id="@+id/bloodType"
         android:layout_width="@dimen/_300sdp"
-        android:layout_height="@dimen/_350sdp"
+        android:layout_height="@dimen/_320sdp"
         android:layout_below="@+id/toolbar"
         android:layout_centerInParent="true"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="-29dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="@dimen/_20sdp"
         android:background="@drawable/buttonselect"
         android:padding="@dimen/_8sdp">
 
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_50sdp"
             android:orientation="horizontal"
-            android:padding="4sp">
+            android:padding="@dimen/_2sdp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Aplus"
@@ -78,7 +78,7 @@
             android:layout_below="@+id/liner1"
             android:layout_marginTop="@dimen/_22sdp"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="@dimen/_2sdp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Bplus"
@@ -108,7 +108,7 @@
             android:layout_below="@+id/liner2"
             android:layout_marginTop="@dimen/_22sdp"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="@dimen/_2sdp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/ABpluse"
@@ -138,7 +138,7 @@
             android:layout_below="@+id/liner3"
             android:layout_marginTop="@dimen/_22sdp"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="@dimen/_2sdp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Opluse"
@@ -166,7 +166,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addDonation"
-        android:layout_width="@dimen/_100sdp"
+        android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bloodType"
         android:layout_centerInParent="true"
@@ -175,6 +175,6 @@
         android:fontFamily="@font/somar"
         android:text="أضافة متبرع"
         android:textColor="@color/black"
-        android:textSize="@dimen/_22sdp" />
+        android:textSize="@dimen/_25sdp" />
 
 </RelativeLayout>
