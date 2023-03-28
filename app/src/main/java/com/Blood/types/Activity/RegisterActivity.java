@@ -185,8 +185,13 @@ public class RegisterActivity extends AppCompatActivity {
                                     addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-//                                          sendVerifictionCode(number);
-                                            Toast.makeText(RegisterActivity.this, "Done", Toast.LENGTH_SHORT).show();
+
+                                            // is true register user ...
+
+                                            Toast.makeText(
+                                                    RegisterActivity.this
+                                                    , "Done",
+                                                    Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override

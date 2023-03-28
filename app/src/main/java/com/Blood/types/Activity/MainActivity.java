@@ -1,21 +1,15 @@
 package com.Blood.types.Activity;
 
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.net.Uri;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,20 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.Blood.types.Adapter.RecyclerViewAdapter;
 import com.Blood.types.Model.Model;
 import com.Blood.types.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-
 import java.util.ArrayList;
 
 
@@ -50,8 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ExtendedFloatingActionButton edit;
     private FirebaseFirestore db;
-    private FirebaseRemoteConfig remoteConfig;
-    private int currentVersionCod;
+
     private Intent intent;
     private String Types;
     private ActionBar actionBar;
@@ -120,86 +106,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-///////// below code to update app in on create
-        currentVersionCod = getCurrentVersionCode();
-        remoteConfig = FirebaseRemoteConfig.getInstance();
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(5)
-                .build();
-        remoteConfig.setConfigSettingsAsync(configSettings);
-        remoteConfig.fetchAndActivate().addOnCompleteListener(new OnCompleteListener<Boolean>() {
-            @Override
-            public void onComplete(@NonNull Task<Boolean> task) {
-
-                //newVersion get number integer from firebase
-                final String newVersion = remoteConfig.getString("newVersion");
-                if (Integer.parseInt(newVersion) > getCurrentVersionCode()) {
-                    showUpdateDialog();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        });
 
     }
-    private void showUpdateDialog() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        View v = LayoutInflater.from(this).inflate(R.layout.custom_dialog_update,null,false);
-        com.google.android.material.button.MaterialButton update = v.findViewById(R.id.update);
-        com.google.android.material.button.MaterialButton cancel  = v.findViewById(R.id.cancel);
-        dialog.setView(v);
-        Dialog dialog1 = dialog.create();
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse("https://t.me/Blood_Dontion");
-                Intent toTelegram= new Intent(Intent.ACTION_VIEW, uri);
-                try {
-                    startActivity(toTelegram);
-                }
-                catch (android.content.ActivityNotFoundException ex)
-                {
-                    Toast.makeText(getApplicationContext(), "Please Install Telegram",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog1.dismiss();
-                Toast.makeText(MainActivity.this, "من الضروري تحديث في وقت اخر", Toast.LENGTH_SHORT).show();
-            }
-        });
-        dialog1.show();
 
-//        dialog.setPositiveButton("Update", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                try {
-//                    startActivity(new Intent(Intent.ACTION_VIEW
-//                            , Uri.parse("")));
-//                } catch (Exception e) {
-////                    Toast.makeText(MainActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        }).create().show();
-        dialog.create();
-//        dialog.setCancelable(false);
-    }
-    private int getCurrentVersionCode() {
-        PackageInfo packageInfo = null;
-        try {
 
-            packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-
-        } catch (Exception e) {
-            Toast.makeText(this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        return packageInfo.versionCode;
-    }
 
 
     @Override
