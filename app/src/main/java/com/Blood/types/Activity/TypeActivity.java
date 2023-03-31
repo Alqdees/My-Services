@@ -27,8 +27,9 @@ public class TypeActivity extends AppCompatActivity {
     private static final String type = "type";
 
     private ActionBar actionBar;
-    private Button AddDonation;
+    private Button AddDonation,Edit;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +99,34 @@ public class TypeActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.edit).setOnClickListener((View v) ->{
+
+            final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            String options [] = {"تعديل","الغاء"};
+            dialog.setMessage("أدخل الرقم");
+            dialog.setItems(options, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        // because this count in array start from 0 (^_¬)
+                        case 0:
+
+                            editData();
+                            break;
+                        case 1:
+                            dialog.dismiss();
+                            break;
+                    }
+
+                }
+
+            });
+            dialog.create().show();
+//            intent = new Intent(TypeActivity.this,RegisterActivity.class);
+//
+//            startActivity(intent);
+        });
+
 
 //        floatingActionButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -106,6 +135,11 @@ public class TypeActivity extends AppCompatActivity {
 //            }
 //        });
 
+
+
+    }
+
+    private void editData() {
     }
 
     private void sendMainActivity(String s) {

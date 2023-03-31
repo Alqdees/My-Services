@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.Blood.types.Activity.ShowInformationActivity;
 import com.Blood.types.Model.Model;
 import com.Blood.types.R;
 

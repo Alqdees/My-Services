@@ -46,9 +46,6 @@
             android:name=".Activity.TypeActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ShowInformationActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activity.RegisterActivity"
             android:exported="false" />
         <activity

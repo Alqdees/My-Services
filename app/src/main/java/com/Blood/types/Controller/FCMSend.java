@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class FCMSend {
     private static String BASE_URL = "https://fcm.googleapis.com/fcm/send";
-    private static String APi_KEY = "key=AAAA8vdoalY:APA91bHD-4BzIJkvdcdpqBYxE6YdeMIoWS64iEzRRIn_az7EkttgUC9fTvchzvCOjLvfks3MtEoKGBuoh3yoDiQlukifpRYhYDWqPEpUUG_vfQl3nseIGEOT2m6UdLRqoijolQmFR9SU";
+    private static String APi_KEY = "AIzaSyDwLmR_6r0CPKZrlzVyPA-_ZD4aLnhNXr0";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void pushNotification(Context context, String token, String title, String message)

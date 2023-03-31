@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.utils.widget.MotionButton;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
@@ -22,8 +21,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
-
-import com.Blood.types.Controller.FCMSend;
 import com.Blood.types.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,12 +32,13 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 public class SelectActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
+    private String newVersion;
     private MotionButton line,blood,doctor;
 //    private MeowBottomNavigation navigation;
     private FloatingActionButton floatingActionButton;
     private FirebaseRemoteConfig remoteConfig;
     private int currentVersionCod;
-    private FCMSend fcmSend;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +47,16 @@ public class SelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select);
         actionBar = getSupportActionBar();
         actionBar.hide();
-        fcmSend = new FCMSend();
+        currentVersionCod = getCurrentVersionCode();
+        System.out.println(currentVersionCod + "  ______Device ");
+        remoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings
+                configSettings = new
+                FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(5000)
+                .build();
+        remoteConfig.setConfigSettingsAsync(configSettings);
+
 
         line = findViewById(R.id.lineTravel);
         blood = findViewById(R.id.blood);
@@ -80,28 +87,44 @@ public class SelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                showDialog();
-                fcmSend.pushNotification();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                }
             }
         });
 
 
-
 ///////// below code to update app in on create
-        currentVersionCod = getCurrentVersionCode();
-        remoteConfig = FirebaseRemoteConfig.getInstance();
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(5)
-                .build();
-        remoteConfig.setConfigSettingsAsync(configSettings);
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
         remoteConfig.fetchAndActivate().addOnCompleteListener(new OnCompleteListener<Boolean>() {
             @Override
             public void onComplete(@NonNull Task<Boolean> task) {
 
                 //newVersion get number integer from firebase
-                final String newVersion = remoteConfig.getString("newVersion");
-                if (Integer.parseInt(newVersion) > getCurrentVersionCode()) {
-                    showUpdateDialog();
+                if (task.isSuccessful()){
+
+                   newVersion = remoteConfig.getString("update");
+                    System.out.println("______Device  "+newVersion);
+                    if (Integer.parseInt(newVersion) > getCurrentVersionCode()) {
+                        showUpdateDialog();
+
+                    }
                 }
+
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -149,14 +172,15 @@ public class SelectActivity extends AppCompatActivity {
             Toast.makeText(this,
                     "" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+        assert packageInfo != null;
         return packageInfo.versionCode;
     }
 
     private void showUpdateDialog() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         View v = LayoutInflater.from(this).inflate(R.layout.custom_dialog_update,null,false);
-        com.google.android.material.button.MaterialButton update = v.findViewById(R.id.update);
-        com.google.android.material.button.MaterialButton cancel  = v.findViewById(R.id.cancel);
+        androidx.appcompat.widget.AppCompatButton update = v.findViewById(R.id.update);
+        androidx.appcompat.widget.AppCompatButton cancel  = v.findViewById(R.id.cancel);
         dialog.setView(v);
         Dialog dialog1 = dialog.create();
         update.setOnClickListener(new View.OnClickListener() {
