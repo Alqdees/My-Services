@@ -38,7 +38,7 @@ public class Transportation_linesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.hasFixedSize();
 
-    showData();
+        showData();
     }
     private void showData()
     {

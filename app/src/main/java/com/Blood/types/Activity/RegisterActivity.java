@@ -47,7 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
     private String location;
     private String deviceId;
     private String Type;
-
     private String[] types;
     private Map<String, Object> users;
     private Intent intent;
@@ -82,8 +81,6 @@ public class RegisterActivity extends AppCompatActivity {
         textView = findViewById(R.id.tv_information);
         textView.setVisibility(View.GONE);
         deleted.setVisibility(View.GONE);
-//
-
 
         types = new String[]{
                 "A+",

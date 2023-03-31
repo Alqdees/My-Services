@@ -18,6 +18,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.Blood.types.Adapter.RecyclerViewAdapter;
+import com.Blood.types.Controller.FCMSend;
 import com.Blood.types.Model.Model;
 import com.Blood.types.R;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ExtendedFloatingActionButton edit;
     private FirebaseFirestore db;
+    private FCMSend fcmSend;
 
     private Intent intent;
     private String Types;
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         actionBar = getSupportActionBar();
         actionBar.hide();
-
+        fcmSend = new FCMSend();
         db = FirebaseFirestore.getInstance();
         intent = getIntent();
         Types = intent.getStringExtra("type");
