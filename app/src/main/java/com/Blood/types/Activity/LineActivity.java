@@ -55,9 +55,9 @@ public class LineActivity extends AppCompatActivity {
                 if (name.isEmpty() || number.isEmpty() || type.isEmpty() || time.isEmpty() || from.isEmpty() ){
                     Toast.makeText(LineActivity.this, "أحد الحقول فارغ", Toast.LENGTH_SHORT).show();
                 }else {
-                    @SuppressLint("HardwareIds")
-                    String deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                            Settings.Secure.ANDROID_ID);
+//                    @SuppressLint("HardwareIds")
+//                    String deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+//                            Settings.Secure.ANDROID_ID);
                     lines.put("name",name);
                     lines.put("number",number);
                     lines.put("type",type);

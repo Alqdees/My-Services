@@ -154,66 +154,7 @@ public class TypeActivity extends AppCompatActivity {
 
     }
 
-//    private void editData(String number) {
-//        FirebaseAuth auth = FirebaseAuth.getInstance();
-//        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(auth)
-//                .setPhoneNumber("+9647812591236")
-//                .setTimeout(60L, TimeUnit.SECONDS)
-//                .setActivity(this)
-//                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-//                    @Override
-//                    public void onCodeSent(@NonNull String verificationId,
-//                                           @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-//                        // Save the verification id somewhere
-//                        // ...
-//                        Log.d("onVerificationFailed", "onVerificationFailed: " + verificationId);
-//                        // The corresponding whitelisted code above should be used to complete sign-in.
-////                        TypeActivity.this.enableUserManuallyInputCode();
-//                    }
-//
-//                    @Override
-//                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-//                        // Sign in with the credential
-//                        // ...
-//                        signInWithPhoneAuthCredential(phoneAuthCredential);
-//                    }
-//
-//                    @Override
-//                    public void onVerificationFailed(@NonNull FirebaseException e) {
-//                        // ...
-//                        Log.d("onVerificationFailed", "onVerificationFailed: " + e.getMessage());
-//                    }
-//                })
-//                .build();
-//        PhoneAuthProvider.verifyPhoneNumber(options);
-//
-//
-//
-//    }
-//
-//    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential){
-//        mAuth.signInWithCredential(credential)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @SuppressLint("LongLogTag")
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            Log.d("signInWithCredential:success", "signInWithCredential:success");
-//
-//                            FirebaseUser user = task.getResult().getUser();
-//                            // Update UI
-//                        } else {
-//                            // Sign in failed, display a message and update the UI
-//                            Log.w("signInWithCredential:failure", "signInWithCredential:failure", task.getException());
-//                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-//                                // The verification code entered was invalid
-//                            }
-//                        }
-//                    }
-//                });
 
-//    }
     private void sendMainActivity(String s) {
 
         intent.putExtra(type,s);

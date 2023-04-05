@@ -16,7 +16,6 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 
 public class DoctorActivity extends AppCompatActivity {
@@ -45,7 +44,6 @@ public class DoctorActivity extends AppCompatActivity {
 
     private void showData()
     {
-
         db.collection("Doctor").whereEqualTo("bool" ,true).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -65,6 +63,7 @@ public class DoctorActivity extends AppCompatActivity {
                             recyclerView.setAdapter(adapterDoctor);
                         }
                     }
-                });
+                }
+                );
     }
 }

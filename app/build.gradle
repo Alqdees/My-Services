@@ -31,8 +31,6 @@ android {
     namespace 'com.Blood.types'
 }
 
-
-
 dependencies {
 
 
@@ -50,6 +48,7 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.google.firebase:firebase-auth:21.2.1'
+    implementation 'com.supabase:supabase-android:1.0.8'
     configurations.all {
         exclude group: 'com.google.android.gms', module: 'play-services-safetynet'
     }
