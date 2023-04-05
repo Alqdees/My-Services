@@ -10,25 +10,40 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import com.Blood.types.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.FirebaseException;
+
+import java.util.concurrent.TimeUnit;
 
 public class TypeActivity extends AppCompatActivity {
 
-    private MaterialButton A_plus, A_Minus,B_plus,B_Minus,AB_plus,AB_Minus,O_Plus,O_Minus;
+
+    private MaterialButton A_plus,
+            A_Minus,
+            B_plus,
+            B_Minus,
+            AB_plus,
+            AB_Minus,
+            O_Plus,
+            O_Minus;
 //    private ExtendedFloatingActionButton floatingActionButton;
     private Intent intent;
     private static final String type = "type";
 
     private ActionBar actionBar;
     private Button AddDonation,Edit;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,33 +114,33 @@ public class TypeActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.edit).setOnClickListener((View v) ->{
-
-            final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-            String options [] = {"تعديل","الغاء"};
-            dialog.setMessage("أدخل الرقم");
-            dialog.setItems(options, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which){
-                        // because this count in array start from 0 (^_¬)
-                        case 0:
-
-                            editData();
-                            break;
-                        case 1:
-                            dialog.dismiss();
-                            break;
-                    }
-
-                }
-
-            });
-            dialog.create().show();
+//        findViewById(R.id.edit).setOnClickListener((View v) ->{
+//
+//            final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+//            String[] options = {"تعديل","الغاء"};
+//            dialog.setMessage("أدخل الرقم");
+//            EditText editText = new EditText(this);
+//            editText.setHint("ادخل رقم الهاتف ...");
+//            editText.setInputType(InputType.TYPE_CLASS_PHONE);
+//            dialog.setView(editText);
+//
+//           dialog.setPositiveButton("تعديل", new DialogInterface.OnClickListener() {
+//               @Override
+//               public void onClick(DialogInterface dialog, int which) {
+//                   editData(editText.getText().toString());
+//               }
+//           });
+//           dialog.setPositiveButton("الغاء", new DialogInterface.OnClickListener() {
+//               @Override
+//               public void onClick(DialogInterface dialog, int which) {
+//              dialog.dismiss();
+//               }
+//           });
+//            dialog.create().show();
 //            intent = new Intent(TypeActivity.this,RegisterActivity.class);
 //
 //            startActivity(intent);
-        });
+//        });
 
 
 //        floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -139,9 +154,66 @@ public class TypeActivity extends AppCompatActivity {
 
     }
 
-    private void editData() {
-    }
+//    private void editData(String number) {
+//        FirebaseAuth auth = FirebaseAuth.getInstance();
+//        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(auth)
+//                .setPhoneNumber("+9647812591236")
+//                .setTimeout(60L, TimeUnit.SECONDS)
+//                .setActivity(this)
+//                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+//                    @Override
+//                    public void onCodeSent(@NonNull String verificationId,
+//                                           @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+//                        // Save the verification id somewhere
+//                        // ...
+//                        Log.d("onVerificationFailed", "onVerificationFailed: " + verificationId);
+//                        // The corresponding whitelisted code above should be used to complete sign-in.
+////                        TypeActivity.this.enableUserManuallyInputCode();
+//                    }
+//
+//                    @Override
+//                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+//                        // Sign in with the credential
+//                        // ...
+//                        signInWithPhoneAuthCredential(phoneAuthCredential);
+//                    }
+//
+//                    @Override
+//                    public void onVerificationFailed(@NonNull FirebaseException e) {
+//                        // ...
+//                        Log.d("onVerificationFailed", "onVerificationFailed: " + e.getMessage());
+//                    }
+//                })
+//                .build();
+//        PhoneAuthProvider.verifyPhoneNumber(options);
+//
+//
+//
+//    }
+//
+//    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential){
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @SuppressLint("LongLogTag")
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d("signInWithCredential:success", "signInWithCredential:success");
+//
+//                            FirebaseUser user = task.getResult().getUser();
+//                            // Update UI
+//                        } else {
+//                            // Sign in failed, display a message and update the UI
+//                            Log.w("signInWithCredential:failure", "signInWithCredential:failure", task.getException());
+//                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+//                                // The verification code entered was invalid
+//                            }
+//                        }
+//                    }
+//                });
 
+//    }
     private void sendMainActivity(String s) {
 
         intent.putExtra(type,s);
@@ -197,6 +269,7 @@ public class TypeActivity extends AppCompatActivity {
         builder.create().show();
     }
     private void initialization() {
+//        mAuth = FirebaseAuth.getInstance();
         A_plus = findViewById(R.id.Aplus);
         A_Minus = findViewById(R.id.Aminus);
         B_plus = findViewById(R.id.Bplus);

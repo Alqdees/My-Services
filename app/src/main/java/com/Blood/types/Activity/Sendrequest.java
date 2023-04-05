@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.MotionButton;
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -20,14 +18,12 @@ import java.util.HashMap;
 
 public class Sendrequest extends AppCompatActivity {
 
-
     private TextInputEditText nameET,numberET,
             specializationET,timeET,titleET;
     private MotionButton sendRequest;
     private FirebaseFirestore db;
     private HashMap<String,Object> doctor;
-
-
+    private String Doctor = "Doctor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +47,7 @@ public class Sendrequest extends AppCompatActivity {
                 String specialization = specializationET.getText().toString();
                 String time = timeET.getText().toString();
                 String title = titleET.getText().toString();
-                @SuppressLint("HardwareIds")
-                String deviceId = Settings.Secure.getString(getApplicationContext()
-                                .getContentResolver(),
-                        Settings.Secure.ANDROID_ID);
+
                 doctor = new HashMap<>();
                 doctor.put("name",name);
                 doctor.put("number",number);
@@ -63,25 +56,25 @@ public class Sendrequest extends AppCompatActivity {
                 doctor.put("title",title);
                 doctor.put("bool",false);
 
-
-                db.collection("Doctor1").document(number)
+                db.collection(Doctor).document(number)
                         .set(doctor).
                         addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(Sendrequest.this, "Done", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(
+                                    Sendrequest.this,
+                                    "Done", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // wait some minute
-                        Log.d("EXCEPTIONFire", e.getMessage());
-
+                        Log.d("EXCEPTIONFire",
+                                e.getMessage());
                     }
                 });
-
             }
         });
 

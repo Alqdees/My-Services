@@ -89,19 +89,17 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.hasFixedSize();
-//            showData("A+");
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(
+                        MainActivity.this,RegisterActivity.class);
 
-//        edit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                intent = new Intent(
-//                        MainActivity.this,RegisterActivity.class);
-//
-//                intent.putExtra("isEditMode",true);
-//                intent.putExtra("types",Types);
-//                startActivity(intent);
-//            }
-//        });
+                intent.putExtra("isEditMode",true);
+                intent.putExtra("types",Types);
+                startActivity(intent);
+            }
+        });
 
 
 

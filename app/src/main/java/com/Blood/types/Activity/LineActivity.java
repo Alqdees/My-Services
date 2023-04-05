@@ -66,7 +66,7 @@ public class LineActivity extends AppCompatActivity {
                     lines.put("bool",false);
 
                     db.collection("line")
-                            .document().set(lines)
+                            .document(number).set(lines)
                             .addOnCompleteListener(
                                     new OnCompleteListener<Void>() {
                         @Override

@@ -24,6 +24,7 @@ public class Transportation_linesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Adapter_Transport adapter;
     private ActionBar actionBar;
+    private String Line = "line";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class Transportation_linesActivity extends AppCompatActivity {
     private void showData()
     {
 
-        db.collection("line").whereEqualTo("bool",true)
+        db.collection(Line).whereEqualTo("bool",true)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

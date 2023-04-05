@@ -34,7 +34,6 @@ public class SelectActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private String newVersion;
     private MotionButton line,blood,doctor;
-//    private MeowBottomNavigation navigation;
     private FloatingActionButton floatingActionButton;
     private FirebaseRemoteConfig remoteConfig;
     private int currentVersionCod;
@@ -48,7 +47,6 @@ public class SelectActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.hide();
         currentVersionCod = getCurrentVersionCode();
-        System.out.println(currentVersionCod + "  ______Device ");
         remoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings
                 configSettings = new
@@ -86,10 +84,7 @@ public class SelectActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                showDialog();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                }
+                showDialog();
             }
         });
 
@@ -123,7 +118,6 @@ public class SelectActivity extends AppCompatActivity {
 
                     }
                 }
-
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -186,7 +180,9 @@ public class SelectActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.Blood.types");
+                Uri uri =
+                        Uri.parse(
+                        "https://play.google.com/store/apps/details?id=com.Blood.types");
                 Intent toTelegram= new Intent(Intent.ACTION_VIEW, uri);
                 try {
                     startActivity(toTelegram);
