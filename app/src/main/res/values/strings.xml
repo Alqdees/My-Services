@@ -5,4 +5,6 @@
     <string name="n_n">احمد شاكر  \n اي أضافة او فكرة تساعد بالعمل الخيري لاتتردد بالتواصل معي \n</string>
     <string name="doctor">الاطباء</string>
     <string name="default_notification_channel_id">hi (^_¬)</string>
+    <string name="search_number">ابحث عن الرقم</string>
+    <string name="input_number">أدخل الرقم</string>
 </resources>

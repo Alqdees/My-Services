@@ -1,6 +1,7 @@
 package com.Blood.types.Activity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,12 +16,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SearchView;
+import androidx.constraintlayout.utils.widget.MotionButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.Blood.types.Adapter.RecyclerViewAdapter;
 import com.Blood.types.Model.Model;
 import com.Blood.types.R;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private Intent intent;
     private String Types;
     private ActionBar actionBar;
+    private FirebaseAuth mAuth;
+    private String mVerificationId,mResendToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         intent = getIntent();
         Types = intent.getStringExtra("type");
-
+        mAuth = FirebaseAuth.getInstance();
         //check types in server
         switch (Types){
             case "A+":
@@ -92,12 +100,32 @@ public class MainActivity extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(
-                        MainActivity.this,RegisterActivity.class);
 
-                intent.putExtra("isEditMode",true);
-                intent.putExtra("types",Types);
-                startActivity(intent);
+                View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_setnumber,null,false);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+                com.google.android.material.textfield.TextInputEditText
+                        edit = view.findViewById(R.id.number);
+                @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+                MotionButton search = view.findViewById(R.id.searchNumber);
+                search.setOnClickListener((View view2) ->{
+                    String number = edit.getText().toString();
+
+                    Toast.makeText(MainActivity.this,
+                            ""+number,
+                            Toast.LENGTH_SHORT).show();
+                });
+                builder.setView(view);
+                builder.create().show();
+
+//                intent = new Intent(
+//                        MainActivity.this,RegisterActivity.class);
+//
+//                intent.putExtra("isEditMode",true);
+//                intent.putExtra("types",Types);
+//                startActivity(intent);
             }
         });
 
@@ -106,6 +134,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
+            new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                @Override
+                public void onVerificationCompleted(PhoneAuthCredential credential) {
+                    // This callback is invoked when the verification is complete automatically
+                    // You can also use the credential to sign in the user
+                }
+
+                @Override
+                public void onVerificationFailed(FirebaseException e) {
+                    // This callback is invoked if an error occurred during the verification process
+                }
+
+                @Override
+                public void onCodeSent(String verificationId,
+                                       PhoneAuthProvider.ForceResendingToken token) {
+                    // This callback is invoked when the verification code is successfully sent to the user's phone number
+                    // Save the verification ID and resending token so you can use them later
+                    mVerificationId = verificationId;
+//                    mResendToken = token;
+                }
+            };
 
 
 
@@ -167,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
         db.collection(st).orderBy("name", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                    public void onEvent(@Nullable QuerySnapshot value,  FirebaseFirestoreException error) {
                         if (error != null){
                             Toast.makeText(
                                     MainActivity.this, error.getMessage(),
