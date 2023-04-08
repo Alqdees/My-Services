@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove"/>
-
-    <uses-permission
-        android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
-        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -17,10 +12,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.BloodTypes"
+        android:usesCleartextTraffic="true"
         tools:targetApi="33">
-
+        <activity
+            android:name=".Activity.OtpActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.LineActivity"
             android:exported="false" />
@@ -32,16 +29,10 @@
             android:exported="false" />
         <activity
             android:name=".Activity.Transportation_linesActivity"
-            android:exported="false" />
+            android:exported="false" /> <!-- heerree -->
         <activity
             android:name=".Activity.SelectActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Activity.TypeActivity"
             android:exported="false" />
@@ -50,36 +41,13 @@
             android:exported="false" />
         <activity
             android:name=".Activity.MainActivity"
-            android:exported="false" />
-
-        <service
-            android:name=".Controller.PushNotification"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </service>
-
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/notifications" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/blue" />
-
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="@string/default_notification_channel_id" />
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
-
+        </activity>
     </application>
 
 </manifest>

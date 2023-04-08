@@ -29,6 +29,8 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'com.Blood.types'
+    buildToolsVersion '33.0.2'
+    ndkVersion '25.2.9519653'
 }
 
 dependencies {

@@ -23,6 +23,22 @@
           }
         },
         {
+          "client_id": "470738266549-tb1acohmemil5ichqq1smn873u0vdvs3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Blood.types",
+            "certificate_hash": "85e90269eb29d5a6f8a156f9316b8c84bb11b648"
+          }
+        },
+        {
+          "client_id": "470738266549-v9scijk0nnr188ctjrrcmm56bc6geift.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Blood.types",
+            "certificate_hash": "eb1038e49c6cf49cce1f3b0044ca51907ee5aeb8"
+          }
+        },
+        {
           "client_id": "470738266549-cklbt5tjnmsindoj2tp9vksj56cmotd3.apps.googleusercontent.com",
           "client_type": 3
         }
