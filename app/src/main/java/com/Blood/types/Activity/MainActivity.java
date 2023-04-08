@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private String [] types;
     private ActionBar actionBar;
     private FirebaseAuth mAuth;
-    private String mVerificationId,number;
+    private String mVerificationId,number,realNumber;
     private TextView views;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     @Override
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.hasFixedSize();
-        mAuth.setLanguageCode("ar");
+        mAuth.setLanguageCode("en");
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,22 +150,19 @@ public class MainActivity extends AppCompatActivity {
                 search.setOnClickListener((View view2) ->{
                     number = edit.getText().toString().trim();
                     getNumberUser(number);
+
+//
 //                    sendVerificationCode(number);
                     dialog.dismiss();
 
-
                 });
               dialog.show();
-
             }
         });
 
-
-
-
     }
 
-    private void getNumberUser(String number) {
+    private void getNumberUser(String nb) {
 
         for (String s : types) {
 //            DocumentReference docRef = db.collection(s).document();
@@ -176,17 +173,28 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            if (Objects.equals(document.getString("number"), number)) {
+                            if (Objects.equals(document.getString("number"), nb)) {
+                                if (nb.charAt(0) == '0'){
+                                    realNumber = nb.substring(1);
+                                    sendVerificationCode(realNumber);
+                                    break;
+                                }else {
+
+                                }
+                            }
+                            else {
 
                             }
 
                         }
+                    }else {
+                        Toast.makeText(MainActivity.this, "Some Error", Toast.LENGTH_SHORT).show();
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-
+                    Log.d("onFailure", "onFailure: "+e.getMessage());
                 }
             });
         }
@@ -208,15 +216,23 @@ public class MainActivity extends AppCompatActivity {
 
 
                     if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                        Toast.makeText(MainActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(
+                                MainActivity.this,
+                                ""+e.getMessage(),
+                                Toast.LENGTH_SHORT).show();
                         // Invalid request
                     } else if (e instanceof FirebaseTooManyRequestsException) {
-                        Toast.makeText(MainActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(
+                                MainActivity.this,
+                                ""+e.getMessage(),
+                                Toast.LENGTH_SHORT).show();
 
                         // The SMS quota for the project has been exceeded
                     } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
-                        Toast.makeText(MainActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(
+                                MainActivity.this,
+                                ""+e.getMessage(),
+                                Toast.LENGTH_SHORT).show();
                         // reCAPTCHA verification attempted with null Activity
                     }
                     // This callback is invoked if an error occurred during the verification process
@@ -227,17 +243,17 @@ public class MainActivity extends AppCompatActivity {
                                        PhoneAuthProvider.ForceResendingToken
                                                token)
                 {
-
-
+                    Log.d("onCodeSent", "onCodeSent: __"+verificationId);
                     Intent intent=new Intent(getApplicationContext(),OtpActivity.class);
-                    intent.putExtra("mobile",number);
-                    intent.putExtra("backendotp",verificationId);
+                    intent.putExtra("number",realNumber);
+                    intent.putExtra("verificationId",verificationId);
                     startActivity(intent);
 //                    Log.d("onCodeSent", "onCodeSent:_______" + verificationId);
 //                    mVerificationId = verificationId;
 //                    mResendToken = token;
                 }
             };
+
     private void sendVerificationCode(String phoneNumber) {
 
         PhoneAuthOptions options =
@@ -249,11 +265,6 @@ public class MainActivity extends AppCompatActivity {
                         .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
-    }
-
-    private void verifyVerificationCode(String otp) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, otp);
-        signInWithPhoneAuthCredential(credential);
     }
 
 
@@ -269,6 +280,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

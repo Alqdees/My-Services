@@ -29,10 +29,20 @@
             android:exported="false" />
         <activity
             android:name=".Activity.Transportation_linesActivity"
-            android:exported="false" /> <!-- heerree -->
+            android:exported="false" />
+
+        <!-- heerree -->
         <activity
             android:name=".Activity.SelectActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
         <activity
             android:name=".Activity.TypeActivity"
             android:exported="false" />
@@ -41,13 +51,7 @@
             android:exported="false" />
         <activity
             android:name=".Activity.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
     </application>
 
 </manifest>

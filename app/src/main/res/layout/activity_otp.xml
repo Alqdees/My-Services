@@ -28,6 +28,12 @@
             android:textSize="20sp"
             android:textColor="@color/colortextfirst"
             android:textStyle="bold"/>
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/probar2"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="53dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="match_parent"
@@ -206,6 +212,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
+
             <androidx.constraintlayout.utils.widget.MotionButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -215,13 +222,6 @@
                 android:background="@drawable/backgroundbutton"
                 android:textColor="@color/colortextfirst"
                 android:textStyle="bold"/>
-
-            <ProgressBar
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                android:id="@+id/probar2"/>
 
         </FrameLayout>
 
