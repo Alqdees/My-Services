@@ -3,26 +3,21 @@ package com.Blood.types.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.MotionButton;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.Blood.types.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthSettings;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -31,7 +26,7 @@ public class OtpActivity extends AppCompatActivity {
 
     private EditText et1, et2, et3, et4, et5, et6;
     private MotionButton btnsubmit;
-    private  String realNumber,verificationId;
+    private  String realNumber,verificationId,name,location,type,number;
     private  ProgressBar progressBar;
     private TextView textView;
     private FirebaseAuth mAuth;
@@ -51,6 +46,13 @@ public class OtpActivity extends AppCompatActivity {
          realNumber = getIntent().getStringExtra("number");
 
         verificationId = getIntent().getStringExtra("verificationId");
+
+        name = getIntent().getStringExtra("name");
+        number = getIntent().getStringExtra("number");
+        location = getIntent().getStringExtra("location");
+        type = getIntent().getStringExtra("type");
+
+
 //        textView.setText();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseAuthSettings firebaseAuthSettings = firebaseAuth.getFirebaseAuthSettings();
@@ -86,17 +88,19 @@ public class OtpActivity extends AppCompatActivity {
                                 btnsubmit.setVisibility(View.VISIBLE);
 
                                 if (task.isSuccessful()) {
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    intent.putExtra("name",name);
+                                    intent.putExtra("location",location);
+                                    intent.putExtra("type",type);
+                                    intent.putExtra("number",number);
+                                    intent.putExtra("isEditMode",true);
                                     startActivity(intent);
                                 } else {
-                                    Toast.makeText(OtpActivity.this, "Enter corrent OTP", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(OtpActivity.this, R.string.Error_otp, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-//                if (getuserotp.equals(verificationId)){
-//                    startActivity(new Intent(OtpActivity.this,RegisterActivity.class));
-//                }
 
             }
 

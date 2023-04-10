@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +27,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
@@ -41,9 +39,6 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentId;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -67,9 +62,8 @@ public class MainActivity extends AppCompatActivity {
     private String [] types;
     private ActionBar actionBar;
     private FirebaseAuth mAuth;
-    private String mVerificationId,number,realNumber;
-    private TextView views;
-    private PhoneAuthProvider.ForceResendingToken mResendToken;
+    private String mVerificationId,number,realNumber,name,location,type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,36 +88,35 @@ public class MainActivity extends AppCompatActivity {
                 "لا أعرف"
         };
         mAuth = FirebaseAuth.getInstance();
-        views = new TextView(this);
-//        views.setText(R.string.non);
+
         //check types in server
-//        switch (Types){
-//            case "A+":
-//                showData("A+");
-//                break;
-//            case "A-":
-//                showData("A-");
-//                break;
-//            case "B+":
-//                showData("B+");
-//                break;
-//            case "B-":
-//                showData("B-");
-//                break;
-//            case "AB+":
-//                showData("AB+");
-//                break;
-//            case "AB-":
-//                showData("AB-");
-//                break;
-//            case "O+":
-//                showData("O+");
-//                break;
-//            case "O-":
-//                showData("O-");
-//                break;
-//            default:
-//        }
+        switch (Types){
+            case "A+":
+                showData("A+");
+                break;
+            case "A-":
+                showData("A-");
+                break;
+            case "B+":
+                showData("B+");
+                break;
+            case "B-":
+                showData("B-");
+                break;
+            case "AB+":
+                showData("AB+");
+                break;
+            case "AB-":
+                showData("AB-");
+                break;
+            case "O+":
+                showData("O+");
+                break;
+            case "O-":
+                showData("O-");
+                break;
+            default:
+        }
         edit = findViewById(R.id.edit_profile);
         models = new ArrayList<>();
 
@@ -173,19 +166,17 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
+
                             if (Objects.equals(document.getString("number"), nb)) {
                                 if (nb.charAt(0) == '0'){
+                                    name = document.getString("name");
+                                    location = document.getString("location");
+                                    type =document.getString("type");
                                     realNumber = nb.substring(1);
                                     sendVerificationCode(realNumber);
                                     break;
-                                }else {
-
                                 }
                             }
-                            else {
-
-                            }
-
                         }
                     }else {
                         Toast.makeText(MainActivity.this, "Some Error", Toast.LENGTH_SHORT).show();
@@ -243,14 +234,16 @@ public class MainActivity extends AppCompatActivity {
                                        PhoneAuthProvider.ForceResendingToken
                                                token)
                 {
-                    Log.d("onCodeSent", "onCodeSent: __"+verificationId);
+
                     Intent intent=new Intent(getApplicationContext(),OtpActivity.class);
                     intent.putExtra("number",realNumber);
+                    intent.putExtra("name",name);
+                    intent.putExtra("location",location);
+                    intent.putExtra("type",type);
+                    intent.putExtra("number",number);
                     intent.putExtra("verificationId",verificationId);
                     startActivity(intent);
-//                    Log.d("onCodeSent", "onCodeSent:_______" + verificationId);
-//                    mVerificationId = verificationId;
-//                    mResendToken = token;
+
                 }
             };
 

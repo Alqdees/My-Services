@@ -34,21 +34,21 @@
         <!-- heerree -->
         <activity
             android:name=".Activity.SelectActivity"
-            android:exported="true" >
+            android:exported="false" />
+        <activity
+            android:name=".Activity.TypeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.RegisterActivity"
+            android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-
         </activity>
-        <activity
-            android:name=".Activity.TypeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.RegisterActivity"
-            android:exported="false" />
         <activity
             android:name=".Activity.MainActivity"
             android:exported="false"/>

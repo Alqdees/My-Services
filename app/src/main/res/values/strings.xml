@@ -8,4 +8,6 @@
     <string name="search_number">ابحث عن الرقم</string>
     <string name="input_number">أدخل الرقم</string>
     <string name="non">ماكو للاسف</string>
+    <string name="Error_otp" />
+    <string name="otp_verification">OTP verification</string>
 </resources>
