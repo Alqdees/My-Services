@@ -1,12 +1,11 @@
 package com.Blood.types.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.MotionButton;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -24,12 +23,12 @@ import com.google.firebase.auth.PhoneAuthProvider;
 public class OtpActivity extends AppCompatActivity {
 
 
-    private EditText et1, et2, et3, et4, et5, et6;
+    private EditText et1;
     private MotionButton btnsubmit;
     private  String realNumber,verificationId,name,location,type,number;
     private  ProgressBar progressBar;
-    private TextView textView;
     private FirebaseAuth mAuth;
+    private ActionBar actionBar;
 
     /**
      *  جاي اتحقق من الرمز الي يوصل للمستخدم
@@ -43,6 +42,8 @@ public class OtpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
         getObj();
+        actionBar = getSupportActionBar();
+        actionBar.hide();
          realNumber = getIntent().getStringExtra("number");
 
         verificationId = getIntent().getStringExtra("verificationId");
@@ -63,17 +64,10 @@ public class OtpActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        movenumtonext();
-
         btnsubmit.setOnClickListener((View v) ->{
 
             if (!verificationId.isEmpty() || verificationId != null|| !verificationId.equals(null)){
-                String getuserotp = et1.getText().toString() +
-                        et2.getText().toString() +
-                        et3.getText().toString() +
-                        et4.getText().toString() +
-                        et5.getText().toString() +
-                        et6.getText().toString();
+                String getuserotp = et1.getText().toString() ;
                 PhoneAuthCredential phoneAuthCredential =
                         PhoneAuthProvider.getCredential(verificationId, getuserotp);
                 progressBar.setVisibility(View.VISIBLE);
@@ -116,144 +110,138 @@ public class OtpActivity extends AppCompatActivity {
     private void getObj() {
 
         et1 = findViewById(R.id.inputotp1);
-        et2 = findViewById(R.id.inputotp2);
-        et3 = findViewById(R.id.inputotp3);
-        et4 = findViewById(R.id.inputotp4);
-        et5 = findViewById(R.id.inputotp5);
-        et6 = findViewById(R.id.inputotp6);
-
         progressBar = findViewById(R.id.probar2);
         btnsubmit = findViewById(R.id.btnsubmit);
 
         //get mobile number from mainActivty to this
-        textView = findViewById(R.id.txtmobileno);
+//        textView = findViewById(R.id.txtmobileno);
     }
 
 
 
-    private void movenumtonext() {
-
-
-
-        et1.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                if (!charSequence.toString().trim().isEmpty()) {
-                    et2.requestFocus();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        et2.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                if (!charSequence.toString().trim().isEmpty()) {
-                    et3.requestFocus();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        et3.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                if (!charSequence.toString().trim().isEmpty()) {
-                    et4.requestFocus();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        et4.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                if (!charSequence.toString().trim().isEmpty()) {
-                    et5.requestFocus();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        et5.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                if (!charSequence.toString().trim().isEmpty()) {
-                    et6.requestFocus();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-        et6.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-
-
-    }
+//    private void movenumtonext() {
+//
+//
+//
+//        et1.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                if (!charSequence.toString().trim().isEmpty()) {
+//                    et2.requestFocus();
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
+//
+//        et2.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                if (!charSequence.toString().trim().isEmpty()) {
+//                    et3.requestFocus();
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
+//
+//        et3.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                if (!charSequence.toString().trim().isEmpty()) {
+//                    et4.requestFocus();
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
+//
+//        et4.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                if (!charSequence.toString().trim().isEmpty()) {
+//                    et5.requestFocus();
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
+//
+//        et5.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                if (!charSequence.toString().trim().isEmpty()) {
+//                    et6.requestFocus();
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
+//        et6.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+//
+//
+//
+//    }
 }

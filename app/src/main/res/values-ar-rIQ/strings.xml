@@ -4,5 +4,14 @@
     <string name="search_number">ابحث عن الرقم</string>
     <string name="input_number">أدخل الرقم</string>
     <string name="non">ماكو للاسف</string>
-    <string name="Error_otp" />
+    <string name="Error_otp" >خطأ في الرمز</string>
+    <string name="otp_verification">تَحَقّق</string>
+    <string name="please_enter_otp_sent_to_your_mobile_number">"الرجاء إدخال OTP المرسل إلى رقم هاتفك المحمول "</string>
+    <string name="send_otp_again">ارسال مرة اخرى</string>
+    <string name="did_t_recive_otp">لم تستلم الرمز</string>
+    <string name="verfiy">تأكيد</string>
+    <string name="name">الاسم</string>
+    <string name="number">الرقم</string>
+    <string name="type">الفصيلة</string>
+    <string name="location">المنطقة</string>
 </resources>

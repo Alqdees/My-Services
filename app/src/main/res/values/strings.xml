@@ -1,13 +1,21 @@
 <resources>
     <string name="app_name" translatable="false">My Services</string>
     <string name="SpeechToText" translatable="false">Speech To Text</string>
-    <string name="thanks">شكر وتقدير خاص لگروب ناحية الزاب الاسفل على دعمه هذا المشروع وكذلك شكر وتقدير لكل من ساهم ويساهم في نشر العمل الخيري في هذه المدينة المباركة</string>
+    <string name="thanks" translatable="false">شكر وتقدير خاص لگروب ناحية الزاب الاسفل على دعمه هذا المشروع وكذلك شكر وتقدير لكل من ساهم ويساهم في نشر العمل الخيري في هذه المدينة المباركة</string>
     <string name="n_n">احمد شاكر  \n اي أضافة او فكرة تساعد بالعمل الخيري لاتتردد بالتواصل معي \n</string>
     <string name="doctor">الاطباء</string>
     <string name="default_notification_channel_id">hi (^_¬)</string>
-    <string name="search_number">ابحث عن الرقم</string>
-    <string name="input_number">أدخل الرقم</string>
-    <string name="non">ماكو للاسف</string>
-    <string name="Error_otp" />
-    <string name="otp_verification">OTP verification</string>
+    <string name="search_number" translatable="false">search number</string>
+    <string name="input_number" translatable="false">input number</string>
+    <string name="non" translatable="false">none available</string>
+    <string name="Error_otp" translatable="false">Error OTP</string>
+    <string name="otp_verification" translatable="false">OTP verification</string>
+    <string name="please_enter_otp_sent_to_your_mobile_number" translatable="false">Please enter OTP sent to your Mobile Number</string>
+    <string name="send_otp_again" translatable="false">Send OTP again</string>
+    <string name="did_t_recive_otp" translatable="false">Did\'t recive OTP ?</string>
+    <string name="verfiy" translatable="false">Verfiy</string>
+    <string name="name" translatable="false">name</string>
+    <string name="number" translatable="false">number</string>
+    <string name="type" translatable="false">type</string>
+    <string name="location" translatable="false">location</string>
 </resources>
