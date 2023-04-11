@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Model> models;
     private RecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
-    private ExtendedFloatingActionButton edit;
+//    private ExtendedFloatingActionButton edit;
     private FirebaseFirestore db;
 
     private Intent intent;
@@ -90,41 +90,42 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //check types in server
-        switch (Types){
-            case "A+":
-                showData("A+");
-                break;
-            case "A-":
-                showData("A-");
-                break;
-            case "B+":
-                showData("B+");
-                break;
-            case "B-":
-                showData("B-");
-                break;
-            case "AB+":
-                showData("AB+");
-                break;
-            case "AB-":
-                showData("AB-");
-                break;
-            case "O+":
-                showData("O+");
-                break;
-            case "O-":
-                showData("O-");
-                break;
-            default:
-        }
-        edit = findViewById(R.id.edit_profile);
+//        showData(Types);
+//        switch (Types){
+//            case "A+":
+//                showData("A+");
+//                break;
+//            case "A-":
+//                showData("A-");
+//                break;
+//            case "B+":
+//                showData("B+");
+//                break;
+//            case "B-":
+//                showData("B-");
+//                break;
+//            case "AB+":
+//                showData("AB+");
+//                break;
+//            case "AB-":
+//                showData("AB-");
+//                break;
+//            case "O+":
+//                showData("O+");
+//                break;
+//            case "O-":
+//                showData("O-");
+//                break;
+//            default:
+//        }
+//        edit = findViewById(R.id.edit_profile);
         models = new ArrayList<>();
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.hasFixedSize();
         mAuth.setLanguageCode("en");
-        edit.setOnClickListener(new View.OnClickListener() {
+      /*  edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -144,14 +145,12 @@ public class MainActivity extends AppCompatActivity {
                     number = edit.getText().toString().trim();
                     getNumberUser(number);
 
-//
-//                    sendVerificationCode(number);
                     dialog.dismiss();
 
                 });
               dialog.show();
             }
-        });
+        });*/
 
     }
 
@@ -251,11 +250,11 @@ public class MainActivity extends AppCompatActivity {
 
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber("+964"+phoneNumber)       // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(this)                 // (optional) Activity for callback binding
-                        // If no activity is passed, reCAPTCHA verification can not be used.
-                        .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                        .setPhoneNumber("+964"+phoneNumber)         // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS)   // Timeout and unit
+                        .setActivity(this)                          // (optional) Activity for callback binding
+                                                                    // If no activity is passed, reCAPTCHA verification can not be used.
+                        .setCallbacks(mCallbacks)                   // OnVerificationStateChangedCallbacks
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
@@ -377,4 +376,10 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showData(Types);
+    }
 }

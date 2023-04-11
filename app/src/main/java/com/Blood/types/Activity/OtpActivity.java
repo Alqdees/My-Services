@@ -5,11 +5,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.MotionButton;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.Blood.types.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,8 +52,13 @@ public class OtpActivity extends AppCompatActivity {
         number = getIntent().getStringExtra("number");
         location = getIntent().getStringExtra("location");
         type = getIntent().getStringExtra("type");
-
-
+// here to to show permission
+//        if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.M
+//                && checkSelfPermission(Manifest.permission.RECEIVE_SMS) !=
+//                PackageManager.PERMISSION_GRANTED){
+//            requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS},100);
+//
+//        }
 //        textView.setText();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseAuthSettings firebaseAuthSettings = firebaseAuth.getFirebaseAuthSettings();
@@ -112,14 +117,24 @@ public class OtpActivity extends AppCompatActivity {
         et1 = findViewById(R.id.inputotp1);
         progressBar = findViewById(R.id.probar2);
         btnsubmit = findViewById(R.id.btnsubmit);
-
-        //get mobile number from mainActivty to this
-//        textView = findViewById(R.id.txtmobileno);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode ==100){
+            if (grantResults[0] ==PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "Permission Granted ...",
+                        Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(this, "Permission Not Granted ...",
+                        Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
 
-
-//    private void movenumtonext() {
+    //    private void movenumtonext() {
 //
 //
 //

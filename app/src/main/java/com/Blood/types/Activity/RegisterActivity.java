@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
         actionBar=getSupportActionBar();
         actionBar.hide();
         intent= getIntent();
-        isEditMode = intent.getBooleanExtra("isEditMode",true);
+        isEditMode = intent.getBooleanExtra("isEditMode",false);
         Type = intent.getStringExtra("types");
         nname = getIntent().getStringExtra("name");
         nnumber = getIntent().getStringExtra("number");
@@ -290,6 +290,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                "تم التحديث ",
                                                Toast.LENGTH_SHORT).show();
                                       startActivity(new Intent(getApplicationContext(),TypeActivity.class));
+                                       finish();
                                    }
                                }
                            });
@@ -430,6 +431,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(RegisterActivity.this, "تم الحذف ", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(getApplicationContext(),TypeActivity.class));
+                                                finish();
                                             }
                                         }
 

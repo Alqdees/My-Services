@@ -56,7 +56,7 @@
                 android:inputType="number"
                 android:maxLength="6"
                 android:gravity="center"
-                android:textColor="@color/colortextfirst"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="Lable1For"/>
@@ -96,11 +96,12 @@
             >
 
             <androidx.constraintlayout.utils.widget.MotionButton
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/_150sdp"
                 android:layout_height="wrap_content"
                 android:text="@string/verfiy"
                 android:id="@+id/btnsubmit"
                 android:layout_margin="@dimen/_10sdp"
+                android:layout_gravity="center"
                 android:background="@drawable/buttonselect"
                 android:textColor="@color/colortextfirst"
                 android:textStyle="bold"/>

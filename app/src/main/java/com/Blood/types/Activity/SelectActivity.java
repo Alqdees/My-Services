@@ -213,7 +213,7 @@ public class SelectActivity extends AppCompatActivity {
         MotionButton addDoctor = v.findViewById(R.id.doctorAdd);
         MotionButton addBlood = v.findViewById(R.id.add_blood);
         builder.setView(v);
-        AlertDialog dialog = builder.show();
+        AlertDialog dialog = builder.create();
 
 
         addLine.setOnClickListener(new View.OnClickListener() {
@@ -238,7 +238,7 @@ public class SelectActivity extends AppCompatActivity {
             }
         });
 
-        dialog.create();
+        dialog.show();
 
     }
 }

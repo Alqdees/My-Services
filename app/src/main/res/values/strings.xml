@@ -18,4 +18,5 @@
     <string name="number" translatable="false">number</string>
     <string name="type" translatable="false">type</string>
     <string name="location" translatable="false">location</string>
+    <string name="edit_info">تعديل المعلومات</string>
 </resources>

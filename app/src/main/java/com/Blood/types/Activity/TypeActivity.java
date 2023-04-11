@@ -5,6 +5,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.utils.widget.MotionButton;
+
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,14 +23,32 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.Blood.types.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class TypeActivity extends AppCompatActivity {
 
+    private String mVerificationId,number,realNumber,name,location,type;
+
+    private FirebaseFirestore db;
 
     private MaterialButton A_plus,
             A_Minus,
@@ -40,10 +60,12 @@ public class TypeActivity extends AppCompatActivity {
             O_Minus;
 //    private ExtendedFloatingActionButton floatingActionButton;
     private Intent intent;
-    private static final String type = "type";
+    private static final String Type = "type";
+    private FirebaseAuth mAuth;
 
     private ActionBar actionBar;
     private Button AddDonation,Edit;
+    private String [] types;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +75,24 @@ public class TypeActivity extends AppCompatActivity {
         actionBar=getSupportActionBar();
         actionBar.hide();
         initialization();
-
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         intent = new Intent(this,MainActivity.class);
+
+        types = new String[]{
+            "A+",
+            "B+",
+            "A-",
+            "B-",
+            "O+",
+            "O-",
+            "AB+",
+            "AB-",
+            "لا أعرف"
+        };
+
+
+
 //        floatingActionButton = findViewById(R.id.registerBtn);
 
         A_plus.setOnClickListener(new View.OnClickListener() {
@@ -114,33 +152,30 @@ public class TypeActivity extends AppCompatActivity {
             }
         });
 
-//        findViewById(R.id.edit).setOnClickListener((View v) ->{
-//
-//            final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-//            String[] options = {"تعديل","الغاء"};
-//            dialog.setMessage("أدخل الرقم");
-//            EditText editText = new EditText(this);
-//            editText.setHint("ادخل رقم الهاتف ...");
-//            editText.setInputType(InputType.TYPE_CLASS_PHONE);
-//            dialog.setView(editText);
-//
-//           dialog.setPositiveButton("تعديل", new DialogInterface.OnClickListener() {
-//               @Override
-//               public void onClick(DialogInterface dialog, int which) {
-//                   editData(editText.getText().toString());
-//               }
-//           });
-//           dialog.setPositiveButton("الغاء", new DialogInterface.OnClickListener() {
-//               @Override
-//               public void onClick(DialogInterface dialog, int which) {
-//              dialog.dismiss();
-//               }
-//           });
-//            dialog.create().show();
-//            intent = new Intent(TypeActivity.this,RegisterActivity.class);
-//
-//            startActivity(intent);
-//        });
+        findViewById(R.id.edit).setOnClickListener((View v) ->{
+
+            View view = LayoutInflater.from(TypeActivity.this).inflate(R.layout.dialog_setnumber,null,false);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+            com.google.android.material.textfield.TextInputEditText
+                edit = view.findViewById(R.id.number);
+            @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+            MotionButton search = view.findViewById(R.id.searchNumber);
+            builder.setView(view);
+            AlertDialog dialog = builder.create();
+
+
+            search.setOnClickListener((View view2) ->{
+                number = edit.getText().toString().trim();
+                getNumberUser(number);
+
+                dialog.dismiss();
+
+            });
+            dialog.show();
+
+        });
 
 
 //        floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -153,11 +188,123 @@ public class TypeActivity extends AppCompatActivity {
 
 
     }
+    private void getNumberUser(String nb) {
 
+        for (String s : types) {
+//            DocumentReference docRef = db.collection(s).document();
+
+            CollectionReference collectionRef = db.collection(s);
+            collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+
+                            if (Objects.equals(document.getString("number"), nb)) {
+                                if (nb.charAt(0) == '0'){
+                                    name = document.getString("name");
+                                    location = document.getString("location");
+                                    type =document.getString("type");
+                                    realNumber = nb.substring(1);
+                                    sendVerificationCode(realNumber);
+                                    break;
+                                }
+                            }
+                        }
+                    }else {
+                        Toast.makeText(TypeActivity.this, "Some Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d("onFailure", "onFailure: "+e.getMessage());
+                }
+            });
+        }
+
+    }
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
+        new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential credential) {
+                // This callback is invoked when the verification is complete automatically
+                // You can also use the credential to sign in the user
+                signInWithPhoneAuthCredential(credential);
+            }
+
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+
+
+                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                    Toast.makeText(
+                        TypeActivity.this,
+                        ""+e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                    // Invalid request
+                } else if (e instanceof FirebaseTooManyRequestsException) {
+                    Toast.makeText(
+                        TypeActivity.this,
+                        ""+e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+
+                    // The SMS quota for the project has been exceeded
+                } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
+                    Toast.makeText(
+                        TypeActivity.this,
+                        ""+e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                    // reCAPTCHA verification attempted with null Activity
+                }
+                // This callback is invoked if an error occurred during the verification process
+            }
+
+            @Override
+            public void onCodeSent(String verificationId,
+                                   PhoneAuthProvider.ForceResendingToken
+                                       token)
+            {
+
+                Intent intent=new Intent(getApplicationContext(),OtpActivity.class);
+                intent.putExtra("number",realNumber);
+                intent.putExtra("name",name);
+                intent.putExtra("location",location);
+                intent.putExtra("type",type);
+                intent.putExtra("number",number);
+                intent.putExtra("verificationId",verificationId);
+                startActivity(intent);
+
+            }
+        };
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        // User signed in successfully
+                        FirebaseUser user = task.getResult().getUser();
+                    }
+                }
+            });
+    }
+    private void sendVerificationCode(String phoneNumber) {
+
+        PhoneAuthOptions options =
+            PhoneAuthOptions.newBuilder(mAuth)
+                .setPhoneNumber("+964"+phoneNumber)         // Phone number to verify
+                .setTimeout(60L, TimeUnit.SECONDS)   // Timeout and unit
+                .setActivity(this)                          // (optional) Activity for callback binding
+                // If no activity is passed, reCAPTCHA verification can not be used.
+                .setCallbacks(mCallbacks)                   // OnVerificationStateChangedCallbacks
+                .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
 
     private void sendMainActivity(String s) {
 
-        intent.putExtra(type,s);
+        intent.putExtra(Type,s);
         startActivity(intent);
     }
     private void getDialog() {
