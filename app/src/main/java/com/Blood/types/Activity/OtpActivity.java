@@ -13,12 +13,17 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.Blood.types.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthSettings;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class OtpActivity extends AppCompatActivity {
 
@@ -29,7 +34,9 @@ public class OtpActivity extends AppCompatActivity {
     private  ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private ActionBar actionBar;
-
+    private boolean isRegister;
+    private FirebaseFirestore db;
+    private HashMap<String,Object> users;
     /**
      *  جاي اتحقق من الرمز الي يوصل للمستخدم
      * @param savedInstanceState If the activity is being re-initialized after
@@ -44,7 +51,15 @@ public class OtpActivity extends AppCompatActivity {
         getObj();
         actionBar = getSupportActionBar();
         actionBar.hide();
-         realNumber = getIntent().getStringExtra("number");
+
+        db = FirebaseFirestore.getInstance();
+
+        isRegister = getIntent().getBooleanExtra("isRegister",false);
+
+
+
+
+         realNumber = getIntent().getStringExtra("realNumber");
 
         verificationId = getIntent().getStringExtra("verificationId");
 
@@ -87,23 +102,68 @@ public class OtpActivity extends AppCompatActivity {
                                 btnsubmit.setVisibility(View.VISIBLE);
 
                                 if (task.isSuccessful()) {
-                                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    intent.putExtra("name",name);
-                                    intent.putExtra("location",location);
-                                    intent.putExtra("type",type);
-                                    intent.putExtra("number",number);
-                                    intent.putExtra("isEditMode",true);
-                                    startActivity(intent);
-                                } else {
-                                    Toast.makeText(OtpActivity.this, R.string.Error_otp, Toast.LENGTH_SHORT).show();
+
+
+                                    if (isRegister) {
+                                        registerUser();
+
+                                    } else {
+                                        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        intent.putExtra("name", name);
+                                        intent.putExtra("location", location);
+                                        intent.putExtra("type", type);
+                                        intent.putExtra("number", number);
+                                        intent.putExtra("isEditMode", true);
+                                        startActivity(intent);
+
+                                    }
+                                }
+                                else {
+                                    Toast.makeText(OtpActivity.this,
+                                        R.string.Error_otp, Toast.LENGTH_SHORT).show();
                                 }
                             }
+
                         });
 
             }
 
         });
+    }
+
+    private void registerUser() {
+        users = new HashMap<>();
+        users.put("name", name);
+        users.put("number", number);
+        users.put("type", type);
+        users.put("location", location);
+        db.collection(type)
+                                    .document(number).set(users).
+                                    addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+
+                                            // is true register user ...
+
+                                            Toast.makeText(
+                                                    OtpActivity.this
+                                                    , "Done",
+                                                    Toast.LENGTH_SHORT).show();
+
+                                            startActivity(new Intent(getApplicationContext(),SelectActivity.class));
+                                            finish();
+
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(OtpActivity.this,
+                                                    e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
     }
 
 //    private void verifyVerificationCode(String otp) {

@@ -20,6 +20,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,6 +40,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -43,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String O_MINUS = "O-";
     private com.google.android.material.textfield.TextInputEditText
             ET_name,ET_number, ET_location;
+    private String getName ,getLocation,getType;
     private FirebaseFirestore db;
     private ActionBar actionBar;
     private AutoCompleteTextView autoCompleteTextView;
@@ -50,7 +62,8 @@ public class RegisterActivity extends AppCompatActivity {
     private String name,nname,nnumber,llocation,ttype;
     private String number;
     private String type;
-    private String location;
+    private String location,realNumber;
+    private FirebaseAuth mAuth;
     private String Type;
     private String[] types;
     private Map<String, Object> users;
@@ -73,6 +86,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         actionBar=getSupportActionBar();
         actionBar.hide();
+        mAuth = FirebaseAuth.getInstance();
+
         intent= getIntent();
         isEditMode = intent.getBooleanExtra("isEditMode",false);
         Type = intent.getStringExtra("types");
@@ -132,8 +147,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                     // this is to register user blood donation
                     else {
+                        getNumberUser(number);
 
-                        setData(name,number,type,location);
+//                        setData(name,number,type,location);
                     }
 
                 }
@@ -157,66 +173,190 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-    public void setData(String name, String number, String type, String location){
+    public void setData(String name, String n, String type, String location){
 
-        users = new HashMap<>();
-        users.put("name", name);
-        users.put("number", number);
-        users.put("type", type);
-        users.put("location", location);
-        if(type.equals("لا أعرف")){
-            youDoNotKnow();
-        }else {
+//        users = new HashMap<>();
+//        users.put("name", name);
+//        users.put("number", n);
+//        users.put("type", type);
+//        users.put("location", location);
+//        if(type.equals("لا أعرف")){
+//            youDoNotKnow();
+//        }else {
 
-            DocumentReference docID = db.collection(type).document(number);
-
-            docID.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-
-                    //Here to check if user device id is exist in fire store or not
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-
-                        if (document.exists()) {
-                               Toast.makeText(RegisterActivity.this,
-                                       "انت مسجل بالفعل", Toast.LENGTH_SHORT).show();
-                        } else {
-
+            getNumberUser(n);
+//
+//            DocumentReference docID = db.collection(type).document(number);
+//
+//            docID.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//
+//                    //Here to check if user device id is exist in fire store or not
+//                    if (task.isSuccessful()) {
+//                        DocumentSnapshot document = task.getResult();
+//
+//                        if (document.exists()) {
+//                               Toast.makeText(RegisterActivity.this,
+//                                       "انت مسجل بالفعل", Toast.LENGTH_SHORT).show();
+//                        } else {
+//
+//                            getNumberUser(n);
                             // if not exist
-                            db.collection(type)
-                                    .document(number).set(users).
-                                    addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
+//                            db.collection(type)
+//                                    .document(number).set(users).
+//                                    addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                        @Override
+//                                        public void onSuccess(Void unused) {
+//
+//                                            // is true register user ...
+//
+//                                            Toast.makeText(
+//                                                    RegisterActivity.this
+//                                                    , "Done",
+//                                                    Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }).addOnFailureListener(new OnFailureListener() {
+//                                        @Override
+//                                        public void onFailure(@NonNull Exception e) {
+//                                            Toast.makeText(RegisterActivity.this,
+//                                                    e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    });
+//                        }
+//                    } else {
+//                        // here to error
+//                        Toast.makeText(getApplicationContext(),
+//                                task.getException().getMessage(), Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//            });
 
-                                            // is true register user ...
 
-                                            Toast.makeText(
-                                                    RegisterActivity.this
-                                                    , "Done",
-                                                    Toast.LENGTH_SHORT).show();
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(RegisterActivity.this,
-                                                    e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+//        }
+
+    }
+    private void getNumberUser(String nb) {
+
+        for (String s : bloods) {
+//            DocumentReference docRef = db.collection(s).document();
+            Log.d("getNumberUser", "getNumberUser: " +s);
+            CollectionReference collectionRef = db.collection(s);
+            collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+
+                            if (!Objects.equals(document.getString("number"), nb)) {
+                                if (nb.charAt(0) == '0'){
+//                                    getName = document.getString("name");
+//                                    getLocation = document.getString("location");
+//                                    getType =document.getString("type");
+                                    realNumber = nb.substring(1);
+                                    Log.d("getNumberUser", "getNumberUser: " +realNumber);
+                                    sendVerificationCode(realNumber);
+                                    break;
+                                }
+                            }else {
+                                Toast.makeText(RegisterActivity.this, "أسمك موجود", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    } else {
-                        // here to error
-                        Toast.makeText(getApplicationContext(),
-                                task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }else {
+                        Toast.makeText(
+                            RegisterActivity.this,
+                            "Some Error",
+                            Toast.LENGTH_SHORT).show();
                     }
                 }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d("onFailure", "onFailure: "+e.getMessage());
+                }
             });
-
-
         }
 
     }
+    private void sendVerificationCode(String phoneNumber) {
+
+        PhoneAuthOptions options =
+            PhoneAuthOptions.newBuilder(mAuth)
+                .setPhoneNumber("+964"+phoneNumber)         // Phone number to verify
+                .setTimeout(60L, TimeUnit.SECONDS)   // Timeout and unit
+                .setActivity(this)                          // (optional) Activity for callback binding
+                                                            // If no activity is passed, reCAPTCHA verification can not be used.
+                .setCallbacks(mCallbacks)                   // OnVerificationStateChangedCallbacks
+                .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
+        new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential credential) {
+                // This callback is invoked when the verification is complete automatically
+                // You can also use the credential to sign in the user
+                signInWithPhoneAuthCredential(credential);
+            }
+
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+
+
+                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                    Toast.makeText(
+                        RegisterActivity.this,
+                        ""+e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                    // Invalid request
+                } else if (e instanceof FirebaseTooManyRequestsException) {
+                    Toast.makeText(
+                        RegisterActivity.this,
+                        ""+e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+
+                    // The SMS quota for the project has been exceeded
+                } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
+                    Toast.makeText(
+                        RegisterActivity.this,
+                        ""+e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                    // reCAPTCHA verification attempted with null Activity
+                }
+                // This callback is invoked if an error occurred during the verification process
+            }
+
+            @Override
+            public void onCodeSent(String verificationId,
+                                   PhoneAuthProvider.ForceResendingToken
+                                       token)
+            {
+
+                Intent intent=new Intent(RegisterActivity.this,OtpActivity.class);
+                intent.putExtra("isRegister",true);
+                intent.putExtra("name",name);
+                intent.putExtra("location",location);
+                intent.putExtra("type",type);
+                intent.putExtra("number",number);
+                intent.putExtra("verificationId",verificationId);
+                startActivity(intent);
+
+            }
+        };
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        // User signed in successfully
+                        FirebaseUser user = task.getResult().getUser();
+                    }
+                }
+            });
+    }
+
 
     private void youDoNotKnow() {
 

@@ -115,7 +115,8 @@ public class SelectActivity extends AppCompatActivity {
                     System.out.println("______Device  "+newVersion);
                     if (Integer.parseInt(newVersion) > getCurrentVersionCode()) {
                         showUpdateDialog();
-
+                    }else {
+                        return;
                     }
                 }
 
