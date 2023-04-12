@@ -64,7 +64,7 @@ public class TypeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private ActionBar actionBar;
-    private Button AddDonation,Edit;
+    private Button AddDonation;
     private String [] types;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -78,7 +78,7 @@ public class TypeActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         intent = new Intent(this,MainActivity.class);
-
+        mAuth.setLanguageCode("ar");
         types = new String[]{
             "A+",
             "B+",
@@ -205,6 +205,7 @@ public class TypeActivity extends AppCompatActivity {
                                     name = document.getString("name");
                                     location = document.getString("location");
                                     type =document.getString("type");
+                                    Log.d("onComplete", "onComplete: ");
                                     realNumber = nb.substring(1);
                                     sendVerificationCode(realNumber);
                                     break;
@@ -224,18 +225,17 @@ public class TypeActivity extends AppCompatActivity {
         }
 
     }
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks callback =
         new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential credential) {
                 // This callback is invoked when the verification is complete automatically
                 // You can also use the credential to sign in the user
                 signInWithPhoneAuthCredential(credential);
-            }
+                }
 
             @Override
             public void onVerificationFailed(FirebaseException e) {
-
 
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
                     Toast.makeText(
@@ -285,6 +285,7 @@ public class TypeActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // User signed in successfully
                         FirebaseUser user = task.getResult().getUser();
+
                     }
                 }
             });
@@ -295,9 +296,9 @@ public class TypeActivity extends AppCompatActivity {
             PhoneAuthOptions.newBuilder(mAuth)
                 .setPhoneNumber("+964"+phoneNumber)         // Phone number to verify
                 .setTimeout(60L, TimeUnit.SECONDS)   // Timeout and unit
-                .setActivity(this)                          // (optional) Activity for callback binding
+                .setActivity(TypeActivity.this)                          // (optional) Activity for callback binding
                 // If no activity is passed, reCAPTCHA verification can not be used.
-                .setCallbacks(mCallbacks)                   // OnVerificationStateChangedCallbacks
+                .setCallbacks(callback)                   // OnVerificationStateChangedCallbacks
                 .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }

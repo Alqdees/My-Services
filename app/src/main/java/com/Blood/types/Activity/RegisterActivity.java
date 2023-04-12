@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
         actionBar=getSupportActionBar();
         actionBar.hide();
         mAuth = FirebaseAuth.getInstance();
-
+        mAuth.setLanguageCode("en");
         intent= getIntent();
         isEditMode = intent.getBooleanExtra("isEditMode",false);
         Type = intent.getStringExtra("types");
@@ -284,7 +284,7 @@ public class RegisterActivity extends AppCompatActivity {
             PhoneAuthOptions.newBuilder(mAuth)
                 .setPhoneNumber("+964"+phoneNumber)         // Phone number to verify
                 .setTimeout(60L, TimeUnit.SECONDS)   // Timeout and unit
-                .setActivity(this)                          // (optional) Activity for callback binding
+                .setActivity(RegisterActivity.this)                          // (optional) Activity for callback binding
                                                             // If no activity is passed, reCAPTCHA verification can not be used.
                 .setCallbacks(mCallbacks)                   // OnVerificationStateChangedCallbacks
                 .build();

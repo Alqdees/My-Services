@@ -46,14 +46,7 @@ public class SelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select);
         actionBar = getSupportActionBar();
         actionBar.hide();
-        currentVersionCod = getCurrentVersionCode();
-        remoteConfig = FirebaseRemoteConfig.getInstance();
-        FirebaseRemoteConfigSettings
-                configSettings = new
-                FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(5000)
-                .build();
-        remoteConfig.setConfigSettingsAsync(configSettings);
+
 
 
         line = findViewById(R.id.lineTravel);
@@ -90,20 +83,14 @@ public class SelectActivity extends AppCompatActivity {
 
 
 ///////// below code to update app in on create
-
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
+        currentVersionCod = getCurrentVersionCode();
+        remoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings
+            configSettings = new
+            FirebaseRemoteConfigSettings.Builder()
+            .setMinimumFetchIntervalInSeconds(5000)
+            .build();
+        remoteConfig.setConfigSettingsAsync(configSettings);
         remoteConfig.fetchAndActivate().addOnCompleteListener(new OnCompleteListener<Boolean>() {
             @Override
             public void onComplete(@NonNull Task<Boolean> task) {
@@ -111,9 +98,8 @@ public class SelectActivity extends AppCompatActivity {
                 //newVersion get number integer from firebase
                 if (task.isSuccessful()){
 
-                   newVersion = remoteConfig.getString("update");
-                    System.out.println("______Device  "+newVersion);
-                    if (Integer.parseInt(newVersion) > getCurrentVersionCode()) {
+                    newVersion = remoteConfig.getString("update");
+                    if (Integer.parseInt(newVersion) > currentVersionCod) {
                         showUpdateDialog();
                     }else {
                         return;
@@ -127,6 +113,18 @@ public class SelectActivity extends AppCompatActivity {
                 Log.d("Error", e.getMessage());
             }
         });
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
 
