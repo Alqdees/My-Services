@@ -232,7 +232,10 @@ public class SelectActivity extends AppCompatActivity {
         addBlood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SelectActivity.this,RegisterActivity.class));
+
+                Intent intent = new Intent(SelectActivity.this,RegisterActivity.class);
+//                intent.putExtra("isEditMode", true);
+                startActivity(intent);
                 dialog.dismiss();
             }
         });

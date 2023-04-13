@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.api.Quota;
+import com.google.api.QuotaLimit;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
@@ -103,7 +105,6 @@ public class RegisterActivity extends AppCompatActivity {
         textView = findViewById(R.id.tv_information);
         textView.setVisibility(View.GONE);
         deleted.setVisibility(View.GONE);
-
         types = new String[]{
                 "A+",
                 "B+",
@@ -119,22 +120,20 @@ public class RegisterActivity extends AppCompatActivity {
                 new ArrayAdapter<>(this,R.layout.drop_down_item,types);
         autoCompleteTextView = findViewById(R.id.typesAuto);
         autoCompleteTextView.setAdapter(arrayAdapter);
-
         if (isEditMode){
-
            updateAndgetData();
         }else {
             register.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     name = ET_name.getText().toString();
                     number = ET_number.getText().toString();
                     type = autoCompleteTextView.getText().toString();
                     location = ET_location.getText().toString();
                     if (TextUtils.isEmpty(name) ||
                             TextUtils.isEmpty(type)
-                            || TextUtils.isEmpty(location) || number.isEmpty() ) {
+                            || TextUtils.isEmpty(location) || number.isEmpty())
+                    {
 
                         Toast.makeText(RegisterActivity.this,
                                 "أحد الحقول فارغ", Toast.LENGTH_SHORT).show();
@@ -148,94 +147,19 @@ public class RegisterActivity extends AppCompatActivity {
                     // this is to register user blood donation
                     else {
                         getNumberUser(number);
-
-//                        setData(name,number,type,location);
                     }
-
                 }
-
             });
-
         }
-
          bloods = new String[]{
                  A_PLUS,A_MINUS,
                  B_PLUS,B_MINUS,
                  AB_PLUS,AB_MINUS,
                  O_PLUS,O_MINUS
          };
-
-
         actionBar = getSupportActionBar();
-
-
     }
-
-
-
-    public void setData(String name, String n, String type, String location){
-
-//        users = new HashMap<>();
-//        users.put("name", name);
-//        users.put("number", n);
-//        users.put("type", type);
-//        users.put("location", location);
-//        if(type.equals("لا أعرف")){
-//            youDoNotKnow();
-//        }else {
-
-            getNumberUser(n);
-//
-//            DocumentReference docID = db.collection(type).document(number);
-//
-//            docID.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//
-//                    //Here to check if user device id is exist in fire store or not
-//                    if (task.isSuccessful()) {
-//                        DocumentSnapshot document = task.getResult();
-//
-//                        if (document.exists()) {
-//                               Toast.makeText(RegisterActivity.this,
-//                                       "انت مسجل بالفعل", Toast.LENGTH_SHORT).show();
-//                        } else {
-//
-//                            getNumberUser(n);
-                            // if not exist
-//                            db.collection(type)
-//                                    .document(number).set(users).
-//                                    addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                        @Override
-//                                        public void onSuccess(Void unused) {
-//
-//                                            // is true register user ...
-//
-//                                            Toast.makeText(
-//                                                    RegisterActivity.this
-//                                                    , "Done",
-//                                                    Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    }).addOnFailureListener(new OnFailureListener() {
-//                                        @Override
-//                                        public void onFailure(@NonNull Exception e) {
-//                                            Toast.makeText(RegisterActivity.this,
-//                                                    e.getMessage(), Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    });
-//                        }
-//                    } else {
-//                        // here to error
-//                        Toast.makeText(getApplicationContext(),
-//                                task.getException().getMessage(), Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//            });
-
-
-//        }
-
-    }
+    
     private void getNumberUser(String nb) {
 
         for (String s : bloods) {
@@ -250,11 +174,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             if (!Objects.equals(document.getString("number"), nb)) {
                                 if (nb.charAt(0) == '0'){
-//                                    getName = document.getString("name");
-//                                    getLocation = document.getString("location");
-//                                    getType =document.getString("type");
                                     realNumber = nb.substring(1);
-                                    Log.d("getNumberUser", "getNumberUser: " +realNumber);
                                     sendVerificationCode(realNumber);
                                     break;
                                 }
@@ -295,9 +215,7 @@ public class RegisterActivity extends AppCompatActivity {
         new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential credential) {
-                // This callback is invoked when the verification is complete automatically
-                // You can also use the credential to sign in the user
-                signInWithPhoneAuthCredential(credential);
+//                signInWithPhoneAuthCredential(credential);
             }
 
             @Override
@@ -307,23 +225,51 @@ public class RegisterActivity extends AppCompatActivity {
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
                     Toast.makeText(
                         RegisterActivity.this,
-                        ""+e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                        "inval "+e.getMessage(),
+                        Toast.LENGTH_LONG).show();
                     // Invalid request
                 } else if (e instanceof FirebaseTooManyRequestsException) {
-                    Toast.makeText(
-                        RegisterActivity.this,
-                        ""+e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                        users = new HashMap<>();
+                        users.put("name", name);
+                        users.put("number", number);
+                        users.put("type", type);
+                        users.put("location", location);
+                        db.collection(type)
+                            .document(number).set(users).
+                            addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+
+                                    // is true register user ...
+
+                                    Toast.makeText(
+                                        RegisterActivity.this
+                                        , "Done",
+                                        Toast.LENGTH_SHORT).show();
+
+                                    startActivity(new Intent(getApplicationContext(),SelectActivity.class));
+                                    finish();
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(RegisterActivity.this,
+                                        "Ahmed"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                     // The SMS quota for the project has been exceeded
                 } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
                     Toast.makeText(
                         RegisterActivity.this,
                         ""+e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
                     // reCAPTCHA verification attempted with null Activity
+//                    FirebaseAuth.getInstance().getFirebaseAuthSettings().forceRecaptchaFlowForTesting(true);
                 }
+
+
                 // This callback is invoked if an error occurred during the verification process
             }
 

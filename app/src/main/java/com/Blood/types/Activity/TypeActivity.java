@@ -78,7 +78,7 @@ public class TypeActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         intent = new Intent(this,MainActivity.class);
-        mAuth.setLanguageCode("ar");
+        mAuth.setLanguageCode("en");
         types = new String[]{
             "A+",
             "B+",
@@ -148,14 +148,17 @@ public class TypeActivity extends AppCompatActivity {
         AddDonation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TypeActivity.this,RegisterActivity.class));
+                Intent i = new Intent(TypeActivity.this,RegisterActivity.class);
+
+                startActivity(i);
             }
         });
 
         findViewById(R.id.edit).setOnClickListener((View v) ->{
-
-            View view = LayoutInflater.from(TypeActivity.this).inflate(R.layout.dialog_setnumber,null,false);
-
+            View view = LayoutInflater.from(TypeActivity.this).inflate(
+                R.layout.dialog_setnumber,
+                null,
+                false);
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             @SuppressLint({"MissingInflatedId", "LocalSuppress"})
             com.google.android.material.textfield.TextInputEditText
@@ -169,7 +172,6 @@ public class TypeActivity extends AppCompatActivity {
             search.setOnClickListener((View view2) ->{
                 number = edit.getText().toString().trim();
                 getNumberUser(number);
-
                 dialog.dismiss();
 
             });
@@ -211,6 +213,7 @@ public class TypeActivity extends AppCompatActivity {
                                     break;
                                 }
                             }
+
                         }
                     }else {
                         Toast.makeText(TypeActivity.this, "Some Error", Toast.LENGTH_SHORT).show();
@@ -244,11 +247,17 @@ public class TypeActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                     // Invalid request
                 } else if (e instanceof FirebaseTooManyRequestsException) {
-                    Toast.makeText(
-                        TypeActivity.this,
-                        ""+e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
 
+
+
+                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("name", name);
+                    intent.putExtra("location", location);
+                    intent.putExtra("type", type);
+                    intent.putExtra("number", number);
+                    intent.putExtra("isEditMode", true);
+                    startActivity(intent);
                     // The SMS quota for the project has been exceeded
                 } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
                     Toast.makeText(

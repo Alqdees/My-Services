@@ -77,7 +77,5 @@ public class Sendrequest extends AppCompatActivity {
                 });
             }
         });
-
-
     }
 }
