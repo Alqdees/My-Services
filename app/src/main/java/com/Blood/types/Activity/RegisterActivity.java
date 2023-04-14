@@ -222,13 +222,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onVerificationFailed(FirebaseException e) {
 
 
-                if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                    Toast.makeText(
-                        RegisterActivity.this,
-                        "inval "+e.getMessage(),
-                        Toast.LENGTH_LONG).show();
+//                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+//                    Toast.makeText(
+//                        RegisterActivity.this,
+//                        "inval "+e.getMessage(),
+//                        Toast.LENGTH_LONG).show();
                     // Invalid request
-                } else if (e instanceof FirebaseTooManyRequestsException) {
+//                } else if (e instanceof FirebaseTooManyRequestsException) {
                         users = new HashMap<>();
                         users.put("name", name);
                         users.put("number", number);
@@ -260,15 +260,16 @@ public class RegisterActivity extends AppCompatActivity {
                             });
 
                     // The SMS quota for the project has been exceeded
-                } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
-                    Toast.makeText(
-                        RegisterActivity.this,
-                        ""+e.getMessage(),
-                        Toast.LENGTH_LONG).show();
-                    // reCAPTCHA verification attempted with null Activity
-//                    FirebaseAuth.getInstance().getFirebaseAuthSettings().forceRecaptchaFlowForTesting(true);
-                }
-                Toast.makeText(RegisterActivity.this, "V"+e.getMessage(), Toast.LENGTH_SHORT).show();
+//                } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
+//                    Toast.makeText(
+//                        RegisterActivity.this,
+//                        ""+e.getMessage(),
+//                        Toast.LENGTH_LONG).show();
+//                    // reCAPTCHA verification attempted with null Activity
+////                    FirebaseAuth.getInstance().getFirebaseAuthSettings().forceRecaptchaFlowForTesting(true);
+//                }
+//                Log.d("ErrorToNotSEND", e.getMessage());
+//
                 // This callback is invoked if an error occurred during the verification process
             }
 

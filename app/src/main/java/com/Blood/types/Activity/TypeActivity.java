@@ -250,14 +250,7 @@ public class TypeActivity extends AppCompatActivity {
                 } else if (e instanceof FirebaseTooManyRequestsException) {
 
                     Log.d("onFailure", "onFailure2: "+e.getMessage());
-                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("name", name);
-                    intent.putExtra("location", location);
-                    intent.putExtra("type", type);
-                    intent.putExtra("number", number);
-                    intent.putExtra("isEditMode", true);
-                    startActivity(intent);
+
                     // The SMS quota for the project has been exceeded
                 } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
                     Toast.makeText(
@@ -266,6 +259,14 @@ public class TypeActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                     // reCAPTCHA verification attempted with null Activity
                 }
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("name", name);
+                intent.putExtra("location", location);
+                intent.putExtra("type", type);
+                intent.putExtra("number", number);
+                intent.putExtra("isEditMode", true);
+                startActivity(intent);
 //                Toast.makeText(
 //                    TypeActivity.this,
 //                    ""+e.getMessage(),
