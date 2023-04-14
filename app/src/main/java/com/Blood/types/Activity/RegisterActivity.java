@@ -268,8 +268,7 @@ public class RegisterActivity extends AppCompatActivity {
                     // reCAPTCHA verification attempted with null Activity
 //                    FirebaseAuth.getInstance().getFirebaseAuthSettings().forceRecaptchaFlowForTesting(true);
                 }
-
-
+                Toast.makeText(RegisterActivity.this, "V"+e.getMessage(), Toast.LENGTH_SHORT).show();
                 // This callback is invoked if an error occurred during the verification process
             }
 
@@ -311,7 +310,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                //Here to check if user device id is exist in fire store or not
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
@@ -390,16 +388,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
-
-//        db.collection(tp).document(number).update(users).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if (task.isSuccessful()) {
-//                    Toast.makeText(RegisterActivity.this, "تم التحديث ", Toast.LENGTH_SHORT).show();
-//                    onBackPressed();
-//                }
-//            }
-//        });
     }
 
     private void updateAndgetData(){
@@ -411,88 +399,11 @@ public class RegisterActivity extends AppCompatActivity {
         ET_number.setText(nnumber);
         ET_location.setText(llocation);
         autoCompleteTextView.setText(ttype);
-
-
-
-//        String st = autoCompleteTextView.getText().toString();
-//        for (int i =0 ;i<types.length;i++){
-//                DocumentReference docRef = db.collection(types[i]).document(deviceId);
-//            String id = docRef.getId();
-////            Log.d("deviceId",id);
-//            if (deviceId.equals(id)) {
-//                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                            if (task.isSuccessful()) {
-//                                DocumentSnapshot document = task.getResult();
-//                                if (document.exists()) {
-//                                    ET_name.setText(document.getString("name"));
-//                                    ET_number.setText(document.getString("number"));
-//                                    autoCompleteTextView.setText(document.getString("type"));
-//                                    ET_location.setText(document.getString("location"));
-//                                    return;
-//                                }else if (task.isCanceled()){
-//                                    Toast.makeText(RegisterActivity.this, "غير موجود", Toast.LENGTH_SHORT).show();
-//                                    return;
-//                                }
-//                            } else {
-//                                Toast.makeText(RegisterActivity.this,task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                                      return;
-//                            }
-//
-//                        }
-//
-//                    });
-//                }else {
-//                    Toast.makeText(this, "غير مسجل", Toast.LENGTH_SHORT).show();
-//
-//                    break;
-//                }
-//        }
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 upDateProfile(autoCompleteTextView.getText().toString());
-
-//                for (int i = 0 ;i<bloods.length;i++) {
-//                    switch (bloods[i]) {
-//                        case "A+":
-//                            upDateProfile("A+");
-//                            break;
-//                        case "A-":
-//                            upDateProfile("A-");
-//                            break;
-//                        case "B+":
-//                            upDateProfile("B+");
-//                            break;
-//                        case "B-":
-//                            upDateProfile("B-");
-//                            break;
-//                        case "AB+":
-//                            upDateProfile("AB+");
-//                            break;
-//
-//                        case "AB-":
-//                            upDateProfile("AB-");
-//                            break;
-//
-//                        case "O+":
-//                            upDateProfile("O+");
-//                            break;
-//
-//                        case "O-":
-//                            upDateProfile("O-");
-//                            break;
-//
-//                        default:
-//                            Toast.makeText(RegisterActivity.this,
-//                                    "أسمك غير موجود", Toast.LENGTH_SHORT).show();
-//                            break;
-//                    }
-//                }
-
             }
         });
         deleted.setOnClickListener(new View.OnClickListener() {
@@ -535,25 +446,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 });
-
-//                for (int i = 0;i<types.length;i++){
-//
-//                    if (types[i].equals(st)) {
-//                        doc = db.collection(st).document();
-//                        doc.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful()) {
-//                                    Toast.makeText(RegisterActivity.this, "تم الحذف ", Toast.LENGTH_SHORT).show();
-//                                    finish();
-//                                }
-//                            }
-//
-//                        });
-//
-//                    }
-//
-//                }
 
             }
         });

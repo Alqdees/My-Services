@@ -15,27 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "470738266549-8g3etedvndv9m5q6loe10mbhqnicmf35.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Blood.types",
-            "certificate_hash": "776e33638dd61bb4ea8fe9b1b7cff20e6c040698"
-          }
-        },
-        {
-          "client_id": "470738266549-tb1acohmemil5ichqq1smn873u0vdvs3.apps.googleusercontent.com",
+          "client_id": "470738266549-kipl174l4i2bs0qu5bqpqb33e8l3320e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.Blood.types",
             "certificate_hash": "85e90269eb29d5a6f8a156f9316b8c84bb11b648"
-          }
-        },
-        {
-          "client_id": "470738266549-v9scijk0nnr188ctjrrcmm56bc6geift.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Blood.types",
-            "certificate_hash": "eb1038e49c6cf49cce1f3b0044ca51907ee5aeb8"
           }
         },
         {

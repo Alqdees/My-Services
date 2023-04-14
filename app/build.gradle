@@ -1,23 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-
 }
-
 android {
     compileSdk 33
-
     defaultConfig {
-
         applicationId "com.Blood.types"
         minSdk 21
         targetSdk 33
         versionCode 8
         versionName "3.1"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -32,9 +26,7 @@ android {
     buildToolsVersion '33.0.2'
     ndkVersion '25.2.9519653'
 }
-
 dependencies {
-
     implementation 'com.google.firebase:firebase-config:21.3.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -49,9 +41,9 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.google.firebase:firebase-auth:21.2.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.firebase:firebase-dynamic-module-support:16.0.0-beta03'
-    configurations.all {
+    configurations.configureEach {
         exclude group: 'com.google.android.gms', module: 'play-services-safetynet'
     }
-
 }

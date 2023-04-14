@@ -207,7 +207,7 @@ public class TypeActivity extends AppCompatActivity {
                                     name = document.getString("name");
                                     location = document.getString("location");
                                     type =document.getString("type");
-                                    Log.d("onComplete", "onComplete: ");
+                                    Log.d("onComplete", Objects.requireNonNull(document.getString("number")));
                                     realNumber = nb.substring(1);
                                     sendVerificationCode(realNumber);
                                     break;
@@ -245,11 +245,11 @@ public class TypeActivity extends AppCompatActivity {
                         TypeActivity.this,
                         ""+e.getMessage(),
                         Toast.LENGTH_SHORT).show();
+                    Log.d("onFailure", "onFailure1: "+e.getMessage());
                     // Invalid request
                 } else if (e instanceof FirebaseTooManyRequestsException) {
 
-
-
+                    Log.d("onFailure", "onFailure2: "+e.getMessage());
                     Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("name", name);
@@ -266,6 +266,11 @@ public class TypeActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                     // reCAPTCHA verification attempted with null Activity
                 }
+//                Toast.makeText(
+//                    TypeActivity.this,
+//                    ""+e.getMessage(),
+//                    Toast.LENGTH_SHORT).show();
+                Log.d("onFailure", "onFailure3: "+e.getMessage());
                 // This callback is invoked if an error occurred during the verification process
             }
 
