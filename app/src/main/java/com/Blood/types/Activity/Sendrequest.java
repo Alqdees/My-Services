@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.MotionButton;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,7 @@ public class Sendrequest extends AppCompatActivity {
             specializationET,timeET,titleET;
     private MotionButton sendRequest;
     private FirebaseFirestore db;
-    private HashMap<String,Object> doctor;
+    private HashMap<String,Object> doctors;
     private String Doctor = "Doctor";
 
     @Override
@@ -39,43 +40,36 @@ public class Sendrequest extends AppCompatActivity {
         sendRequest= findViewById(R.id.addRequest);
         db = FirebaseFirestore.getInstance();
 
-        sendRequest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameET.getText().toString().trim();
-                String number = numberET.getText().toString();
-                String specialization = specializationET.getText().toString();
-                String time = timeET.getText().toString();
-                String title = titleET.getText().toString();
+        sendRequest.setOnClickListener(v -> {
+            String name = nameET.getText().toString().trim();
+            String number = numberET.getText().toString();
+            String specialization = specializationET.getText().toString();
+            String time = timeET.getText().toString();
+            String title = titleET.getText().toString();
 
-                doctor = new HashMap<>();
-                doctor.put("name",name);
-                doctor.put("number",number);
-                doctor.put("presence",time);
-                doctor.put("specialization",specialization);
-                doctor.put("title",title);
-                doctor.put("bool",false);
+            doctors = new HashMap<>();
+            doctors.put("name",name);
+            doctors.put("number",number);
+            doctors.put("presence",time);
+            doctors.put("specialization",specialization);
+            doctors.put("title",title);
+            doctors.put("bool",false);
 
-                db.collection(Doctor).document(number)
-                        .set(doctor).
-                        addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+            db.collection(Doctor).document(number)
+                    .set(doctors).
+                    addOnCompleteListener(task -> {
                         if (task.isSuccessful()){
                             Toast.makeText(
                                     Sendrequest.this,
-                                    "Done", Toast.LENGTH_SHORT).show();
+                                    R.string.register_done, Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(Sendrequest.this, SelectActivity.class));
+                            finish();
                         }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+                    }).addOnFailureListener(e -> {
                         // wait some minute
                         Log.d("EXCEPTIONFire",
                                 e.getMessage());
-                    }
-                });
-            }
+                    });
         });
     }
 }

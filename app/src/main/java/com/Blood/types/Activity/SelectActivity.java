@@ -26,8 +26,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+
+import java.util.Objects;
 
 public class SelectActivity extends AppCompatActivity {
 
@@ -37,7 +44,8 @@ public class SelectActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     private FirebaseRemoteConfig remoteConfig;
     private int currentVersionCod;
-
+    private FirebaseFirestore db;
+    private DocumentReference doc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +54,7 @@ public class SelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select);
         actionBar = getSupportActionBar();
         actionBar.hide();
-
+        db = FirebaseFirestore.getInstance();
 
 
         line = findViewById(R.id.lineTravel);
@@ -77,7 +85,53 @@ public class SelectActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+showDialog();
+
+//                CollectionReference collectionRef = db.collection("line");
+//                collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//
+//                                if (Objects.equals(document.getBoolean("bool"),false)) {
+////                                    String named = document.getString("name");
+//                                    String id = document.getId();
+//                                    doc = db.collection("line").document(id);
+//                                    doc.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                        @Override
+//                                        public void onComplete(@NonNull Task<Void> task) {
+//                                            if (task.isSuccessful()) {
+//                                                Toast.makeText(SelectActivity.this, "تم الحذف ", Toast.LENGTH_SHORT).show();
+//                                                startActivity(new Intent(getApplicationContext(),TypeActivity.class));
+//                                                finish();
+//                                            }
+//                                        }
+//
+//                                    });
+//
+//                                }else {
+//                                    Toast.makeText(SelectActivity.this, "أسمك موجود", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        }else {
+//                            Toast.makeText(
+//                                SelectActivity.this,
+//                                "Some Error",
+//                                Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.d("onFailure", "onFailure: "+e.getMessage());
+//                    }
+//                });
+//
+
+
+
+//                showDialog();
             }
         });
 

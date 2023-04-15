@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">خدماتي</string>
+    <string name="doctor">Doctor</string>
     <string name="search_number">ابحث عن الرقم</string>
     <string name="input_number">أدخل الرقم</string>
     <string name="non">ماكو للاسف</string>
@@ -14,4 +15,7 @@
     <string name="number">الرقم</string>
     <string name="type">الفصيلة</string>
     <string name="location">المنطقة</string>
+    <string name="edit_info">تعديل المعلومات</string>
+    <string name="register_done">تم التسجيل</string>
+    <string name="field_error">احد الحقول فارغ</string>
 </resources>

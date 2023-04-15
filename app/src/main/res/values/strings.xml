@@ -3,7 +3,7 @@
     <string name="SpeechToText" translatable="false">Speech To Text</string>
     <string name="thanks" translatable="false">شكر وتقدير خاص لگروب ناحية الزاب الاسفل على دعمه هذا المشروع وكذلك شكر وتقدير لكل من ساهم ويساهم في نشر العمل الخيري في هذه المدينة المباركة</string>
     <string name="n_n">احمد شاكر  \n اي أضافة او فكرة تساعد بالعمل الخيري لاتتردد بالتواصل معي \n</string>
-    <string name="doctor">الاطباء</string>
+    <string name="doctor" translatable="false">الاطباء</string>
     <string name="default_notification_channel_id">hi (^_¬)</string>
     <string name="search_number" translatable="false">search number</string>
     <string name="input_number" translatable="false">input number</string>
@@ -18,5 +18,7 @@
     <string name="number" translatable="false">number</string>
     <string name="type" translatable="false">type</string>
     <string name="location" translatable="false">location</string>
-    <string name="edit_info">تعديل المعلومات</string>
+    <string name="register_done" translatable="false">register Done</string>
+    <string name="edit_info" translatable="false">Edit info</string>
+    <string name="field_error" translatable="false">One of the fields is empty</string>
 </resources>

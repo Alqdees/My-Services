@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.MotionButton;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -53,11 +54,9 @@ public class LineActivity extends AppCompatActivity {
                 String time = timeET.getText().toString();
                 String from = fromAndToEt.getText().toString();
                 if (name.isEmpty() || number.isEmpty() || type.isEmpty() || time.isEmpty() || from.isEmpty() ){
-                    Toast.makeText(LineActivity.this, "أحد الحقول فارغ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LineActivity.this, R.string.field_error, Toast.LENGTH_SHORT).show();
                 }else {
-//                    @SuppressLint("HardwareIds")
-//                    String deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-//                            Settings.Secure.ANDROID_ID);
+
                     lines.put("name",name);
                     lines.put("number",number);
                     lines.put("type",type);
@@ -72,8 +71,11 @@ public class LineActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
-                                Toast.makeText(LineActivity.this, "Done ..."
-                                        , Toast.LENGTH_SHORT).show();
+                                Toast.makeText(
+                                    LineActivity.this,
+                                    R.string.register_done, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LineActivity.this, SelectActivity.class));
+                                finish();
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
