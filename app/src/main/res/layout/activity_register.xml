@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Activity.RegisterActivity">
+    tools:context=".View.Activity.RegisterActivity">
 
     <RelativeLayout
         android:id="@+id/appBar"
@@ -24,6 +24,12 @@
         android:layout_marginTop="-50dp"
         android:layout_marginEnd="25dp"
         android:background="@drawable/select">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_centerInParent="true" />
 
         <TextView
             android:id="@+id/tv_information"

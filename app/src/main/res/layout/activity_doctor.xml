@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.DoctorActivity">
+    tools:context=".View.Activity.DoctorActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,8 +21,21 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:fontFamily="@font/somar"
             android:text="@string/doctor"
+            android:id="@+id/title"
             android:textColor="@color/white"
             android:textSize="@dimen/_22sdp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchEt"
+            android:layout_width="@dimen/_225sdp"
+            android:layout_height="@dimen/_38sdp"
+            android:layout_below="@+id/title"
+            android:hint="@string/name"
+            android:layout_centerInParent="true"
+            android:background="@drawable/buttonselect"
+            android:drawableStart="@drawable/search_ic"
+            android:paddingStart="@dimen/_4sdp"
+            android:textSize="@dimen/_16sdp" />
 
 
     </RelativeLayout>
@@ -31,7 +44,7 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_80sdp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"

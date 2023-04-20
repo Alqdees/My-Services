@@ -3,14 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <uses-feature-->
-<!--        android:name="android.hardware.telephony"-->
-<!--        android:required="false" />-->
-
     <uses-permission android:name="android.permission.INTERNET" />
-
-<!--    <uses-permission android:name="android.permission.RECEIVE_SMS"/>-->
-
 
     <application
         android:allowBackup="true"
@@ -24,24 +17,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
-            android:name=".Activity.OtpActivity"
+            android:name=".View.Activity.OtpActivity"
             android:exported="false"/>
         <activity
-            android:name=".Activity.LineActivity"
+            android:name=".View.Activity.LineActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Sendrequest"
+            android:name=".View.Activity.Sendrequest"
             android:exported="false" />
         <activity
-            android:name=".Activity.DoctorActivity"
+            android:name=".View.Activity.DoctorActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Transportation_linesActivity"
+            android:name=".View.Activity.Transportation_linesActivity"
             android:exported="false" />
 
         <!-- heerree -->
         <activity
-            android:name=".Activity.SelectActivity"
+            android:name=".View.Activity.SelectActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,28 +43,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.TypeActivity"
+            android:name=".View.Activity.TypeActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.RegisterActivity"
+            android:name=".View.Activity.RegisterActivity"
             android:exported="false"/>
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".View.Activity.MainActivity"
             android:exported="false"/>
-
-<!--   here is broadcast receiver     -->
-<!--        <receiver-->
-<!--            android:name=".Controller.Receiver"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.provider.Telephony.SMS_RECEIVER"/>-->
-
-<!--            </intent-filter>-->
-
-
-<!--        </receiver>-->
-
-
 
     </application>
 

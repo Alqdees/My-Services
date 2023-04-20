@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     android:overScrollMode="never"
     android:background="#ffffff"
-    tools:context=".Activity.OtpActivity">
+    tools:context=".View.Activity.OtpActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         >
+
+        <ProgressBar
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_75sdp"
+            android:layout_centerInParent="true"
+            android:id="@+id/prograss"
+            />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+
 
         <ImageView
             android:layout_width="@dimen/_100sdp"
@@ -110,5 +124,6 @@
         </FrameLayout>
 
     </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>

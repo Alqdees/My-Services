@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.Transportation_linesActivity">
+    tools:context=".View.Activity.Transportation_linesActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -23,9 +23,22 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/somar"
+            android:id="@+id/title"
             android:text="خطوط النقل"
             android:textColor="@color/white"
             android:textSize="@dimen/_22sdp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="@dimen/_225sdp"
+            android:layout_height="@dimen/_38sdp"
+            android:layout_below="@+id/title"
+            android:hint="@string/name"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/_16sdp"
+            android:id="@+id/searchEt"
+            android:background="@drawable/buttonselect"
+            android:drawableStart="@drawable/search_ic"
+            android:paddingStart="@dimen/_4sdp" />
 
 
     </RelativeLayout>
@@ -35,7 +48,9 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="3dp"
         android:background="@drawable/circale_shape"

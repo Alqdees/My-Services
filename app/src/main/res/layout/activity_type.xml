@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.TypeActivity">
+    tools:context=".View.Activity.TypeActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -195,5 +194,11 @@
         android:text="@string/edit_info"
         android:textColor="@color/black"
         android:textSize="@dimen/_25sdp" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>
