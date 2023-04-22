@@ -33,7 +33,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public AdapterBelow onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(context).inflate(R.layout.cardview,parent,false);
+        View v = LayoutInflater.from(context).inflate(
+            R.layout.cardview,parent,
+            false);
 
         return new AdapterBelow(v);
     }

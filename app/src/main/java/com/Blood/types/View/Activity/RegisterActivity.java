@@ -21,8 +21,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
@@ -83,13 +86,12 @@ public class RegisterActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress);
         progressBar.setVisibility(View.INVISIBLE);
 
-
         db = FirebaseFirestore.getInstance();
 
         actionBar=getSupportActionBar();
         actionBar.hide();
-        mAuth = FirebaseAuth.getInstance();
-        mAuth.setLanguageCode("en");
+
+
         intent= getIntent();
         isEditMode = intent.getBooleanExtra("isEditMode",false);
         Type = intent.getStringExtra("types");
@@ -124,6 +126,8 @@ public class RegisterActivity extends AppCompatActivity {
            updateAndgetData();
         }else {
 
+            mAuth = FirebaseAuth.getInstance();
+            mAuth.setLanguageCode("en");
             register.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -227,20 +231,19 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onVerificationFailed(FirebaseException e) {
 
-                Log.d("ErrorVerification", e.getMessage());
+                progressBar.setVisibility(View.INVISIBLE);
 
-//                if (e instanceof FirebaseAuthInvalidCredentialsException) {
-//                    Toast.makeText(
-//                        RegisterActivity.this,
-//                        "inval "+e.getMessage(),
-//                        Toast.LENGTH_LONG).show();
+                    Toast.makeText(
+                        RegisterActivity.this,
+                        e.getMessage(),
+                        Toast.LENGTH_LONG).show();
                     // Invalid request
-//                } else if (e instanceof FirebaseTooManyRequestsException) {
 //                        users = new HashMap<>();
 //                        users.put("name", name);
 //                        users.put("number", number);
 //                        users.put("type", type);
 //                        users.put("location", location);
+//                        users.put("error", e.getMessage());
 //                        db.collection(type)
 //                            .document(number).set(users).
 //                            addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -265,21 +268,18 @@ public class RegisterActivity extends AppCompatActivity {
 //                                        "Ahmed"+e.getMessage(), Toast.LENGTH_SHORT).show();
 //                                }
 //                            });
-
-                    // The SMS quota for the project has been exceeded
-//                } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
+//
+//                     //The SMS quota for the project has been exceeded
+//
 //                    Toast.makeText(
 //                        RegisterActivity.this,
 //                        ""+e.getMessage(),
 //                        Toast.LENGTH_LONG).show();
-//                    // reCAPTCHA verification attempted with null Activity
-////                    FirebaseAuth.getInstance().getFirebaseAuthSettings().forceRecaptchaFlowForTesting(true);
-//                }
-//                Log.d("ErrorToNotSEND", e.getMessage());
+                    // reCAPTCHA verification attempted with null Activity
+
 //
                 // This callback is invoked if an error occurred during the verification process
 
-                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override

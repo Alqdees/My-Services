@@ -16,6 +16,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {
@@ -42,7 +43,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:21.3.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.firebase:firebase-dynamic-module-support:16.0.0-beta03'
-    configurations.configureEach {
-        exclude group: 'com.google.android.gms', module: 'play-services-safetynet'
-    }
+    implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
+
 }
