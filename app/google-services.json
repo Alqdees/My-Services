@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "470738266549-gluo831pa4q9p01bmfc7i1cksl7s89dq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Blood.types",
+            "certificate_hash": "eb1038e49c6cf49cce1f3b0044ca51907ee5aeb8"
+          }
+        },
+        {
           "client_id": "470738266549-kipl174l4i2bs0qu5bqpqb33e8l3320e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.utils.widget.MotionButton;
-
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,13 +38,12 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class TypeActivity extends AppCompatActivity {
 
-    private String mVerificationId,number,realNumber,name,location,type;
+    private String number,realNumber,name,location,type;
 
     private FirebaseFirestore db;
 
@@ -57,7 +55,6 @@ public class TypeActivity extends AppCompatActivity {
             AB_Minus,
             O_Plus,
             O_Minus;
-//    private ExtendedFloatingActionButton floatingActionButton;
     private Intent intent;
     private static final String Type = "type";
     private FirebaseAuth mAuth;
@@ -72,10 +69,8 @@ public class TypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
         progressBar = findViewById(R.id.progress);
         progressBar.setVisibility(View.INVISIBLE);
-
 
         actionBar=getSupportActionBar();
         actionBar.hide();
@@ -95,11 +90,6 @@ public class TypeActivity extends AppCompatActivity {
             "AB-",
             "لا أعرف"
         };
-
-
-
-//        floatingActionButton = findViewById(R.id.registerBtn);
-
         A_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,11 +144,9 @@ public class TypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(TypeActivity.this,RegisterActivity.class);
-
                 startActivity(i);
             }
         });
-
         findViewById(R.id.edit).setOnClickListener((View v) ->{
             View view = LayoutInflater.from(TypeActivity.this).inflate(
                 R.layout.dialog_setnumber,
@@ -172,8 +160,6 @@ public class TypeActivity extends AppCompatActivity {
             MotionButton search = view.findViewById(R.id.searchNumber);
             builder.setView(view);
             AlertDialog dialog = builder.create();
-
-
             search.setOnClickListener((View view2) ->{
                 number = edit.getText().toString().trim();
                 if (number.isEmpty()){
@@ -190,21 +176,10 @@ public class TypeActivity extends AppCompatActivity {
 
         });
 
-
-//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(TypeActivity.this, RegisterActivity.class));
-//            }
-//        });
-
-
-
     }
     private void getNumberUser(String nb) {
 
         for (String s : types) {
-//            DocumentReference docRef = db.collection(s).document();
 
             CollectionReference collectionRef = db.collection(s);
             collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -221,7 +196,6 @@ public class TypeActivity extends AppCompatActivity {
                                     Log.d("onComplete", Objects.requireNonNull(document.getString("number")));
                                     realNumber = nb.substring(1);
                                     sendVerificationCode(realNumber);
-
                                     break;
                                 }
                             }
@@ -435,7 +409,7 @@ public class TypeActivity extends AppCompatActivity {
 
         try {
             Intent waIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://wa.me/9647812591236?text="));
+                    Uri.parse("https://wa.me/9647824854526?text="));
             startActivity(waIntent);
         } catch (Exception e) {
             Toast.makeText(this, "WhatsApp not Installed", Toast.LENGTH_SHORT).show();
