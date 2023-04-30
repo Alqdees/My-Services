@@ -27,14 +27,20 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchEt"
-            android:layout_width="@dimen/_225sdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_38sdp"
             android:layout_below="@+id/title"
             android:hint="@string/name"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:layout_centerInParent="true"
             android:background="@drawable/buttonselect"
             android:drawableStart="@drawable/search_ic"
+            android:drawablePadding="@dimen/_4sdp"
             android:paddingStart="@dimen/_4sdp"
+            android:paddingEnd="@dimen/_4sdp"
             android:textSize="@dimen/_16sdp" />
 
 

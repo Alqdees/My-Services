@@ -193,7 +193,6 @@ public class TypeActivity extends AppCompatActivity {
                                     name = document.getString("name");
                                     location = document.getString("location");
                                     type =document.getString("type");
-                                    Log.d("onComplete", Objects.requireNonNull(document.getString("number")));
                                     realNumber = nb.substring(1);
                                     sendVerificationCode(realNumber);
                                     break;
@@ -218,9 +217,6 @@ public class TypeActivity extends AppCompatActivity {
         new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential credential) {
-                // This callback is invoked when the verification is complete automatically
-                // You can also use the credential to sign in the user
-//                signInWithPhoneAuthCredential(credential);
                 progressBar.setVisibility(View.INVISIBLE);
                 }
 
@@ -244,23 +240,7 @@ public class TypeActivity extends AppCompatActivity {
                         TypeActivity.this,
                         ""+e.getMessage(),
                         Toast.LENGTH_SHORT).show();
-
-                    // reCAPTCHA verification attempted with null Activity
                 }
-//                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                intent.putExtra("name", name);
-//                intent.putExtra("location", location);
-//                intent.putExtra("type", type);
-//                intent.putExtra("number", number);
-//                intent.putExtra("isEditMode", true);
-//                startActivity(intent);
-////                Toast.makeText(
-////                    TypeActivity.this,
-////                    ""+e.getMessage(),
-////                    Toast.LENGTH_SHORT).show();
-//                Log.d("onFailure", "onFailure3: "+e.getMessage());
-                // This callback is invoked if an error occurred during the verification process
 
                 progressBar.setVisibility(View.INVISIBLE);
             }
@@ -283,19 +263,7 @@ public class TypeActivity extends AppCompatActivity {
 
             }
         };
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        // User signed in successfully
-                        FirebaseUser user = task.getResult().getUser();
 
-                    }
-                }
-            });
-    }
     private void sendVerificationCode(String phoneNumber) {
 
         PhoneAuthOptions options =

@@ -27,6 +27,7 @@ public class Sendrequest extends AppCompatActivity {
         setContentView(R.layout.activity_sendrequest);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
         nameET = findViewById(R.id.name);
         numberET = findViewById(R.id.number);
         specializationET = findViewById(R.id.specialization);
@@ -36,35 +37,42 @@ public class Sendrequest extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         sendRequest.setOnClickListener(v -> {
-            String name = nameET.getText().toString().trim();
-            String number = numberET.getText().toString();
-            String specialization = specializationET.getText().toString();
-            String time = timeET.getText().toString();
-            String title = titleET.getText().toString();
-
-            doctors = new HashMap<>();
-            doctors.put("name",name);
-            doctors.put("number",number);
-            doctors.put("presence",time);
-            doctors.put("specialization",specialization);
-            doctors.put("title",title);
-            doctors.put("bool",false);
-
-            db.collection(Doctor).document(number)
-                    .set(doctors).
-                    addOnCompleteListener(task -> {
-                        if (task.isSuccessful()){
-                            Toast.makeText(
-                                    Sendrequest.this,
-                                    R.string.register_done, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(Sendrequest.this, SelectActivity.class));
-                            finish();
-                        }
-                    }).addOnFailureListener(e -> {
-                        // wait some minute
-                        Log.d("EXCEPTIONFire",
-                                e.getMessage());
-                    });
+            sendRequestDoctor();
         });
+    }
+
+
+    private void sendRequestDoctor(){
+        String name = nameET.getText().toString();
+        String number = numberET.getText().toString();
+        String specialization = specializationET.getText().toString();
+        String time = timeET.getText().toString();
+        String title = titleET.getText().toString();
+
+        doctors = new HashMap<>();
+        doctors.put("name",name);
+        doctors.put("number",number);
+        doctors.put("presence",time);
+        doctors.put("specialization",specialization);
+        doctors.put("title",title);
+        doctors.put("bool",false);
+
+        db.collection(Doctor).document(number)
+            .set(doctors).
+            addOnCompleteListener(task -> {
+                if (task.isSuccessful()){
+                    Toast.makeText(
+                        Sendrequest.this,
+                        R.string.register_done, Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(
+                        Sendrequest.this, SelectActivity.class
+                    ));
+                    finish();
+                }
+            }).addOnFailureListener(e -> {
+                // wait some minute
+                Log.d("EXCEPTIONFire",
+                    e.getMessage());
+            });
     }
 }

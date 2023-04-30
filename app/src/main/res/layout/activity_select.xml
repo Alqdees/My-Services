@@ -83,22 +83,53 @@
 
         </LinearLayout>
 
-        <androidx.constraintlayout.utils.widget.MotionButton
-            android:id="@+id/blood"
-            android:layout_width="@dimen/_146sdp"
-            android:layout_height="@dimen/_100sdp"
+        <LinearLayout
+            android:id="@+id/liner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
             android:layout_below="@+id/liner"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/_6sdp"
-            android:background="@drawable/buttonselect"
-            android:clipToOutline="true"
-            android:drawableTop="@drawable/blood1"
-            android:fontFamily="@font/somar"
-            android:outlineSpotShadowColor="@color/circle"
-            android:shadowColor="@color/blue"
-            android:text="فصائل الدم"
-            android:textColor="@color/black"
-            android:textSize="26sp" />
+
+            >
+            <androidx.constraintlayout.utils.widget.MotionButton
+                android:id="@+id/bloods"
+                android:layout_width="@dimen/_146sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_below="@+id/liner"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:background="@drawable/buttonselect"
+                android:clipToOutline="true"
+                android:drawableTop="@drawable/blood1"
+                android:fontFamily="@font/somar"
+                android:outlineSpotShadowColor="@color/circle"
+                android:shadowColor="@color/blue"
+                android:text="فصائل الدم"
+                android:textColor="@color/black"
+                android:textSize="26sp" />
+            <androidx.constraintlayout.utils.widget.MotionButton
+                android:id="@+id/bloods"
+                android:layout_width="@dimen/_146sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_below="@+id/liner"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:background="@drawable/buttonselect"
+                android:clipToOutline="true"
+                android:drawableTop="@drawable/blood1"
+                android:fontFamily="@font/somar"
+                android:outlineSpotShadowColor="@color/circle"
+                android:shadowColor="@color/blue"
+                android:text="فصائل الدم"
+                android:textColor="@color/black"
+                android:textSize="26sp" />
+
+
+        </LinearLayout>
+
+
     </RelativeLayout>
 
     <FrameLayout

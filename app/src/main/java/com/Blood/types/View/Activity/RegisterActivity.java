@@ -237,49 +237,6 @@ public class RegisterActivity extends AppCompatActivity {
                         RegisterActivity.this,
                         e.getMessage(),
                         Toast.LENGTH_LONG).show();
-                    // Invalid request
-//                        users = new HashMap<>();
-//                        users.put("name", name);
-//                        users.put("number", number);
-//                        users.put("type", type);
-//                        users.put("location", location);
-//                        users.put("error", e.getMessage());
-//                        db.collection(type)
-//                            .document(number).set(users).
-//                            addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void unused) {
-//
-//                                    // is true register user ...
-//
-//                                    Toast.makeText(
-//                                        RegisterActivity.this
-//                                        , "Done",
-//                                        Toast.LENGTH_SHORT).show();
-//
-//                                    startActivity(new Intent(getApplicationContext(),SelectActivity.class));
-//                                    finish();
-//
-//                                }
-//                            }).addOnFailureListener(new OnFailureListener() {
-//                                @Override
-//                                public void onFailure(@NonNull Exception e) {
-//                                    Toast.makeText(RegisterActivity.this,
-//                                        "Ahmed"+e.getMessage(), Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//
-//                     //The SMS quota for the project has been exceeded
-//
-//                    Toast.makeText(
-//                        RegisterActivity.this,
-//                        ""+e.getMessage(),
-//                        Toast.LENGTH_LONG).show();
-                    // reCAPTCHA verification attempted with null Activity
-
-//
-                // This callback is invoked if an error occurred during the verification process
-
             }
 
             @Override

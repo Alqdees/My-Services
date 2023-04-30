@@ -129,59 +129,28 @@ public class MainActivity extends AppCompatActivity {
                 new RecyclerViewAdapter(MainActivity.this,list);
         recyclerView.setAdapter(viewAdapter);
     }
-    private void showData(String st)
-    {
+    private void showData(String st) {
 
         db.collection(st).orderBy("name", Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value,  FirebaseFirestoreException error) {
-                        if (error != null){
-                            Toast.makeText(
-                                    MainActivity.this, error.getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                            return;
-                        }else {
-                            for (DocumentChange document: value.getDocumentChanges()) {
-                                if (document.getType() == DocumentChange.Type.ADDED){
-                                    models.add(document.getDocument().toObject(Model.class));
-                                }
+            .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(@Nullable QuerySnapshot value, FirebaseFirestoreException error) {
+                    if (error != null) {
+                        Toast.makeText(
+                            MainActivity.this, error.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                    } else {
+                        assert value != null;
+                        for (DocumentChange document : value.getDocumentChanges()) {
+                            if (document.getType() == DocumentChange.Type.ADDED) {
+                                models.add(document.getDocument().toObject(Model.class));
                             }
-                            adapter = new RecyclerViewAdapter(MainActivity.this,models);
-                            recyclerView.setAdapter(adapter);
                         }
+                        adapter = new RecyclerViewAdapter(MainActivity.this, models);
+                        recyclerView.setAdapter(adapter);
                     }
-                });
+                }
+            });
     }
 
-
-//    private void speechToText() {
-//        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-//        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-//        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH);
-//        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, R.string.SpeechToText);
-//        try {
-//            startActivityForResult(intent, SPEECH_REQUEST);
-//        } catch (Exception e) {
-//            Toast.makeText(this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        switch (requestCode) {
-//            case SPEECH_REQUEST:
-//                if (resultCode == RESULT_OK && data != null) {
-//                    result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-//                    searchBar(result.get(0));
-//                }
-//        }
-//    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
 }

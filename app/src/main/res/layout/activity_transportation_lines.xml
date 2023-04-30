@@ -29,16 +29,22 @@
             android:textSize="@dimen/_22sdp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="@dimen/_225sdp"
+            android:id="@+id/searchEt"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_38sdp"
             android:layout_below="@+id/title"
-            android:hint="@string/name"
             android:layout_centerInParent="true"
-            android:textSize="@dimen/_16sdp"
-            android:id="@+id/searchEt"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:background="@drawable/buttonselect"
             android:drawableStart="@drawable/search_ic"
-            android:paddingStart="@dimen/_4sdp" />
+            android:drawablePadding="@dimen/_4sdp"
+            android:hint="@string/name"
+            android:paddingStart="@dimen/_4sdp"
+            android:paddingEnd="@dimen/_4sdp"
+            android:textSize="@dimen/_16sdp" />
 
 
     </RelativeLayout>
