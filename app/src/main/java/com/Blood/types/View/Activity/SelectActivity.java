@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.utils.widget.MotionButton;
 import androidx.core.content.ContextCompat;
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -35,12 +36,13 @@ public class SelectActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private String newVersion;
-    private MotionButton line,blood,doctor;
+    private MotionButton line,blood,doctor ,professions;
     private FloatingActionButton floatingActionButton;
     private FirebaseRemoteConfig remoteConfig;
     private int currentVersionCod;
     private FirebaseFirestore db;
-    private DocumentReference doc;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +53,17 @@ public class SelectActivity extends AppCompatActivity {
         actionBar.hide();
         db = FirebaseFirestore.getInstance();
 
-
+        professions = findViewById(R.id.professions);
         line = findViewById(R.id.lineTravel);
-        blood = findViewById(R.id.blood);
+        blood = findViewById(R.id.bloods);
         doctor = findViewById(R.id.doctor);
         floatingActionButton=findViewById(R.id.Add);
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SelectActivity.this,Transportation_linesActivity.class));
+                startActivity(new Intent(
+                    SelectActivity.this,
+                    Transportation_linesActivity.class));
             }
         });
 
@@ -73,7 +77,9 @@ public class SelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(SelectActivity.this,DoctorActivity.class));
+                startActivity(new
+                    Intent(
+                        SelectActivity.this,DoctorActivity.class));
 
             }
         });
@@ -129,6 +135,12 @@ showDialog();
 //                showDialog();
             }
         });
+        professions.setOnClickListener(view -> {
+
+            Toast.makeText(this, "Ahmed >...", Toast.LENGTH_SHORT).show();
+
+
+        });
 
 
 ///////// below code to update app in on create
@@ -166,16 +178,6 @@ showDialog();
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
 
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
@@ -260,6 +262,8 @@ showDialog();
         MotionButton addLine = v.findViewById(R.id.line_request);
         MotionButton addDoctor = v.findViewById(R.id.doctorAdd);
         MotionButton addBlood = v.findViewById(R.id.add_blood);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        MotionButton add_Profession = v.findViewById(R.id.add_Profession);
         builder.setView(v);
         AlertDialog dialog = builder.create();
 
@@ -287,6 +291,10 @@ showDialog();
                 startActivity(intent);
                 dialog.dismiss();
             }
+        });
+        add_Profession.setOnClickListener(View ->{
+            startActivity(new Intent(SelectActivity.this,ProfessionActivity.class));
+            dialog.dismiss();
         });
 
         dialog.show();
