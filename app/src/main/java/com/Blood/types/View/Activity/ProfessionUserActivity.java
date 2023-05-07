@@ -4,15 +4,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-
-import com.Blood.types.Model.Doctor;
+import com.Blood.types.Model.Profession;
 import com.Blood.types.R;
-import com.Blood.types.View.Adapter.AdapterDoctor;
+import com.Blood.types.View.Adapter.AdapterProfession;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,8 +19,7 @@ import java.util.ArrayList;
 public class ProfessionUserActivity extends AppCompatActivity {
   private FirebaseFirestore db;
   private RecyclerView recyclerView;
-  private AdapterDoctor adapterDoctor;
-  private ArrayList<Doctor> doctors;
+  private ArrayList<Profession> profession;
   private ActionBar actionBar;
   private TextInputEditText et_search;
   @SuppressLint("MissingInflatedId")
@@ -30,11 +27,15 @@ public class ProfessionUserActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_profession_user);
+    getOpj();
 
+  }
+
+  private void getOpj() {
 
     recyclerView = findViewById(R.id.recycler);
     db = FirebaseFirestore.getInstance();
-    doctors = new ArrayList<>();
+    profession = new ArrayList<>();
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.hasFixedSize();
     actionBar = getSupportActionBar();
@@ -61,19 +62,18 @@ public class ProfessionUserActivity extends AppCompatActivity {
     });
 
 
-
-
   }
+
   private void searchNameLine(CharSequence charSequence) {
-    ArrayList<Doctor> doctors1 = new ArrayList<>();
+    ArrayList<Profession> profession1 = new ArrayList<>();
 
-    for (Doctor d: doctors ) {
+    for (Profession p: profession ) {
 
-      if (d.getName().contains(charSequence)){
-        doctors1.add(d);
+      if (p.getName().contains(charSequence)){
+        profession1.add(p);
       }
     }
-    AdapterDoctor ad = new AdapterDoctor(ProfessionUserActivity.this,doctors1);
+    AdapterProfession ad = new AdapterProfession(profession1,ProfessionUserActivity.this);
     recyclerView.setAdapter(ad);
 
 

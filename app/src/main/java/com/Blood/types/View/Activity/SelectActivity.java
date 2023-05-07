@@ -137,9 +137,6 @@ showDialog();
         });
         professions.setOnClickListener(view -> {
 
-            Toast.makeText(this, "Ahmed >...", Toast.LENGTH_SHORT).show();
-
-
         });
 
 
