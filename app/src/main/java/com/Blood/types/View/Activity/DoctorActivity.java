@@ -13,7 +13,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.Blood.types.Controller.Any;
 import com.Blood.types.View.Adapter.AdapterDoctor;
 import com.Blood.types.Model.Doctor;
 import com.Blood.types.R;

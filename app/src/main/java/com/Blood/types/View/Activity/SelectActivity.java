@@ -136,7 +136,9 @@ showDialog();
             }
         });
         professions.setOnClickListener(view -> {
-
+            startActivity(new
+                Intent(
+                SelectActivity.this,ProfessionUserActivity.class));
         });
 
 
