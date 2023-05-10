@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">خدماتي</string>
+    <string name="app_name">دليل ناحية الزاب</string>
     <string name="doctor">أطباء</string>
     <string name="search_number">ابحث عن الرقم</string>
     <string name="input_number">أدخل الرقم</string>

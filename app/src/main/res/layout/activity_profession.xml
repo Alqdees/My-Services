@@ -35,8 +35,13 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/toolbar"
         android:background="@drawable/buttonselect"
-        >
 
+        >
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_centerInParent="true" />
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -7,6 +7,7 @@ import androidx.constraintlayout.utils.widget.MotionButton;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -21,19 +22,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import java.util.HashMap;
+import java.util.Objects;
 
 public class OtpActivity extends AppCompatActivity {
 
 
     private EditText et1;
     private MotionButton btnsubmit;
-    private  String realNumber,verificationId,name,location,type,number;
+    private  String realNumber,verificationId,name,location,type,number,profession;
     private  ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private ActionBar actionBar;
-    private boolean isRegister;
+    private boolean isRegister,isProf;
     private FirebaseFirestore db;
+    private HashMap<String,Object> professions;
+    private String Professions = "professions";
     private HashMap<String,Object> users;
 
     /**
@@ -59,6 +65,7 @@ public class OtpActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         isRegister = getIntent().getBooleanExtra("isRegister",false);
+        isProf = getIntent().getBooleanExtra("prof",false);
         realNumber = getIntent().getStringExtra("realNumber");
 
         verificationId = getIntent().getStringExtra("verificationId");
@@ -66,6 +73,7 @@ public class OtpActivity extends AppCompatActivity {
         name = getIntent().getStringExtra("name");
         number = getIntent().getStringExtra("number");
         location = getIntent().getStringExtra("location");
+        profession = getIntent().getStringExtra("profession");
         type = getIntent().getStringExtra("type");
 
 //        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -96,8 +104,10 @@ public class OtpActivity extends AppCompatActivity {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     if (isRegister) {
                                         registerUser();
-
-                                    } else {
+                                    }else if (isProf){
+                                        registerProfessions();
+                                    }
+                                    else {
                                         progressBar.setVisibility(View.INVISIBLE);
                                         Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -107,7 +117,6 @@ public class OtpActivity extends AppCompatActivity {
                                         intent.putExtra("number", number);
                                         intent.putExtra("isEditMode", true);
                                         startActivity(intent);
-
                                     }
                                 }
                                 else {
@@ -121,6 +130,47 @@ public class OtpActivity extends AppCompatActivity {
               }
 
         });
+    }
+
+    private void registerProfessions() {
+
+              FirebaseMessaging.getInstance().getToken()
+          .addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+              Log.d("initVariable", Objects.requireNonNull(task.getException().getMessage()));
+              return;
+            }
+            // Get new FCM registration token
+              professions = new HashMap<>();
+              professions.put("name",name);
+              professions.put("number",number);
+              professions.put("nameProfession",profession);
+              professions.put("token",task.getResult());
+
+
+              db.collection(Professions).document(number)
+                  .set(professions).
+                  addOnCompleteListener(task2 -> {
+                      if (task2.isSuccessful()){
+                          Toast.makeText(
+                              OtpActivity.this,
+                              R.string.register_done,
+                              Toast.LENGTH_LONG).show();
+                          startActivity(new Intent(
+                              OtpActivity.this, SelectActivity.class
+                          ));
+                          finish();
+                      }
+                  }).addOnFailureListener(e -> {
+                      // wait some minute
+                      Log.d("EXCEPTIONFire",
+                          e.getMessage());
+                  });
+
+              // TODO: Store the token in your database or send it to your server
+          });
+         // Here to register user professions
+
     }
 
     private void registerUser() {
