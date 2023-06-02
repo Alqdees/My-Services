@@ -1,26 +1,27 @@
 <resources>
-    <string name="app_name" translatable="false">Zab township guide</string>
+    <string name="app_name" translatable="false">Zab Township Guide</string>
     <string name="SpeechToText" translatable="false">Speech To Text</string>
     <string name="thanks" translatable="false">شكر وتقدير خاص لگروب ناحية الزاب الاسفل على دعمه هذا المشروع وكذلك شكر وتقدير لكل من ساهم ويساهم في نشر العمل الخيري في هذه المدينة المباركة</string>
     <string name="n_n">احمد شاكر  \n اي أضافة او فكرة تساعد بالعمل الخيري لاتتردد بالتواصل معي \n</string>
     <string name="doctor" translatable="false">Doctor</string>
     <string name="default_notification_channel_id">hi (^_¬)</string>
-    <string name="search_number" translatable="false">search number</string>
-    <string name="input_number" translatable="false">input number</string>
-    <string name="non" translatable="false">none available</string>
+    <string name="search_number" translatable="false">Search number</string>
+    <string name="input_number" translatable="false">Input number</string>
+    <string name="non" translatable="false">None available</string>
     <string name="Error_otp" translatable="false">Error OTP</string>
     <string name="otp_verification" translatable="false">OTP verification</string>
     <string name="please_enter_otp_sent_to_your_mobile_number" translatable="false">Please enter OTP sent to your Mobile Number</string>
     <string name="send_otp_again" translatable="false">Send OTP again</string>
     <string name="did_t_recive_otp" translatable="false">Did\'t recive OTP ?</string>
     <string name="verfiy" translatable="false">Verfiy</string>
-    <string name="name" translatable="false">name</string>
-    <string name="number" translatable="false">number</string>
-    <string name="type" translatable="false">type</string>
-    <string name="location" translatable="false">location</string>
-    <string name="register_done" translatable="false">register Done</string>
+    <string name="name" translatable="false">Name</string>
+    <string name="number" translatable="false">Number</string>
+    <string name="type" translatable="false">Type</string>
+    <string name="location" translatable="false">Location</string>
+    <string name="register_done" translatable="false">Register Done</string>
     <string name="edit_info" translatable="false">Edit info</string>
     <string name="field_error" translatable="false">One of the fields is empty</string>
     <string name="professions" translatable="false">Professions</string>
     <string name="blood_type" translatable="false">Blood Type</string>
+    <string name="internal_transfer" translatable="false">Internal Transfer</string>
 </resources>

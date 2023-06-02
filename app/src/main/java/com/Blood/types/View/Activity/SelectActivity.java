@@ -36,7 +36,7 @@ public class SelectActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private String newVersion;
-    private MotionButton line,blood,doctor ,professions;
+    private MotionButton line,blood,doctor ,professions,satota;
     private FloatingActionButton floatingActionButton;
     private FirebaseRemoteConfig remoteConfig;
     private int currentVersionCod;
@@ -44,6 +44,7 @@ public class SelectActivity extends AppCompatActivity {
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +58,7 @@ public class SelectActivity extends AppCompatActivity {
         line = findViewById(R.id.lineTravel);
         blood = findViewById(R.id.bloods);
         doctor = findViewById(R.id.doctor);
+        satota = findViewById(R.id.satota);
         floatingActionButton=findViewById(R.id.Add);
         line.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +142,9 @@ showDialog();
                 Intent(
                 SelectActivity.this,ProfessionUserActivity.class));
         });
-
+satota.setOnClickListener(View -> {
+    Toast.makeText(this, "Wait...", Toast.LENGTH_SHORT).show();
+});
 
 ///////// below code to update app in on create
         currentVersionCod = getCurrentVersionCode();
@@ -157,15 +161,11 @@ showDialog();
 
                 //newVersion get number integer from firebase
                 if (task.isSuccessful()){
-
                     newVersion = remoteConfig.getString("update");
                     if (Integer.parseInt(newVersion) > currentVersionCod) {
                         showUpdateDialog();
-                    }else {
-                        return;
                     }
                 }
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -173,11 +173,7 @@ showDialog();
                 Log.d("Error", e.getMessage());
             }
         });
-
-
     }
-
-
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
@@ -256,12 +252,15 @@ showDialog();
         dialog.create();
     }
     private void showDialog() {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View v = LayoutInflater.from(this).inflate(R.layout.dialog_main,null,false);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         MotionButton addLine = v.findViewById(R.id.line_request);
         MotionButton addDoctor = v.findViewById(R.id.doctorAdd);
         MotionButton addBlood = v.findViewById(R.id.add_blood);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        MotionButton addSatota = v.findViewById(R.id.add_toktok);
+
         MotionButton add_Profession = v.findViewById(R.id.add_Profession);
         builder.setView(v);
         AlertDialog dialog = builder.create();
@@ -294,6 +293,9 @@ showDialog();
         add_Profession.setOnClickListener(View ->{
             startActivity(new Intent(SelectActivity.this,ProfessionActivity.class));
             dialog.dismiss();
+        });
+        addSatota.setOnClickListener(View ->{
+            Toast.makeText(this, "Satota", Toast.LENGTH_SHORT).show();
         });
 
         dialog.show();

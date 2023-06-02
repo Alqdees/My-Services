@@ -51,6 +51,9 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String AB_MINUS = "AB-";
     private static final String O_PLUS = "O+";
     private static final String O_MINUS = "O-";
+    private static final String Doctor = "Doctor";
+    private static final String line = "line";
+    private static final String professions = "professions";
     private com.google.android.material.textfield.TextInputEditText
             ET_name,ET_number, ET_location;
 //    private String getName ,getLocation,getType;
@@ -170,7 +173,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         for (String s : bloods) {
 //            DocumentReference docRef = db.collection(s).document();
-            Log.d("getNumberUser", "getNumberUser: " +s);
+
             CollectionReference collectionRef = db.collection(s);
             collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override

@@ -23,7 +23,6 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
-
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -55,39 +54,10 @@ public class OtpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
         getObj();
-        actionBar = getSupportActionBar();
-        actionBar.hide();
-
-        progressBar.setVisibility(View.INVISIBLE);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        db = FirebaseFirestore.getInstance();
-
-        isRegister = getIntent().getBooleanExtra("isRegister",false);
-        isProf = getIntent().getBooleanExtra("prof",false);
-        realNumber = getIntent().getStringExtra("realNumber");
-
-        verificationId = getIntent().getStringExtra("verificationId");
-
-        name = getIntent().getStringExtra("name");
-        number = getIntent().getStringExtra("number");
-        location = getIntent().getStringExtra("location");
-        profession = getIntent().getStringExtra("profession");
-        type = getIntent().getStringExtra("type");
-
-//        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-//        FirebaseAuthSettings firebaseAuthSettings = firebaseAuth.getFirebaseAuthSettings();
-//
-//// Configure faking the auto-retrieval with the whitelisted numbers.
-//
-//        firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber(realNumber, verificationId);
-
-
 
         btnsubmit.setOnClickListener((View v) ->{
             progressBar.setVisibility(View.VISIBLE);
-            if (!verificationId.isEmpty() || verificationId != null|| !verificationId.equals(null)){
+            if (!verificationId.isEmpty() || verificationId != null|| !verificationId.equals("")){
                 String getuserotp = et1.getText().toString() ;
                 PhoneAuthCredential phoneAuthCredential =
                         PhoneAuthProvider.getCredential(verificationId, getuserotp);
@@ -100,7 +70,7 @@ public class OtpActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if (task.isSuccessful()) {
-                                    btnsubmit.setVisibility(View.VISIBLE);
+
                                     progressBar.setVisibility(View.INVISIBLE);
                                     if (isRegister) {
                                         registerUser();
@@ -120,6 +90,7 @@ public class OtpActivity extends AppCompatActivity {
                                     }
                                 }
                                 else {
+                                    btnsubmit.setVisibility(View.VISIBLE);
                                     progressBar.setVisibility(View.INVISIBLE);
                                     Toast.makeText(OtpActivity.this,
                                         R.string.Error_otp, Toast.LENGTH_SHORT).show();
@@ -147,16 +118,14 @@ public class OtpActivity extends AppCompatActivity {
               professions.put("nameProfession",profession);
               professions.put("token",task.getResult());
 
-
-              db.collection(Professions).document(number)
-                  .set(professions).
-                  addOnCompleteListener(task2 -> {
-                      if (task2.isSuccessful()){
-                          Toast.makeText(
+              db.collection(Professions).document(number).set(professions).
+                          addOnCompleteListener(task2 -> {
+                             if (task2.isSuccessful()){
+                             Toast.makeText(
                               OtpActivity.this,
                               R.string.register_done,
                               Toast.LENGTH_LONG).show();
-                          startActivity(new Intent(
+                              startActivity(new Intent(
                               OtpActivity.this, SelectActivity.class
                           ));
                           finish();
@@ -183,7 +152,6 @@ public class OtpActivity extends AppCompatActivity {
                                     addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-
                                             // is true register user ...
                                             progressBar.setVisibility(View.INVISIBLE);
                                             Toast.makeText(
@@ -211,6 +179,24 @@ public class OtpActivity extends AppCompatActivity {
         et1 = findViewById(R.id.inputotp1);
         progressBar = findViewById(R.id.prograss);
         btnsubmit = findViewById(R.id.btnsubmit);
+        actionBar = getSupportActionBar();
+        actionBar.hide();
+        progressBar.setVisibility(View.INVISIBLE);
+        mAuth = FirebaseAuth.getInstance();
+
+        db = FirebaseFirestore.getInstance();
+
+        isRegister = getIntent().getBooleanExtra("isRegister",false);
+        isProf = getIntent().getBooleanExtra("prof",false);
+        realNumber = getIntent().getStringExtra("realNumber");
+
+        verificationId = getIntent().getStringExtra("verificationId");
+
+        name = getIntent().getStringExtra("name");
+        number = getIntent().getStringExtra("number");
+        location = getIntent().getStringExtra("location");
+        profession = getIntent().getStringExtra("profession");
+        type = getIntent().getStringExtra("type");
     }
 
     @Override

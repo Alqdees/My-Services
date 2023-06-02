@@ -127,7 +127,20 @@
 
         </LinearLayout>
 
-
+        <androidx.constraintlayout.utils.widget.MotionButton
+            android:id="@+id/satota"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_below="@+id/liner2"
+            android:layout_centerInParent="true"
+            android:background="@drawable/buttonselect"
+            android:drawableTop="@drawable/toktok"
+            android:fontFamily="@font/somar"
+            android:layout_margin="@dimen/_8sdp"
+            android:shadowColor="@color/blue"
+            android:text="@string/internal_transfer"
+            android:textColor="@color/black"
+            android:textSize="26sp" />
     </RelativeLayout>
 
     <FrameLayout
@@ -155,10 +168,11 @@
             android:layout_margin="@dimen/_2sdp"
             app:backgroundTintMode="add"
             app:elevation="@dimen/_5sdp"
+
             android:layout_marginBottom="@dimen/_5sdp"
             android:backgroundTint="@color/white"
             android:paddingVertical="@dimen/_6sdp"
-            android:src="@drawable/ic_home" />
+            android:src="@drawable/ic_add" />
 
     </FrameLayout>
 

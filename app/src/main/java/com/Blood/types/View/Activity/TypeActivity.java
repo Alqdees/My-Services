@@ -26,11 +26,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -57,6 +55,9 @@ public class TypeActivity extends AppCompatActivity {
             O_Minus;
     private Intent intent;
     private static final String Type = "type";
+//    private static final String Doctor = "Doctor";
+//    private static final String line = "line";
+//    private static final String professions = "professions";
     private FirebaseAuth mAuth;
 
     private ActionBar actionBar;
@@ -78,7 +79,7 @@ public class TypeActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         intent = new Intent(this,MainActivity.class);
-        mAuth.setLanguageCode("en");
+        mAuth.setLanguageCode("ar");
         types = new String[]{
             "A+",
             "B+",

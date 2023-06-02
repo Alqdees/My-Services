@@ -8,8 +8,8 @@ android {
         applicationId "com.Blood.types"
         minSdk 21
         targetSdk 33
-        versionCode 14
-        versionName "4.3"
+        versionCode 15
+        versionName "4.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

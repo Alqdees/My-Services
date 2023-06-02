@@ -192,7 +192,7 @@ public class ProfessionActivity extends AppCompatActivity {
   private void initVariable() {
 
     mAuth = FirebaseAuth.getInstance();
-    mAuth.setLanguageCode("en");
+    mAuth.setLanguageCode("ar");
     db = FirebaseFirestore.getInstance();
     nameET = findViewById(R.id.name);
     numberET = findViewById(R.id.number);
@@ -203,35 +203,4 @@ public class ProfessionActivity extends AppCompatActivity {
 
   }
 
-//  private void sendRequestProfession(String token){
-//    String name = nameET.getText().toString();
-//    String number = numberET.getText().toString();
-//    String Profession = nameProfession.getText().toString();
-//
-//
-//    professions = new HashMap<>();
-//    professions.put("name",name);
-//    professions.put("number",number);
-//    professions.put("nameProfession",Profession);
-//    professions.put("token",token);
-//
-//    db.collection(Professions).document(number)
-//        .set(professions).
-//        addOnCompleteListener(task -> {
-//          if (task.isSuccessful()){
-//            Toast.makeText(
-//                ProfessionActivity.this,
-//                R.string.register_done,
-//                Toast.LENGTH_LONG).show();
-//            startActivity(new Intent(
-//                ProfessionActivity.this, SelectActivity.class
-//            ));
-//            finish();
-//          }
-//        }).addOnFailureListener(e -> {
-//          // wait some minute
-//          Log.d("EXCEPTIONFire",
-//              e.getMessage());
-//        });
-//  }
 }

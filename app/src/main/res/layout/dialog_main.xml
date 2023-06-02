@@ -79,5 +79,23 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_18sdp"
             android:textStyle="bold" />
+        <androidx.constraintlayout.utils.widget.MotionButton
+            android:id="@+id/add_toktok"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/add_Profession"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:background="@drawable/buttonselect"
+            android:fontFamily="@font/somar"
+            android:padding="@dimen/_10sdp"
+            android:text="أضافة صاحب ستوتة"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold" />
 
 </RelativeLayout>
