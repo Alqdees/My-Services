@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
+            android:name=".View.Activity.SatotaRegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.Activity.ProfessionUserActivity"
             android:exported="false" />
         <activity

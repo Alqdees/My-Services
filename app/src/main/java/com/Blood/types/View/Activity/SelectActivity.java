@@ -295,7 +295,10 @@ satota.setOnClickListener(View -> {
             dialog.dismiss();
         });
         addSatota.setOnClickListener(View ->{
-            Toast.makeText(this, "Satota", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(SelectActivity.this,SatotaRegisterActivity.class);
+            startActivity(intent);
+            dialog.dismiss();
         });
 
         dialog.show();

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Activity.ProfessionActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:background="@drawable/toolbar">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/somar"
+            android:text="أضافة ستوتة"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_22sdp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/body"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="-25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/toolbar"
+        android:background="@drawable/buttonselect"
+
+        >
+        <ProgressBar
+            android:id="@+id/Sprogress"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_centerInParent="true" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="اسم صاحب الستوتة"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
+            android:id="@+id/labelTest"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Sname"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:shadowColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="رقم الهاتف"
+            android:id="@+id/numberlable"
+            android:textColorHint="@color/black"
+            android:layout_below="@+id/labelTest"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Snumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:shadowColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="منطقة العمل"
+            android:id="@+id/loctionlable"
+            android:textColorHint="@color/black"
+            android:layout_below="@+id/numberlable"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Slocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:shadowColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:hint="منطقة العمل"-->
+<!--            android:id="@+id/location_work"-->
+<!--            android:textColorHint="@color/black"-->
+<!--            android:layout_below="@+id/loctionlable" -->
+<!--            android:layout_marginTop="4dp"-->
+<!--            android:layout_marginStart="12dp"-->
+<!--            android:layout_marginEnd="12dp"-->
+<!--            android:layout_marginBottom="@dimen/_12sdp"-->
+<!--            >-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/locatioWork"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:inputType="text"-->
+<!--                android:shadowColor="@color/black" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
+    </RelativeLayout>
+
+
+    <androidx.constraintlayout.utils.widget.MotionButton
+        android:id="@+id/addSatota"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/body"
+
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/buttonselect"
+        android:fontFamily="@font/somar"
+        android:text="تقديم طلب"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_22sdp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
