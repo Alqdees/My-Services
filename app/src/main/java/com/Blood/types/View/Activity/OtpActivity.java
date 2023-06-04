@@ -35,10 +35,11 @@ public class OtpActivity extends AppCompatActivity {
     private  ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private ActionBar actionBar;
-    private boolean isRegister,isProf;
+    private boolean isRegister,isProf,isSatota;
     private FirebaseFirestore db;
     private HashMap<String,Object> professions;
     private String Professions = "professions";
+    private String Satota = "Satota";
     private HashMap<String,Object> users;
 
     /**
@@ -76,6 +77,8 @@ public class OtpActivity extends AppCompatActivity {
                                         registerUser();
                                     }else if (isProf){
                                         registerProfessions();
+                                    }else if (isSatota){
+                                      registerSatota();
                                     }
                                     else {
                                         progressBar.setVisibility(View.INVISIBLE);
@@ -103,7 +106,40 @@ public class OtpActivity extends AppCompatActivity {
         });
     }
 
-    private void registerProfessions() {
+  private void registerSatota() {
+    FirebaseMessaging.getInstance().getToken()
+        .addOnCompleteListener(task -> {
+          if (!task.isSuccessful()) {
+            Log.d("initVariable", Objects.requireNonNull(task.getException().getMessage()));
+            return;
+          }
+          users = new HashMap<>();
+          users.put("name",name);
+          users.put("numbet",number);
+          users.put("location",location);
+          users.put("token",task.getResult());
+          db.collection(Satota).document(number).set(users).
+              addOnCompleteListener(task2 -> {
+                if (task2.isSuccessful()){
+                  Toast.makeText(
+                      OtpActivity.this,
+                      R.string.register_done,
+                      Toast.LENGTH_LONG).show();
+                  startActivity(new Intent(
+                      OtpActivity.this, SelectActivity.class
+                  ));
+                  finish();
+                }
+              }).addOnFailureListener(e -> {
+                // wait some minute
+                Log.d("EXCEPTIONFire",
+                    e.getMessage());
+              });
+
+        });
+  }
+
+  private void registerProfessions() {
 
               FirebaseMessaging.getInstance().getToken()
           .addOnCompleteListener(task -> {
@@ -188,6 +224,7 @@ public class OtpActivity extends AppCompatActivity {
 
         isRegister = getIntent().getBooleanExtra("isRegister",false);
         isProf = getIntent().getBooleanExtra("prof",false);
+        isSatota = getIntent().getBooleanExtra("Satota",false);
         realNumber = getIntent().getStringExtra("realNumber");
 
         verificationId = getIntent().getStringExtra("verificationId");

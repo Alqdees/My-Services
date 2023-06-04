@@ -24,4 +24,6 @@
     <string name="professions" translatable="false">Professions</string>
     <string name="blood_type" translatable="false">Blood Type</string>
     <string name="internal_transfer" translatable="false">Internal Transfer</string>
+    <string name="locationWork" translatable="false">Location Work</string>
+    <string name="satota" translatable="false">Satota</string>
 </resources>

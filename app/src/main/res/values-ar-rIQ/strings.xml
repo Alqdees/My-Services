@@ -21,4 +21,6 @@
     <string name="professions">المهنة</string>
     <string name="blood_type">فصائل الدم</string>
     <string name="internal_transfer">نقل داخلي</string>
+    <string name="locationWork">المنطقة</string>
+    <string name="satota">ستوتة للأجرة</string>
 </resources>

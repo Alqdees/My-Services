@@ -143,7 +143,9 @@ showDialog();
                 SelectActivity.this,ProfessionUserActivity.class));
         });
 satota.setOnClickListener(View -> {
-    Toast.makeText(this, "Wait...", Toast.LENGTH_SHORT).show();
+    startActivity(new
+        Intent(
+        SelectActivity.this,SatotUsertActivity2.class));
 });
 
 ///////// below code to update app in on create
