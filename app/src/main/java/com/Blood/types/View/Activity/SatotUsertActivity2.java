@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.Blood.types.Model.Profession;
@@ -60,7 +61,6 @@ getOpj();
               for (DocumentChange document : value.getDocumentChanges()) {
                 if (document.getType() == DocumentChange.Type.ADDED) {
                   satotas.add(document.getDocument().toObject(Satota.class));
-                  satotas.get(0).getNumber();
                 }
               }
               SatotaAdapter adapter = new SatotaAdapter(SatotUsertActivity2.this,satotas);
@@ -106,13 +106,13 @@ getOpj();
   private void searchNameLine(CharSequence charSequence) {
     ArrayList<Satota> satota = new ArrayList<>();
 
-    for (Satota s: satota ) {
-
-      if (s.getName().contains(charSequence)){
-        satotas.add(s);
+    for (Satota s: satotas ) {
+      Log.d("GETSATOTA", s.getName());
+      if (s.getName().contains(charSequence+"")){
+        satota.add(s);
       }
     }
-    SatotaAdapter ad = new SatotaAdapter(SatotUsertActivity2.this,satotas);
+    SatotaAdapter ad = new SatotaAdapter(SatotUsertActivity2.this,satota);
     recyclerView.setAdapter(ad);
 
 
