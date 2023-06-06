@@ -42,7 +42,7 @@ public class SatotUsertActivity2 extends AppCompatActivity {
     actionBar.hide();
     setContentView(R.layout.activity_satot_usert2);
 
-getOpj();
+    getOpj();
   }
 
 
@@ -78,8 +78,6 @@ getOpj();
     satotas = new ArrayList<>();
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.hasFixedSize();
-    actionBar = getSupportActionBar();
-    actionBar.hide();
     et_search = findViewById(R.id.searchEt);
     et_search.addTextChangedListener(new TextWatcher() {
       @Override

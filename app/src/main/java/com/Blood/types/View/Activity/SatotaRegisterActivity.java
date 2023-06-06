@@ -78,7 +78,7 @@ public class SatotaRegisterActivity extends AppCompatActivity {
 
       // this is to register user blood donation
       else {
-        progressBar.setVisibility(android.view.View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
 //        registerSatota();
         getNumberUser(number);
       }
