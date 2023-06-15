@@ -1,22 +1,16 @@
 package com.Blood.types.View.Activity;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.utils.widget.MotionButton;
-import androidx.core.content.ContextCompat;
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,10 +23,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import java.util.Objects;
 
 public class SelectActivity extends AppCompatActivity {
 
@@ -45,6 +42,7 @@ public class SelectActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private String [] types;
 
+    private String [] bloodTypes;
 
 
     @SuppressLint("MissingInflatedId")
@@ -82,53 +80,7 @@ public class SelectActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-showDialog();
-
-//                CollectionReference collectionRef = db.collection("line");
-//                collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//
-//                                if (Objects.equals(document.getBoolean("bool"),false)) {
-////                                    String named = document.getString("name");
-//                                    String id = document.getId();
-//                                    doc = db.collection("line").document(id);
-//                                    doc.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<Void> task) {
-//                                            if (task.isSuccessful()) {
-//                                                Toast.makeText(SelectActivity.this, "تم الحذف ", Toast.LENGTH_SHORT).show();
-//                                                startActivity(new Intent(getApplicationContext(),TypeActivity.class));
-//                                                finish();
-//                                            }
-//                                        }
-//
-//                                    });
-//
-//                                }else {
-//                                    Toast.makeText(SelectActivity.this, "أسمك موجود", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        }else {
-//                            Toast.makeText(
-//                                SelectActivity.this,
-//                                "Some Error",
-//                                Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.d("onFailure", "onFailure: "+e.getMessage());
-//                    }
-//                });
-//
-
-
-
-//                showDialog();
+                 showDialog();
             }
         });
         professions.setOnClickListener(view -> {
@@ -136,15 +88,15 @@ showDialog();
                 Intent(
                 SelectActivity.this,ProfessionUserActivity.class));
         });
-satota.setOnClickListener(View -> {
-    startActivity(new
-        Intent(
-        SelectActivity.this,SatotUsertActivity2.class));
-});
+        satota.setOnClickListener(View -> {
+             startActivity(new
+           Intent(
+            SelectActivity.this,SatotUsertActivity2.class));
+           });
 
-edit.setOnClickListener(View ->{
-showDialogUpdate();
-});
+              edit.setOnClickListener(View ->{
+            showDialogUpdate();
+         });
 
 ///////// below code to update app in on create
         currentVersionCod = getCurrentVersionCode();
@@ -202,6 +154,71 @@ showDialogUpdate();
         AlertDialog dialog = builder.create();
         dialog.show();
 
+        search.setOnClickListener(View->{
+            String number = edit.getText().toString();
+            String service = autoCompleteTextView.getText().toString();
+            if (number.isEmpty() || service.isEmpty()){
+                Toast.makeText(this, "isEmpty", Toast.LENGTH_SHORT).show();
+            }else if (number.length() < 11){
+                Toast.makeText(this, "الرقم قصير", Toast.LENGTH_SHORT).show();
+
+            }else {
+                serachNumber(number,service);
+            }
+
+        });
+
+    }
+
+    private void serachNumber(String number, String service) {
+
+        if (service.equals(getString(R.string.blood_type))){
+            bloodTypes = new String[]{
+                "A+",
+                "B+",
+                "A-",
+                "B-",
+                "O+",
+                "O-",
+                "AB+",
+                "AB-",
+                "لا أعرف"
+            };
+
+            for (String s:bloodTypes) {
+
+                CollectionReference collectionRef = db.collection(s);
+                collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (Objects.equals(document.getString("number"), number)) {
+                                    if (number.charAt(0) == '0'){
+                                     String realNumber = number.substring(1);
+                                        Log.d("GET_NUMBER", realNumber);
+                                        break;
+                                    }
+                                }
+                            }
+                        }else {
+                            Toast.makeText(
+                                SelectActivity.this,
+                                "Some Error",
+                                Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("onFailure", "onFailure: "+e.getMessage());
+                    }
+                });
+            }
+        }
+        else {
+            //
+        }
     }
 
     private void getObj() {
@@ -220,32 +237,6 @@ showDialogUpdate();
 
     }
 
-    private final ActivityResultLauncher<String> requestPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    // FCM SDK (and your app) can post notifications.
-                } else {
-                    // TODO: Inform user that that your app will not show notifications.
-                }
-            });
-
-    private void askNotificationPermission() {
-        // This is only necessary for API level >= 33 (TIRAMISU)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
-                    PackageManager.PERMISSION_GRANTED) {
-                // FCM SDK (and your app) can post notifications.
-            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-                // TODO: display an educational UI explaining to the user the features that will be enabled
-                //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
-                //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
-                //       If the user selects "No thanks," allow the user to continue without notifications.
-            } else {
-                // Directly ask for the permission
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-            }
-        }
-    }
 
     private int getCurrentVersionCode() {
         PackageInfo packageInfo = null;
