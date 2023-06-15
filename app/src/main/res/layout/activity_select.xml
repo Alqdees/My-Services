@@ -9,6 +9,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_100sdp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:background="@drawable/toolbar">
 
         <TextView
@@ -21,6 +24,43 @@
             android:textColor="@color/white"
             android:textSize="33sp" />
 
+        <androidx.constraintlayout.utils.widget.MotionButton
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/edit"
+            android:text="@string/edit"
+            android:textColor="@color/white"
+            android:id="@+id/edit"
+            android:layout_margin="@dimen/_12sdp"
+
+            />
+
+
+        <!--        <ImageButton-->
+<!--            android:layout_width="@dimen/_40sdp"-->
+<!--            android:layout_height="@dimen/_40sdp"-->
+<!--            android:src="@drawable/edit"-->
+<!--            android:id="@+id/edit"-->
+<!--            android:maxHeight="@dimen/_40sdp"-->
+<!--            android:maxWidth="@dimen/_40sdp"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:layout_marginStart="@dimen/_14sdp"-->
+<!--           -->
+<!--            />-->
+
+<!--        <TextView-->
+
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/edit"-->
+<!--            android:layout_marginStart="@dimen/_20sdp"-->
+<!--            android:fontFamily="@font/somar"-->
+<!--            android:text="تعديل"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="22sp" />-->
     </RelativeLayout>
 
     <RelativeLayout
@@ -80,7 +120,7 @@
                 android:outlineSpotShadowColor="@color/circle"
                 android:padding="5dp"
                 android:shadowColor="@color/blue"
-                android:text="خطوط النقل"
+                android:text="@string/transmission_lines"
                 android:textColor="@color/black"
                 android:textSize="26sp" />
 

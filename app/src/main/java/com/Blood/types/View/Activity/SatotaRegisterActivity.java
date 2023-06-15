@@ -75,52 +75,17 @@ public class SatotaRegisterActivity extends AppCompatActivity {
             "الرقم قصير", Toast.LENGTH_LONG).show();
         return;
       }
-
       // this is to register user blood donation
       else {
         progressBar.setVisibility(View.VISIBLE);
-//        registerSatota();
+
         getNumberUser(number);
       }
     });
 
   }
-  private void registerSatota() {
-    FirebaseMessaging.getInstance().getToken()
-        .addOnCompleteListener(task -> {
-          if (!task.isSuccessful()) {
-            Log.d("initVariable", Objects.requireNonNull(task.getException().getMessage()));
-            return;
-          }
-         HashMap<String,Object> users = new HashMap<>();
-          users.put("name",name);
-          users.put("number",number);
-          users.put("location",location);
-          users.put("token",task.getResult());
-          db.collection(Satota).document(number).set(users).
-              addOnCompleteListener(task2 -> {
-                if (task2.isSuccessful()){
-                  Toast.makeText(
-                      SatotaRegisterActivity.this,
-                      R.string.register_done,
-                      Toast.LENGTH_LONG).show();
-                  startActivity(new Intent(
-                      SatotaRegisterActivity.this, SelectActivity.class
-                  ));
-                  finish();
-                }
-              }).addOnFailureListener(e -> {
-                // wait some minute
-                Log.d("EXCEPTIONFire",
-                    e.getMessage());
-              });
-
-        });
-  }
 
   private void getNumberUser(String nb) {
-//            DocumentReference docRef = db.collection(s).document();
-//      Log.d("getNumberUser", "getNumberUser: " +s);
     CollectionReference collectionRef = db.collection(Satota);
     collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
       @Override

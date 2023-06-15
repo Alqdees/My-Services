@@ -23,4 +23,7 @@
     <string name="internal_transfer">نقل داخلي</string>
     <string name="locationWork">المنطقة</string>
     <string name="satota">ستوتة للأجرة</string>
+    <string name="edit">تعديل</string>
+    <string name="select_service">اخنر الخدمة</string>
+    <string name="transmission_lines">خطوط النقل</string>
 </resources>

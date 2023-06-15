@@ -88,6 +88,7 @@ public class SatotUsertActivity2 extends AppCompatActivity {
       @Override
       public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+
         searchNameLine(charSequence);
 
 
@@ -102,6 +103,10 @@ public class SatotUsertActivity2 extends AppCompatActivity {
   }
 
   private void searchNameLine(CharSequence charSequence) {
+
+    if (satotas.isEmpty()){
+      return;
+    }
     ArrayList<Satota> satota = new ArrayList<>();
 
     for (Satota s: satotas ) {

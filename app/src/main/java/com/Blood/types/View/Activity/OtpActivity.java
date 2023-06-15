@@ -115,7 +115,7 @@ public class OtpActivity extends AppCompatActivity {
           }
           users = new HashMap<>();
           users.put("name",name);
-          users.put("numbet",number);
+          users.put("number",number);
           users.put("location",location);
           users.put("token",task.getResult());
           db.collection(Satota).document(number).set(users).

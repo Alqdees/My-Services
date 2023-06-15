@@ -21,6 +21,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 import com.Blood.types.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,11 +38,12 @@ public class SelectActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private String newVersion;
-    private MotionButton line,blood,doctor ,professions,satota;
+    private MotionButton line,blood,doctor ,professions,satota,edit;
     private FloatingActionButton floatingActionButton;
     private FirebaseRemoteConfig remoteConfig;
     private int currentVersionCod;
     private FirebaseFirestore db;
+    private String [] types;
 
 
 
@@ -50,16 +53,7 @@ public class SelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_select);
-        actionBar = getSupportActionBar();
-        actionBar.hide();
-        db = FirebaseFirestore.getInstance();
-
-        professions = findViewById(R.id.professions);
-        line = findViewById(R.id.lineTravel);
-        blood = findViewById(R.id.bloods);
-        doctor = findViewById(R.id.doctor);
-        satota = findViewById(R.id.satota);
-        floatingActionButton=findViewById(R.id.Add);
+        getObj();
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,6 +142,10 @@ satota.setOnClickListener(View -> {
         SelectActivity.this,SatotUsertActivity2.class));
 });
 
+edit.setOnClickListener(View ->{
+showDialogUpdate();
+});
+
 ///////// below code to update app in on create
         currentVersionCod = getCurrentVersionCode();
         remoteConfig = FirebaseRemoteConfig.getInstance();
@@ -176,6 +174,52 @@ satota.setOnClickListener(View -> {
             }
         });
     }
+    private void showDialogUpdate() {
+        types = new String[]{
+          getString(R.string.blood_type),
+            getString(R.string.doctor),
+            getString ( R.string.professions),
+            getString (R.string.internal_transfer),
+            getString (R.string.transmission_lines)
+        };
+        ArrayAdapter<String> arrayAdapter =
+            new ArrayAdapter<>(this,R.layout.drop_down_item,types);
+        View view = LayoutInflater.from(SelectActivity.this).inflate(
+            R.layout.update_all,
+            null,
+            false);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        com.google.android.material.textfield.TextInputEditText
+            edit = view.findViewById(R.id.number);
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        MotionButton search = view.findViewById(R.id.searchNumber);
+        AutoCompleteTextView autoCompleteTextView = view.findViewById(R.id.typesAuto);
+        autoCompleteTextView.setAdapter(arrayAdapter);
+
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    private void getObj() {
+        actionBar = getSupportActionBar();
+        actionBar.hide();
+        db = FirebaseFirestore.getInstance();
+
+        professions = findViewById(R.id.professions);
+        line = findViewById(R.id.lineTravel);
+        blood = findViewById(R.id.bloods);
+        doctor = findViewById(R.id.doctor);
+        satota = findViewById(R.id.satota);
+        floatingActionButton=findViewById(R.id.Add);
+        edit = findViewById(R.id.edit);
+
+
+    }
+
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
