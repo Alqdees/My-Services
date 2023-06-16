@@ -167,7 +167,6 @@ public class SelectActivity extends AppCompatActivity {
             }
 
         });
-
     }
 
     private void serachNumber(String number, String service) {
@@ -216,9 +215,46 @@ public class SelectActivity extends AppCompatActivity {
                 });
             }
         }
-        else {
-            //
+        else if (service.equals(getString(R.string.doctor))){
+            getData("Doctor",number);
+        } else if (service.equals(getString(R.string.professions))) {
+            getData("professions",number);
+        }else if (service.equals(getString(R.string.internal_transfer))){
+            getData("Satota",number);
+        }else if (service.equals(getString(R.string.transmission_lines))){
+            getData("line",number);
         }
+    }
+
+    private void getData(String service, String num) {
+        CollectionReference collectionRef = db.collection(service);
+        collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (Objects.equals(document.getString("number"), num)) {
+                            if (num.charAt(0) == '0'){
+                                String realNumber = num.substring(1);
+                                Log.d("GET_NUMBER", realNumber);
+                                break;
+                            }
+                        }
+                    }
+                }else {
+                    Toast.makeText(
+                        SelectActivity.this,
+                        "Some Error",
+                        Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("onFailure", "onFailure: "+e.getMessage());
+            }
+        });
+
     }
 
     private void getObj() {
