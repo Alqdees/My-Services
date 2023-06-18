@@ -199,6 +199,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.INVISIBLE);
                     }
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -269,6 +270,7 @@ public class RegisterActivity extends AppCompatActivity {
                         // User signed in successfully
                         FirebaseUser user = task.getResult().getUser();
                     }
+
                 }
             });
     }
@@ -310,6 +312,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
+
             }
         });
 
@@ -347,6 +350,7 @@ public class RegisterActivity extends AppCompatActivity {
                                       startActivity(new Intent(getApplicationContext(),TypeActivity.class));
                                        finish();
                                    }
+
                                }
                            });
                        }
@@ -401,6 +405,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                 startActivity(new Intent(getApplicationContext(),TypeActivity.class));
                                                 finish();
                                             }
+
                                         }
 
                                     });
@@ -410,10 +415,12 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
 
+
                     }
                 }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
 
                     }
                 });

@@ -76,6 +76,7 @@ public class LineActivity extends AppCompatActivity {
                                 startActivity(new Intent(LineActivity.this, SelectActivity.class));
                                 finish();
                             }
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override

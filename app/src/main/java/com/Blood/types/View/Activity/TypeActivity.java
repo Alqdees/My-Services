@@ -204,6 +204,7 @@ public class TypeActivity extends AppCompatActivity {
                     }else {
                         Toast.makeText(TypeActivity.this, "Some Error", Toast.LENGTH_SHORT).show();
                     }
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

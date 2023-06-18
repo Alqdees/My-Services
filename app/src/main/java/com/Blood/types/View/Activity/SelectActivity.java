@@ -19,6 +19,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.Blood.types.Controller.EditAll;
 import com.Blood.types.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -53,7 +55,8 @@ public class SelectActivity extends AppCompatActivity {
     private String [] types;
     private FirebaseAuth mAuth;
     private String [] bloodTypes;
-    private ProgressBar progressBar;
+    public ProgressBar progressBar;
+    private EditAll editAll;
 
 
     @SuppressLint("MissingInflatedId")
@@ -131,6 +134,7 @@ public class SelectActivity extends AppCompatActivity {
                         showUpdateDialog();
                     }
                 }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -147,6 +151,7 @@ public class SelectActivity extends AppCompatActivity {
             getString (R.string.internal_transfer),
             getString (R.string.transmission_lines)
         };
+        editAll = new EditAll(this);
         ArrayAdapter<String> arrayAdapter =
             new ArrayAdapter<>(this,R.layout.drop_down_item,types);
         View view = LayoutInflater.from(SelectActivity.this).inflate(
@@ -176,16 +181,20 @@ public class SelectActivity extends AppCompatActivity {
                 Toast.makeText(this, "الرقم قصير", Toast.LENGTH_SHORT).show();
 
             }else {
-                serachNumber(number,service);
-                progressBar.setVisibility(android.view.View.VISIBLE);
-                dialog.dismiss();
+                if (service.equals(getString(R.string.blood_type))){
+                    editAll.searchNumber(number,service);
+//                serachNumber(number,service);
+                    progressBar.setVisibility(android.view.View.VISIBLE);
+                    dialog.dismiss();
+                }
+
 
             }
 
         });
     }
 
-    private void serachNumber(String number, String service) {
+    private void searchNumber(String number, String service) {
 
         if (service.equals(getString(R.string.blood_type))){
             bloodTypes = new String[]{
@@ -223,6 +232,7 @@ public class SelectActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
                         }
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -267,6 +277,7 @@ public class SelectActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

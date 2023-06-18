@@ -126,6 +126,7 @@ public class ProfessionActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.INVISIBLE);
           }
+
         }
       }).addOnFailureListener(new OnFailureListener() {
         @Override

@@ -28,10 +28,11 @@ android {
     ndkVersion '25.2.9519653'
 }
 dependencies {
+
     implementation 'com.google.firebase:firebase-config:21.4.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.firebase:firebase-firestore:24.6.0'
+    implementation 'com.google.firebase:firebase-firestore:24.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'com.google.firebase:firebase-messaging:23.1.2'
     testImplementation 'junit:junit:4.13.2'

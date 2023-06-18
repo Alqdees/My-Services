@@ -98,6 +98,7 @@ public class OtpActivity extends AppCompatActivity {
                                     Toast.makeText(OtpActivity.this,
                                         R.string.Error_otp, Toast.LENGTH_SHORT).show();
                                 }
+
                             }
 
                         });
