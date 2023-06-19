@@ -181,14 +181,10 @@ public class SelectActivity extends AppCompatActivity {
                 Toast.makeText(this, "الرقم قصير", Toast.LENGTH_SHORT).show();
 
             }else {
-                if (service.equals(getString(R.string.blood_type))){
-                    editAll.searchNumber(number,service);
+                    editAll.getData(service,number);
 //                serachNumber(number,service);
                     progressBar.setVisibility(android.view.View.VISIBLE);
                     dialog.dismiss();
-                }
-
-
             }
 
         });
