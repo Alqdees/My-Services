@@ -19,29 +19,16 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.Blood.types.Controller.EditAll;
 import com.Blood.types.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
-import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 public class SelectActivity extends AppCompatActivity {
 
@@ -54,7 +41,6 @@ public class SelectActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private String [] types;
     private FirebaseAuth mAuth;
-    private String [] bloodTypes;
     public ProgressBar progressBar;
     private EditAll editAll;
 
@@ -114,7 +100,7 @@ public class SelectActivity extends AppCompatActivity {
             showDialogUpdate();
          });
 
-///////// below code to update app in on create
+       // below code to update app in on create
         currentVersionCod = getCurrentVersionCode();
         remoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings
@@ -182,181 +168,12 @@ public class SelectActivity extends AppCompatActivity {
 
             }else {
                     editAll.getData(service,number);
-//                serachNumber(number,service);
                     progressBar.setVisibility(android.view.View.VISIBLE);
                     dialog.dismiss();
             }
 
         });
     }
-
-    private void searchNumber(String number, String service) {
-
-        if (service.equals(getString(R.string.blood_type))){
-            bloodTypes = new String[]{
-                "A+",
-                "B+",
-                "A-",
-                "B-",
-                "O+",
-                "O-",
-                "AB+",
-                "AB-",
-                "لا أعرف"
-            };
-
-            for (String s:bloodTypes) {
-
-                CollectionReference collectionRef = db.collection(s);
-                collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (Objects.equals(document.getString("number"), number)) {
-                                    if (number.charAt(0) == '0'){
-                                     String realNumber = number.substring(1);
-
-                                        break;
-                                    }
-                                }
-                            }
-                        }else {
-                            Toast.makeText(
-                                SelectActivity.this,
-                                "Some Error",
-                                Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.INVISIBLE);
-                        }
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("onFailure", "onFailure: "+e.getMessage());
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
-                });
-            }
-        }
-        else if (service.equals(getString(R.string.doctor))){
-            getData("Doctor",number);
-        } else if (service.equals(getString(R.string.professions))) {
-            getData("professions",number);
-        }else if (service.equals(getString(R.string.internal_transfer))){
-            getData("Satota",number);
-        }else if (service.equals(getString(R.string.transmission_lines))){
-            getData("line",number);
-        }
-    }
-
-    private void getData(String service, String num) {
-        CollectionReference collectionRef = db.collection(service);
-        collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        if (Objects.equals(document.getString("number"), num)) {
-                            if (num.charAt(0) == '0'){
-                                String realNumber = num.substring(1);
-                                sendSMSCode(realNumber,service);
-                                Log.d("GET_NUMBER", realNumber);
-                                break;
-                            }
-                        }
-                    }
-                }else {
-                    Toast.makeText(
-                        SelectActivity.this,
-                        "Some Error",
-                        Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(
-                    SelectActivity.this,
-                    e.getMessage(),
-                    Toast.LENGTH_SHORT).show();
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-        });
-
-    }
-
-    private void sendSMSCode(String realNumber, String service) {
-
-
-        PhoneAuthOptions options =
-            PhoneAuthOptions.newBuilder(mAuth)
-                .setPhoneNumber("+964"+realNumber)             // Phone number to verify
-                .setTimeout(60L, TimeUnit.SECONDS)    // Timeout and unit
-                .setActivity(SelectActivity.this)           // (optional) Activity for callback binding
-                                                           // If no activity is passed, reCAPTCHA verification can not be used.
-                .setCallbacks(callback)                   // OnVerificationStateChangedCallbacks
-                .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
-
-    }
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks callback =
-        new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            @Override
-            public void onVerificationCompleted(PhoneAuthCredential credential) {
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onVerificationFailed(FirebaseException e) {
-
-                if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                    Toast.makeText(
-                        SelectActivity.this,
-                        ""+e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-                    Log.d("onFailure", "onFailure1: "+e.getMessage());
-                    // Invalid request
-                } else if (e instanceof FirebaseTooManyRequestsException) {
-                    // is mean user contact Quota
-                    Toast.makeText(
-                        SelectActivity.this,
-                        ""+e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-
-                    // The SMS quota for the project has been exceeded
-                } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
-                    Toast.makeText(
-                        SelectActivity.this,
-                        ""+e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-                }
-
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onCodeSent(String verificationId,
-                                   PhoneAuthProvider.ForceResendingToken
-                                       token)
-            {
-                progressBar.setVisibility(View.INVISIBLE);
-
-                Intent intent=new Intent(getApplicationContext(),OtpActivity.class);
-//                intent.putExtra("number",realNumber);
-//                intent.putExtra("name",name);
-//                intent.putExtra("location",location);
-//                intent.putExtra("type",type);
-//                intent.putExtra("number",number);
-                intent.putExtra("verificationId",verificationId);
-                startActivity(intent);
-
-            }
-        };
-
-
     private void getObj() {
         actionBar = getSupportActionBar();
         actionBar.hide();
@@ -371,11 +188,7 @@ public class SelectActivity extends AppCompatActivity {
         edit = findViewById(R.id.edit);
         progressBar = findViewById(R.id.progress);
         progressBar.setVisibility(View.INVISIBLE);
-
-
     }
-
-
     private int getCurrentVersionCode() {
         PackageInfo packageInfo = null;
         try {
