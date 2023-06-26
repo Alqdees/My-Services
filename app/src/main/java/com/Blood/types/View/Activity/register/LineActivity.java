@@ -1,4 +1,4 @@
-package com.Blood.types.View.Activity;
+package com.Blood.types.View.Activity.register;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -10,7 +10,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import com.Blood.types.Controller.Services;
 import com.Blood.types.R;
+import com.Blood.types.View.Activity.SelectActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -63,7 +66,7 @@ public class LineActivity extends AppCompatActivity {
                     lines.put("from",from);
                     lines.put("bool",false);
 
-                    db.collection("line")
+                    db.collection(Services.line.name())
                             .document(number).set(lines)
                             .addOnCompleteListener(
                                     new OnCompleteListener<Void>() {

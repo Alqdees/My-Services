@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.Blood.types.R;
+import com.Blood.types.View.Activity.register.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -55,9 +56,6 @@ public class TypeActivity extends AppCompatActivity {
             O_Minus;
     private Intent intent;
     private static final String Type = "type";
-//    private static final String Doctor = "Doctor";
-//    private static final String line = "line";
-//    private static final String professions = "professions";
     private FirebaseAuth mAuth;
 
     private ActionBar actionBar;
@@ -144,7 +142,7 @@ public class TypeActivity extends AppCompatActivity {
         AddDonation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TypeActivity.this,RegisterActivity.class);
+                Intent i = new Intent(TypeActivity.this, RegisterActivity.class);
                 startActivity(i);
             }
         });

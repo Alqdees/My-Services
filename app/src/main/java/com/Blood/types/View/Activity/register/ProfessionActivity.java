@@ -1,4 +1,4 @@
-package com.Blood.types.View.Activity;
+package com.Blood.types.View.Activity.register;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -11,7 +11,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.Blood.types.Controller.Services;
 import com.Blood.types.R;
+import com.Blood.types.View.Activity.OtpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -32,7 +35,7 @@ public class ProfessionActivity extends AppCompatActivity {
   private FirebaseFirestore db;
   private FirebaseAuth mAuth;
   private TextInputEditText nameET,numberET,nameProfession;
-  private String Professions = "professions";
+
   private String name,number,profession;
   private ProgressBar progressBar;
   private MotionButton sendRequest;
@@ -71,28 +74,13 @@ public class ProfessionActivity extends AppCompatActivity {
             progressBar.setVisibility(android.view.View.VISIBLE);
             getNumberUser(number);
           }
-
-      // here to get user token
-//      FirebaseMessaging.getInstance().getToken()
-//          .addOnCompleteListener(task -> {
-//            if (!task.isSuccessful()) {
-//              Log.d("initVariable", task.getException().getMessage());
-//              return;
-//            }
-//            // Get new FCM registration token
-//            String token = task.getResult();
-//            sendRequestProfession(token);
-//            // TODO: Store the token in your database or send it to your server
-//          });
     }
     );
   }
 
 
   private void getNumberUser(String nb) {
-//            DocumentReference docRef = db.collection(s).document();
-//      Log.d("getNumberUser", "getNumberUser: " +s);
-      CollectionReference collectionRef = db.collection(Professions);
+      CollectionReference collectionRef = db.collection(Services.professions.name());
       collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
         @Override
         public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -128,7 +116,6 @@ public class ProfessionActivity extends AppCompatActivity {
         public void onFailure(@NonNull Exception e) {
           Log.d("onFailure", e.getMessage());
           progressBar.setVisibility(View.INVISIBLE);
-//          progressBar.setVisibility(View.INVISIBLE);
         }
       });
 
@@ -174,7 +161,7 @@ public class ProfessionActivity extends AppCompatActivity {
         {
 //
           progressBar.setVisibility(View.INVISIBLE);
-          Intent intent=new Intent(ProfessionActivity.this,OtpActivity.class);
+          Intent intent=new Intent(ProfessionActivity.this, OtpActivity.class);
           intent.putExtra("name",name);
           intent.putExtra("number",number);
           intent.putExtra("profession",profession);

@@ -5,7 +5,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.MotionButton;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.Blood.types.R;
+import com.Blood.types.View.Activity.register.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,11 +31,11 @@ public class OtpActivity extends AppCompatActivity {
 
     private EditText et1;
     private MotionButton btnsubmit;
-    private  String realNumber,verificationId,name,location,type,number,profession;
+    private  String realNumber,collection,title,presence,specialization,nameProfession,from,time,verificationId,name,location,type,number,profession;
     private  ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private ActionBar actionBar;
-    private boolean isRegister,isProf,isSatota;
+    private boolean isSatotaUpDate,isProfessions, isRegister,isProfessionsUpdate,isSatota,isLine,isDoctor,isType;
     private FirebaseFirestore db;
     private HashMap<String,Object> professions;
     private String Professions = "professions";
@@ -75,12 +75,19 @@ public class OtpActivity extends AppCompatActivity {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     if (isRegister) {
                                         registerUser();
-                                    }else if (isProf){
+                                    }else if (isProfessions){
                                         registerProfessions();
                                     }else if (isSatota){
                                       registerSatota();
-                                    }
-                                    else {
+                                    } else if (isLine) {
+                                      updateLineUser();
+                                    } else if (isSatotaUpDate) {
+                                      updateSatotaUser();
+                                    } else if (isDoctor) {
+                                      updateDoctorUser();
+                                    } else if (isProfessionsUpdate) {
+                                      updateProfessionsUser();
+                                    } else {
                                         progressBar.setVisibility(View.INVISIBLE);
                                         Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -106,6 +113,20 @@ public class OtpActivity extends AppCompatActivity {
 
         });
     }
+
+  private void updateProfessionsUser() {
+  }
+
+  private void updateDoctorUser() {
+  }
+
+  private void updateSatotaUser() {
+  }
+
+  private void updateLineUser() {
+      
+      
+  }
 
   private void registerSatota() {
     FirebaseMessaging.getInstance().getToken()
@@ -212,7 +233,7 @@ public class OtpActivity extends AppCompatActivity {
     }
 
     private void getObj() {
-
+      
         et1 = findViewById(R.id.inputotp1);
         progressBar = findViewById(R.id.prograss);
         btnsubmit = findViewById(R.id.btnsubmit);
@@ -220,161 +241,30 @@ public class OtpActivity extends AppCompatActivity {
         actionBar.hide();
         progressBar.setVisibility(View.INVISIBLE);
         mAuth = FirebaseAuth.getInstance();
-
         db = FirebaseFirestore.getInstance();
-
         isRegister = getIntent().getBooleanExtra("isRegister",false);
-        isProf = getIntent().getBooleanExtra("prof",false);
-        isSatota = getIntent().getBooleanExtra("Satota",false);
+        isSatota = getIntent().getBooleanExtra("isSatota",false);
+        isType = getIntent().getBooleanExtra("isType",false);
+        isDoctor = getIntent().getBooleanExtra("isDoctor",false);
+        isLine = getIntent().getBooleanExtra("isLine",false);
+        isProfessionsUpdate = getIntent().getBooleanExtra("isProfessions",false);
+        isProfessions = getIntent().getBooleanExtra("prof",false);
         realNumber = getIntent().getStringExtra("realNumber");
-
         verificationId = getIntent().getStringExtra("verificationId");
-
         name = getIntent().getStringExtra("name");
         number = getIntent().getStringExtra("number");
         location = getIntent().getStringExtra("location");
         profession = getIntent().getStringExtra("profession");
         type = getIntent().getStringExtra("type");
+        from = getIntent().getStringExtra("from");
+        time = getIntent().getStringExtra("time");
+        nameProfession = getIntent().getStringExtra("nameProfession");
+        title = getIntent().getStringExtra("title");
+        presence = getIntent().getStringExtra("presence");
+        specialization = getIntent().getStringExtra("specialization");
+        collection = getIntent().getStringExtra("collection");
+        isSatotaUpDate = getIntent().getBooleanExtra("isSatotaUpDate",false);
+        
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode ==100){
-            if (grantResults[0] ==PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "Permission Granted ...",
-                        Toast.LENGTH_SHORT).show();
-            }else {
-                Toast.makeText(this, "Permission Not Granted ...",
-                        Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        }
-    }
-
-    //    private void movenumtonext() {
-//
-//
-//
-//        et1.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                if (!charSequence.toString().trim().isEmpty()) {
-//                    et2.requestFocus();
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-//
-//        et2.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                if (!charSequence.toString().trim().isEmpty()) {
-//                    et3.requestFocus();
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-//
-//        et3.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                if (!charSequence.toString().trim().isEmpty()) {
-//                    et4.requestFocus();
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-//
-//        et4.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                if (!charSequence.toString().trim().isEmpty()) {
-//                    et5.requestFocus();
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-//
-//        et5.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                if (!charSequence.toString().trim().isEmpty()) {
-//                    et6.requestFocus();
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-//        et6.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
-//
-//
-//
-//    }
+    
 }

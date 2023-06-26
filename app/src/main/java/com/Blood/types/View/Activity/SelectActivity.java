@@ -21,6 +21,11 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.Blood.types.Controller.EditAll;
 import com.Blood.types.R;
+import com.Blood.types.View.Activity.register.LineActivity;
+import com.Blood.types.View.Activity.register.ProfessionActivity;
+import com.Blood.types.View.Activity.register.RegisterActivity;
+import com.Blood.types.View.Activity.register.SatotaRegisterActivity;
+import com.Blood.types.View.Activity.register.Sendrequest;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -257,14 +262,14 @@ public class SelectActivity extends AppCompatActivity {
         addLine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SelectActivity.this,LineActivity.class));
+                startActivity(new Intent(SelectActivity.this, LineActivity.class));
                 dialog.dismiss();
             }
         });
         addDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              startActivity(new Intent(SelectActivity.this,Sendrequest.class));
+              startActivity(new Intent(SelectActivity.this, Sendrequest.class));
                 dialog.dismiss();
             }
         });
@@ -272,19 +277,19 @@ public class SelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(SelectActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(SelectActivity.this, RegisterActivity.class);
 //                intent.putExtra("isEditMode", true);
                 startActivity(intent);
                 dialog.dismiss();
             }
         });
         add_Profession.setOnClickListener(View ->{
-            startActivity(new Intent(SelectActivity.this,ProfessionActivity.class));
+            startActivity(new Intent(SelectActivity.this, ProfessionActivity.class));
             dialog.dismiss();
         });
         addSatota.setOnClickListener(View ->{
 
-            Intent intent = new Intent(SelectActivity.this,SatotaRegisterActivity.class);
+            Intent intent = new Intent(SelectActivity.this, SatotaRegisterActivity.class);
             startActivity(intent);
             dialog.dismiss();
         });

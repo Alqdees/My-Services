@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.Blood.types.Controller.Services;
 import com.Blood.types.View.Adapter.AdapterDoctor;
 import com.Blood.types.Model.Doctor;
 import com.Blood.types.R;
@@ -23,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DoctorActivity extends AppCompatActivity {
     private FirebaseFirestore db;
@@ -90,7 +92,7 @@ public class DoctorActivity extends AppCompatActivity {
 
     private void showData()
     {
-        db.collection("Doctor").whereEqualTo("bool" ,true).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection(Services.Doctor.name()).whereEqualTo("bool" ,true).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (error != null){

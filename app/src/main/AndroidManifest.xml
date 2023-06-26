@@ -19,22 +19,22 @@
             android:name=".View.Activity.SatotUsertActivity2"
             android:exported="false" />
         <activity
-            android:name=".View.Activity.SatotaRegisterActivity"
+            android:name=".View.Activity.register.SatotaRegisterActivity"
             android:exported="false" />
         <activity
             android:name=".View.Activity.ProfessionUserActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Activity.ProfessionActivity"
+            android:name=".View.Activity.register.ProfessionActivity"
             android:exported="false" />
         <activity
             android:name=".View.Activity.OtpActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Activity.LineActivity"
+            android:name=".View.Activity.register.LineActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Activity.Sendrequest"
+            android:name=".View.Activity.register.Sendrequest"
             android:exported="false" />
         <activity
             android:name=".View.Activity.DoctorActivity"
@@ -55,7 +55,7 @@
             android:name=".View.Activity.TypeActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Activity.RegisterActivity"
+            android:name=".View.Activity.register.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".View.Activity.MainActivity"

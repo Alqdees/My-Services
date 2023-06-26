@@ -1,4 +1,4 @@
-package com.Blood.types.View.Activity;
+package com.Blood.types.View.Activity.register;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -13,7 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.Blood.types.Controller.Services;
 import com.Blood.types.R;
+import com.Blood.types.View.Activity.OtpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -27,9 +30,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -39,7 +40,7 @@ public class SatotaRegisterActivity extends AppCompatActivity {
   private MotionButton addSatota;
   private FirebaseFirestore db;
   private FirebaseAuth mAuth;
-  public static final String Satota = "Satota";
+
   private ProgressBar progressBar;
   private String name,number,location;
   private ActionBar actionBar;
@@ -86,7 +87,7 @@ public class SatotaRegisterActivity extends AppCompatActivity {
   }
 
   private void getNumberUser(String nb) {
-    CollectionReference collectionRef = db.collection(Satota);
+    CollectionReference collectionRef = db.collection(Services.Satota.name());
     collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
       @Override
       public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -165,11 +166,11 @@ public class SatotaRegisterActivity extends AppCompatActivity {
         {
 //
           progressBar.setVisibility(View.INVISIBLE);
-          Intent intent=new Intent(SatotaRegisterActivity.this,OtpActivity.class);
+          Intent intent=new Intent(SatotaRegisterActivity.this, OtpActivity.class);
           intent.putExtra("name",name);
           intent.putExtra("number",number);
           intent.putExtra("location",location);
-          intent.putExtra(Satota,true);
+          intent.putExtra(Services.Satota.name(),true);
           intent.putExtra("verificationId",verificationId);
           startActivity(intent);
 

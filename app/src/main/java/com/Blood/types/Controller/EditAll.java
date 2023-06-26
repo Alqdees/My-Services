@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class EditAll {
 
   private String [] bloodTypes;
-  private String realNumber, collection,name,number,location,type,presence,specialization,title,from,time,professions;
+  private String realNumber, collection,name,location,type,presence,specialization,title,from,time,nameProfession;
 
   private Context ctx;
   private FirebaseAuth mAuth;
@@ -147,7 +147,7 @@ public class EditAll {
                          break;
                        case "professions":
                          name = document.getString("name");
-                         professions = document.getString("nameProfession");
+                         nameProfession = document.getString("nameProfession");
 
                          break;
                      }
@@ -177,16 +177,18 @@ public class EditAll {
   }
   private void sendSMSCode(String realNumber) {
 
-//
-//    PhoneAuthOptions options =
-//        PhoneAuthOptions.newBuilder(mAuth)
-//            .setPhoneNumber("+964"+realNumber)             // Phone number to verify
-//            .setTimeout(60L, TimeUnit.SECONDS)    // Timeout and unit
-//            .setActivity(((SelectActivity)ctx))           // (optional) Activity for callback binding
-//            // If no activity is passed, reCAPTCHA verification can not be used.
-//            .setCallbacks(callback)                   // OnVerificationStateChangedCallbacks
-//            .build();
-//    PhoneAuthProvider.verifyPhoneNumber(options);
+
+
+
+    PhoneAuthOptions options =
+        PhoneAuthOptions.newBuilder(mAuth)
+            .setPhoneNumber("+964"+realNumber)             // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS)    // Timeout and unit
+            .setActivity(((SelectActivity)ctx))           // (optional) Activity for callback binding
+            // If no activity is passed, reCAPTCHA verification can not be used.
+            .setCallbacks(callback)                   // OnVerificationStateChangedCallbacks
+            .build();
+    PhoneAuthProvider.verifyPhoneNumber(options);
 
   }
   private PhoneAuthProvider.OnVerificationStateChangedCallbacks callback =
@@ -229,24 +231,49 @@ public class EditAll {
                                PhoneAuthProvider.ForceResendingToken
                                    token)
         {
+          Intent intent=new Intent(ctx, OtpActivity.class);
           ((SelectActivity)ctx).progressBar.setVisibility(View.INVISIBLE);
 
           for (String s:bloodTypes) {
             if (collection.contains(s)){
-              Log.d("COLLECTION-NAME", collection);
+              intent.putExtra("name",name);
+              intent.putExtra("location",location);
+              intent.putExtra("type",type);
+              intent.putExtra("isType",true);
             }
           }
-
-
-
-          Intent intent=new Intent(ctx, OtpActivity.class);
+          switch (collection){
+            case "Doctor":
+             intent.putExtra("name",name);           // name =document.getString("name");
+             intent.putExtra("title",title);
+             intent.putExtra("presence",presence);
+             intent.putExtra("specialization",specialization);
+             intent.putExtra("isDoctor",true);
+             break;
+            case "Satota":
+              intent.putExtra("name",name);           // name =document.getString("name");
+              intent.putExtra("location",location);
+              intent.putExtra("isSatotaUpDate",true);
+              break;
+            case "line":
+              intent.putExtra("name",name);
+              intent.putExtra("from",from);
+              intent.putExtra("time",time);
+              intent.putExtra("type",type);
+              intent.putExtra("isLine",true);
+              break;
+            case "professions":
+              intent.putExtra("name",name);
+              intent.putExtra("isProfessions",true);
+              intent.putExtra("nameProfession",nameProfession);
+              break;
+          }
           intent.putExtra("number",realNumber);
-          intent.putExtra("name",name);
-          intent.putExtra("location",location);
-          intent.putExtra("type",type);
-          intent.putExtra("number",number);
+          intent.putExtra("collection",collection);
           intent.putExtra("verificationId",verificationId);
-         ctx.startActivity(intent);
+          ctx.startActivity(intent);
+
+
 
         }
       };

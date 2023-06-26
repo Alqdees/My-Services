@@ -28,5 +28,6 @@
     <string name="satota" translatable="false">Satota</string>
     <string name="edit" translatable="false">edit</string>
     <string name="select_service" translatable="false">select Service</string>
-    <string name="transmission_lines">"transmission lines "</string>
+    <string name="transmission_lines" translatable="false">"transmission lines "</string>
+    <string name="alzab_city" translatable="false">Alzab City</string>
 </resources>

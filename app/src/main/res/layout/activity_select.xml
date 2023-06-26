@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/somar"
-            android:text="ناحية الزاب"
+            android:text="@string/alzab_city"
             android:textColor="@color/white"
             android:textSize="33sp" />
 
@@ -103,15 +103,13 @@
                 android:layout_height="@dimen/_100sdp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-
                 android:background="@drawable/buttonselect"
                 android:drawableTop="@drawable/doctor1"
-                android:drawablePadding="15dp"
                 android:fontFamily="@font/somar"
                 android:outlineSpotShadowColor="@color/circle"
-                android:padding="8dp"
+                android:drawablePadding="@dimen/_8sdp"
                 android:shadowColor="@color/blue"
-                android:text="اطباء الزاب"
+                android:text="@string/doctor"
                 android:textColor="@color/black"
                 android:textSize="26sp" />
 
@@ -122,10 +120,10 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/buttonselect"
-                android:drawableTop="@drawable/car1"
+                android:drawableTop="@drawable/car12"
                 android:fontFamily="@font/somar"
                 android:outlineSpotShadowColor="@color/circle"
-                android:padding="5dp"
+
                 android:shadowColor="@color/blue"
                 android:text="@string/transmission_lines"
                 android:textColor="@color/black"

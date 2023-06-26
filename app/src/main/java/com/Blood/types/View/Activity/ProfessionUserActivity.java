@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Toast;
 
+import com.Blood.types.Controller.Services;
 import com.Blood.types.Model.Model;
 import com.Blood.types.Model.Profession;
 import com.Blood.types.R;
@@ -43,7 +44,7 @@ public class ProfessionUserActivity extends AppCompatActivity {
 
   private void showData() {
 
-    db.collection("professions").orderBy("name", Query.Direction.ASCENDING)
+    db.collection(Services.professions.name()).orderBy("name", Query.Direction.ASCENDING)
         .addSnapshotListener(new EventListener<QuerySnapshot>() {
           @Override
           public void onEvent(@Nullable QuerySnapshot value, FirebaseFirestoreException error) {

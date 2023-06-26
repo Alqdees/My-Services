@@ -1,4 +1,4 @@
-package com.Blood.types.View.Activity;
+package com.Blood.types.View.Activity.register;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.Blood.types.Controller.Services;
 import com.Blood.types.R;
+import com.Blood.types.View.Activity.SelectActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
@@ -19,7 +22,6 @@ public class Sendrequest extends AppCompatActivity {
     private MotionButton sendRequest;
     private FirebaseFirestore db;
     private HashMap<String,Object> doctors;
-    private String Doctor = "Doctor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class Sendrequest extends AppCompatActivity {
         doctors.put("title",title);
         doctors.put("bool",false);
 
-        db.collection(Doctor).document(number)
+        db.collection(Services.Doctor.name()).document(number)
             .set(doctors).
             addOnCompleteListener(task -> {
                 if (task.isSuccessful()){

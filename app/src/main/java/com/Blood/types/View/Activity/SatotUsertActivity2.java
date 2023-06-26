@@ -13,17 +13,16 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.Blood.types.Model.Profession;
+import com.Blood.types.Controller.Services;
 import com.Blood.types.Model.Satota;
 import com.Blood.types.R;
-import com.Blood.types.View.Adapter.AdapterProfession;
+import com.Blood.types.View.Activity.register.SatotaRegisterActivity;
 import com.Blood.types.View.Adapter.SatotaAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class SatotUsertActivity2 extends AppCompatActivity {
 
   private void showData() {
 
-    db.collection(SatotaRegisterActivity.Satota)
+    db.collection(Services.Satota.name())
         .addSnapshotListener(new EventListener<QuerySnapshot>() {
           @Override
           public void onEvent(@Nullable QuerySnapshot value, FirebaseFirestoreException error) {
@@ -111,7 +110,7 @@ public class SatotUsertActivity2 extends AppCompatActivity {
 
     for (Satota s: satotas ) {
       Log.d("GETSATOTA", s.getName());
-      if (s.getName().contains(charSequence+"")){
+      if (s.getName().contains(charSequence)){
         satota.add(s);
       }
     }

@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Toast;
+
+import com.Blood.types.Controller.Services;
 import com.Blood.types.View.Adapter.Adapter_Transport;
 import com.Blood.types.Model.ModelTransport;
 import com.Blood.types.R;
@@ -28,7 +30,6 @@ public class Transportation_linesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Adapter_Transport adapter;
     private ActionBar actionBar;
-    private String Line = "line";
     private TextInputEditText et_search;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -86,7 +87,7 @@ public class Transportation_linesActivity extends AppCompatActivity {
     private void showData()
     {
 
-        db.collection(Line).whereEqualTo("bool",true)
+        db.collection(Services.line.name()).whereEqualTo("bool",true)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

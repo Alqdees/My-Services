@@ -1,4 +1,4 @@
-package com.Blood.types.View.Activity;
+package com.Blood.types.View.Activity.register;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -16,16 +16,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.Blood.types.R;
+import com.Blood.types.View.Activity.OtpActivity;
+import com.Blood.types.View.Activity.TypeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
-import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
@@ -51,9 +50,9 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String AB_MINUS = "AB-";
     private static final String O_PLUS = "O+";
     private static final String O_MINUS = "O-";
-    private static final String Doctor = "Doctor";
-    private static final String line = "line";
-    private static final String professions = "professions";
+//    private static final String Doctor = "Doctor";
+//    private static final String line = "line";
+//    private static final String professions = "professions";
     private com.google.android.material.textfield.TextInputEditText
             ET_name,ET_number, ET_location;
 //    private String getName ,getLocation,getType;
@@ -250,7 +249,7 @@ public class RegisterActivity extends AppCompatActivity {
             {
 
                 progressBar.setVisibility(View.INVISIBLE);
-                Intent intent=new Intent(RegisterActivity.this,OtpActivity.class);
+                Intent intent=new Intent(RegisterActivity.this, OtpActivity.class);
                 intent.putExtra("isRegister",true);
                 intent.putExtra("name",name);
                 intent.putExtra("location",location);
@@ -347,7 +346,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                RegisterActivity.this,
                                                "تم التحديث ",
                                                Toast.LENGTH_SHORT).show();
-                                      startActivity(new Intent(getApplicationContext(),TypeActivity.class));
+                                      startActivity(new Intent(getApplicationContext(), TypeActivity.class));
                                        finish();
                                    }
 
