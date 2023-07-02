@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.Activity.register.ProfessionActivity">
+    tools:context=".View.Activity.registerActivity.ProfessionActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"

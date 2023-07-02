@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.Blood.types.Controller.Services;
 import com.Blood.types.Model.Satota;
 import com.Blood.types.R;
-import com.Blood.types.View.Activity.register.SatotaRegisterActivity;
 import com.Blood.types.View.Adapter.SatotaAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentChange;

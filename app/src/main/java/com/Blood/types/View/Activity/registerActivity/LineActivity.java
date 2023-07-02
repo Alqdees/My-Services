@@ -1,4 +1,4 @@
-package com.Blood.types.View.Activity.register;
+package com.Blood.types.View.Activity.registerActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;

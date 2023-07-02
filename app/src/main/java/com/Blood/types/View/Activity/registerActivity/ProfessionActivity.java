@@ -1,4 +1,4 @@
-package com.Blood.types.View.Activity.register;
+package com.Blood.types.View.Activity.registerActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -40,12 +40,25 @@ public class ProfessionActivity extends AppCompatActivity {
   private ProgressBar progressBar;
   private MotionButton sendRequest;
   private ActionBar actionBar;
+  private boolean isEditMode;
+  private Intent intent;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     actionBar = getSupportActionBar();
     actionBar.hide();
     setContentView(R.layout.activity_profession);
+    initVariable();
+    intent= getIntent();
+    isEditMode = intent.getBooleanExtra("isEditMode",false);
+    name = intent.getStringExtra("name");
+    profession = intent.getStringExtra("profession");
+    number = intent.getStringExtra("number");
+    if (isEditMode){
+      editInfo();
+    }
+
+
     initVariable();
     sendRequest.setOnClickListener(View->{
           name = nameET.getText().toString();
@@ -76,6 +89,19 @@ public class ProfessionActivity extends AppCompatActivity {
           }
     }
     );
+  }
+
+  private void editInfo() {
+    sendRequest.setText(R.string.update);
+
+    nameET.setText(name);
+    nameProfession.setText(profession);
+    numberET.setText(number);
+
+    sendRequest.setOnClickListener((View ->{
+
+    }));
+
   }
 
 

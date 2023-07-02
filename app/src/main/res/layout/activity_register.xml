@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".View.Activity.register.RegisterActivity">
+    tools:context=".View.Activity.registerActivity.RegisterActivity">
 
     <RelativeLayout
         android:id="@+id/appBar"

@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".View.Activity.SelectActivity">
 
-
-
-
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -78,8 +75,7 @@
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-
-        android:layout_marginTop="-25dp"
+        android:layout_marginTop="-30dp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/select">
 
@@ -119,11 +115,11 @@
                 android:layout_height="@dimen/_100sdp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:elevation="@dimen/_12sdp"
                 android:background="@drawable/buttonselect"
                 android:drawableTop="@drawable/car12"
                 android:fontFamily="@font/somar"
                 android:outlineSpotShadowColor="@color/circle"
-
                 android:shadowColor="@color/blue"
                 android:text="@string/transmission_lines"
                 android:textColor="@color/black"

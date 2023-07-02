@@ -20,7 +20,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.Blood.types.R;
-import com.Blood.types.View.Activity.register.RegisterActivity;
+import com.Blood.types.View.Activity.registerActivity.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;

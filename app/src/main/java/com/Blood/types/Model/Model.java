@@ -9,7 +9,7 @@ public class Model {
     }
 
     public Model(String name, String number, String type, String location) {
-        Name = name;
+        this.Name = name;
         this.number = number;
         this.type = type;
         this.location = location;
@@ -17,7 +17,7 @@ public class Model {
 
     public Model(String ID, String name, String number, String type, String location) {
         this.ID = ID;
-        Name = name;
+        this.Name = name;
         this.number = number;
         this.type = type;
         this.location = location;

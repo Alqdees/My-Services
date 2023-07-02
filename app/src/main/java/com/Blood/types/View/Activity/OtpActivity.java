@@ -11,8 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import com.Blood.types.Controller.Services;
 import com.Blood.types.R;
-import com.Blood.types.View.Activity.register.RegisterActivity;
+import com.Blood.types.View.Activity.registerActivity.ProfessionActivity;
+import com.Blood.types.View.Activity.registerActivity.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,27 +30,20 @@ import java.util.Objects;
 
 public class OtpActivity extends AppCompatActivity {
 
-
     private EditText et1;
     private MotionButton btnsubmit;
-    private  String realNumber,collection,title,presence,specialization,nameProfession,from,time,verificationId,name,location,type,number,profession;
+    private String realNumber,collection,title,presence,
+        specialization,nameProfession,from,time,
+        verificationId,name,location,type,number,profession;
     private  ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private ActionBar actionBar;
-    private boolean isSatotaUpDate,isProfessions, isRegister,isProfessionsUpdate,isSatota,isLine,isDoctor,isType;
+    private boolean isSatotaUpDate,isProfessions,
+        isRegister,isProfessionsUpdate,isSatota,
+        isLine,isDoctor,isType;
     private FirebaseFirestore db;
     private HashMap<String,Object> professions;
-    private String Professions = "professions";
-    private String Satota = "Satota";
     private HashMap<String,Object> users;
-
-    /**
-     *  جاي اتحقق من الرمز الي يوصل للمستخدم
-     * @param savedInstanceState If the activity is being re-initialized after
-     *     previously being shut down then this Bundle contains the data it most
-     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
-     *
-     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +67,10 @@ public class OtpActivity extends AppCompatActivity {
 
                                 if (task.isSuccessful()) {
 
+                                  /*
+                                  * لايوجد تاكيد لخطوط النقل والاطباء
+                                   */
+
                                     progressBar.setVisibility(View.INVISIBLE);
                                     if (isRegister) {
                                         registerUser();
@@ -88,6 +87,7 @@ public class OtpActivity extends AppCompatActivity {
                                     } else if (isProfessionsUpdate) {
                                       updateProfessionsUser();
                                     } else {
+                                      // here to update Blood Type user
                                         progressBar.setVisibility(View.INVISIBLE);
                                         Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -115,6 +115,15 @@ public class OtpActivity extends AppCompatActivity {
     }
 
   private void updateProfessionsUser() {
+    progressBar.setVisibility(View.INVISIBLE);
+    Intent intent = new Intent(getApplicationContext(), ProfessionActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    intent.putExtra("name", name);
+    intent.putExtra("profession", profession);
+    intent.putExtra("number", number);
+    intent.putExtra("isEditMode", true);
+    startActivity(intent);
+
   }
 
   private void updateDoctorUser() {
@@ -140,7 +149,7 @@ public class OtpActivity extends AppCompatActivity {
           users.put("number",number);
           users.put("location",location);
           users.put("token",task.getResult());
-          db.collection(Satota).document(number).set(users).
+          db.collection(Services.Satota.name()).document(number).set(users).
               addOnCompleteListener(task2 -> {
                 if (task2.isSuccessful()){
                   Toast.makeText(
@@ -176,7 +185,7 @@ public class OtpActivity extends AppCompatActivity {
               professions.put("nameProfession",profession);
               professions.put("token",task.getResult());
 
-              db.collection(Professions).document(number).set(professions).
+              db.collection(Services.professions.name()).document(number).set(professions).
                           addOnCompleteListener(task2 -> {
                              if (task2.isSuccessful()){
                              Toast.makeText(
@@ -196,7 +205,6 @@ public class OtpActivity extends AppCompatActivity {
 
               // TODO: Store the token in your database or send it to your server
           });
-         // Here to register user professions
 
     }
 
