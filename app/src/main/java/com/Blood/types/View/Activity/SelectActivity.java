@@ -39,7 +39,7 @@ public class SelectActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private String newVersion;
-    private MotionButton line,blood,doctor ,professions,satota,edit;
+    private MotionButton line,blood,doctor ,professions,satota,edit,share;
     private FloatingActionButton floatingActionButton;
     private FirebaseRemoteConfig remoteConfig;
     private int currentVersionCod;
@@ -59,6 +59,7 @@ public class SelectActivity extends AppCompatActivity {
         getObj();
         mAuth = FirebaseAuth.getInstance();
         mAuth.setLanguageCode("ar");
+
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,12 +99,21 @@ public class SelectActivity extends AppCompatActivity {
         satota.setOnClickListener(View -> {
              startActivity(new
            Intent(
-            SelectActivity.this,SatotUsertActivity2.class));
+            SelectActivity.this, SatotUsertActivity.class));
            });
 
-              edit.setOnClickListener(View ->{
+        edit.setOnClickListener(View ->{
             showDialogUpdate();
          });
+        share.setOnClickListener(View -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.setType("text/plain");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.Blood.types");
+            sendIntent.putExtra(Intent.EXTRA_TITLE, "This is a link to App in Google Play");
+            startActivity(sendIntent);
+
+        });
 
        // below code to update app in on create
         currentVersionCod = getCurrentVersionCode();
@@ -193,6 +203,7 @@ public class SelectActivity extends AppCompatActivity {
         edit = findViewById(R.id.edit);
         progressBar = findViewById(R.id.progress);
         progressBar.setVisibility(View.INVISIBLE);
+        share = findViewById(R.id.share);
     }
     private int getCurrentVersionCode() {
         PackageInfo packageInfo = null;

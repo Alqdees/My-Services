@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
-            android:name=".View.Activity.SatotUsertActivity2"
+            android:name=".View.Activity.SatotUsertActivity"
             android:exported="false" />
         <activity
             android:name=".View.Activity.registerActivity.SatotaRegisterActivity"

@@ -13,8 +13,11 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.Blood.types.Controller.Services;
 import com.Blood.types.R;
+import com.Blood.types.View.Activity.registerActivity.LineActivity;
 import com.Blood.types.View.Activity.registerActivity.ProfessionActivity;
 import com.Blood.types.View.Activity.registerActivity.RegisterActivity;
+import com.Blood.types.View.Activity.registerActivity.SatotaRegisterActivity;
+import com.Blood.types.View.Activity.registerActivity.Sendrequest;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -74,29 +77,21 @@ public class OtpActivity extends AppCompatActivity {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     if (isRegister) {
                                         registerUser();
-                                    }else if (isProfessions){
+                                    }  if (isProfessions){
                                         registerProfessions();
-                                    }else if (isSatota){
+                                    } if (isSatota){
                                       registerSatota();
-                                    } else if (isLine) {
+                                    }  if (isLine) {
                                       updateLineUser();
-                                    } else if (isSatotaUpDate) {
+                                    }  if (isSatotaUpDate) {
                                       updateSatotaUser();
-                                    } else if (isDoctor) {
+                                    }  if (isDoctor) {
                                       updateDoctorUser();
-                                    } else if (isProfessionsUpdate) {
+                                    } if (isProfessionsUpdate) {
                                       updateProfessionsUser();
-                                    } else {
+                                    } if(isType) {
                                       // here to update Blood Type user
-                                        progressBar.setVisibility(View.INVISIBLE);
-                                        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        intent.putExtra("name", name);
-                                        intent.putExtra("location", location);
-                                        intent.putExtra("type", type);
-                                        intent.putExtra("number", number);
-                                        intent.putExtra("isEditMode", true);
-                                        startActivity(intent);
+                                    updateType();
                                     }
                                 }
                                 else {
@@ -114,7 +109,19 @@ public class OtpActivity extends AppCompatActivity {
         });
     }
 
-  private void updateProfessionsUser() {
+    private void updateType()  {
+        progressBar.setVisibility(View.INVISIBLE);
+        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("name", name);
+        intent.putExtra("location", location);
+        intent.putExtra("type", type);
+        intent.putExtra("number", number);
+        intent.putExtra("isEditMode", true);
+        startActivity(intent);
+    }
+
+    private void updateProfessionsUser() {
     progressBar.setVisibility(View.INVISIBLE);
     Intent intent = new Intent(getApplicationContext(), ProfessionActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -127,14 +134,36 @@ public class OtpActivity extends AppCompatActivity {
   }
 
   private void updateDoctorUser() {
+      progressBar.setVisibility(View.INVISIBLE);
+      Intent intent = new Intent(getApplicationContext(), Sendrequest.class);
+      intent.putExtra("name", name);
+      intent.putExtra("number",number);
+      intent.putExtra("presence", time);
+      intent.putExtra("specialization", specialization);
+      intent.putExtra("title", title);
+      intent.putExtra("isEditMode", true);
+      startActivity(intent);
   }
 
   private void updateSatotaUser() {
+      progressBar.setVisibility(View.INVISIBLE);
+      Intent intent = new Intent(getApplicationContext(), SatotaRegisterActivity.class);
+      intent.putExtra("name",name);
+      intent.putExtra("number",number);
+      intent.putExtra("location",location);
+      intent.putExtra("isEdit",true);
+      startActivity(intent);
   }
 
   private void updateLineUser() {
-      
-      
+      Intent intent = new Intent(getApplicationContext(), LineActivity.class);
+      intent.putExtra("name", name);
+      intent.putExtra("number",number);
+      intent.putExtra("type", type);
+      intent.putExtra("time", time);
+      intent.putExtra("from", from);
+      intent.putExtra("isEditMode", true);
+      startActivity(intent);
   }
 
   private void registerSatota() {

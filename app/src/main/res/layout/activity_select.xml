@@ -41,7 +41,22 @@
             android:text="@string/edit"
             android:textSize="26sp"
             android:textColor="@color/white" />
-
+        <androidx.constraintlayout.utils.widget.MotionButton
+            android:id="@+id/share"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/somar"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/share_24"
+            android:text="@string/share"
+            android:textSize="26sp"
+            android:textColor="@color/white" />
 
         <!--        <ImageButton-->
 <!--            android:layout_width="@dimen/_40sdp"-->

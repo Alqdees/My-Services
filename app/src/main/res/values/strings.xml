@@ -31,4 +31,5 @@
     <string name="transmission_lines" translatable="false">"Line  "</string>
     <string name="alzab_city" translatable="false">Alzab City</string>
     <string name="update" translatable="false">Update</string>
+    <string name="share" translatable="false">Share</string>
 </resources>
