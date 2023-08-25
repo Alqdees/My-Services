@@ -59,27 +59,27 @@
             android:textColor="@color/white" />
 
         <!--        <ImageButton-->
-<!--            android:layout_width="@dimen/_40sdp"-->
-<!--            android:layout_height="@dimen/_40sdp"-->
-<!--            android:src="@drawable/edit"-->
-<!--            android:id="@+id/edit"-->
-<!--            android:maxHeight="@dimen/_40sdp"-->
-<!--            android:maxWidth="@dimen/_40sdp"-->
-<!--            android:background="@android:color/transparent"-->
-<!--            android:layout_marginStart="@dimen/_14sdp"-->
-<!--           -->
-<!--            />-->
+        <!--            android:layout_width="@dimen/_40sdp"-->
+        <!--            android:layout_height="@dimen/_40sdp"-->
+        <!--            android:src="@drawable/edit"-->
+        <!--            android:id="@+id/edit"-->
+        <!--            android:maxHeight="@dimen/_40sdp"-->
+        <!--            android:maxWidth="@dimen/_40sdp"-->
+        <!--            android:background="@android:color/transparent"-->
+        <!--            android:layout_marginStart="@dimen/_14sdp"-->
+        <!--           -->
+        <!--            />-->
 
-<!--        <TextView-->
+        <!--        <TextView-->
 
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/edit"-->
-<!--            android:layout_marginStart="@dimen/_20sdp"-->
-<!--            android:fontFamily="@font/somar"-->
-<!--            android:text="تعديل"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="22sp" />-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/edit"-->
+        <!--            android:layout_marginStart="@dimen/_20sdp"-->
+        <!--            android:fontFamily="@font/somar"-->
+        <!--            android:text="تعديل"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="22sp" />-->
     </RelativeLayout>
 
     <RelativeLayout

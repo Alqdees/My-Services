@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodTypes"
         android:usesCleartextTraffic="true"
-        tools:targetApi="33">
+        tools:targetApi="34">
         <activity
             android:name=".View.Activity.SatotUsertActivity"
             android:exported="false" />

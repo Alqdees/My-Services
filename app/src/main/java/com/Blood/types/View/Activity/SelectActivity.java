@@ -34,8 +34,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-
-public class SelectActivity extends AppCompatActivity {
+public class SelectActivity extends AppCompatActivity{
 
     private ActionBar actionBar;
     private String newVersion;
@@ -48,9 +47,7 @@ public class SelectActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     public ProgressBar progressBar;
     private EditAll editAll;
-
-
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,37 +56,25 @@ public class SelectActivity extends AppCompatActivity {
         getObj();
         mAuth = FirebaseAuth.getInstance();
         mAuth.setLanguageCode("ar");
-
-        line.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        line.setOnClickListener(View -> {
                 startActivity(new Intent(
                     SelectActivity.this,
                     Transportation_linesActivity.class));
-            }
         });
+        blood.setOnClickListener( View-> {
 
-        blood.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 startActivity(new Intent(SelectActivity.this,TypeActivity.class));
-            }
+
         });
-        doctor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        doctor.setOnClickListener(View -> {
 
                 startActivity(new
                     Intent(
                         SelectActivity.this,DoctorActivity.class));
 
-            }
         });
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        floatingActionButton.setOnClickListener(View -> {
                  showDialog();
-            }
         });
         professions.setOnClickListener(view -> {
             startActivity(new
@@ -101,16 +86,20 @@ public class SelectActivity extends AppCompatActivity {
            Intent(
             SelectActivity.this, SatotUsertActivity.class));
            });
+// ! Here to update data in all applications;
 
         edit.setOnClickListener(View ->{
             showDialogUpdate();
          });
+
         share.setOnClickListener(View -> {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.setType("text/plain");
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.Blood.types");
-            sendIntent.putExtra(Intent.EXTRA_TITLE, "This is a link to App in Google Play");
+            sendIntent.putExtra(Intent.EXTRA_TEXT,
+                    "https://play.google.com/store/apps/details?id=com.Blood.types");
+            sendIntent.putExtra(Intent.EXTRA_TITLE,
+                    "This is a link to App in Google Play");
             startActivity(sendIntent);
 
         });
@@ -124,7 +113,8 @@ public class SelectActivity extends AppCompatActivity {
             .setMinimumFetchIntervalInSeconds(5000)
             .build();
         remoteConfig.setConfigSettingsAsync(configSettings);
-        remoteConfig.fetchAndActivate().addOnCompleteListener(new OnCompleteListener<Boolean>() {
+        remoteConfig.fetchAndActivate().addOnCompleteListener(new OnCompleteListener<Boolean>()
+        {
             @Override
             public void onComplete(@NonNull Task<Boolean> task) {
 
@@ -144,6 +134,8 @@ public class SelectActivity extends AppCompatActivity {
             }
         });
     }
+
+
     private void showDialogUpdate() {
         types = new String[]{
           getString(R.string.blood_type),
@@ -179,7 +171,7 @@ public class SelectActivity extends AppCompatActivity {
             if (number.isEmpty() || service.isEmpty()){
                 Toast.makeText(this, "isEmpty", Toast.LENGTH_SHORT).show();
             }else if (number.length() < 11){
-                Toast.makeText(this, "الرقم قصير", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.short_number, Toast.LENGTH_SHORT).show();
 
             }else {
                     editAll.getData(service,number);
@@ -189,6 +181,7 @@ public class SelectActivity extends AppCompatActivity {
 
         });
     }
+
     private void getObj() {
         actionBar = getSupportActionBar();
         actionBar.hide();
@@ -199,7 +192,7 @@ public class SelectActivity extends AppCompatActivity {
         blood = findViewById(R.id.bloods);
         doctor = findViewById(R.id.doctor);
         satota = findViewById(R.id.satota);
-        floatingActionButton=findViewById(R.id.Add);
+        floatingActionButton = findViewById(R.id.Add);
         edit = findViewById(R.id.edit);
         progressBar = findViewById(R.id.progress);
         progressBar.setVisibility(View.INVISIBLE);
@@ -308,4 +301,6 @@ public class SelectActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
+
 }

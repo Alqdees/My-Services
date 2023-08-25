@@ -29,4 +29,10 @@
     <string name="alzab_city">ناحية الزاب</string>
     <string name="update">تحديث</string>
     <string name="share">مشاركة</string>
+    <string name="short_number">الرقم قصير</string>
+    <string name="who_can_donate_blood">من يمكنه التبرع ؟</string>
+    <string name="share_app">مشاركة التطبيق</string>
+    <string name="data_modification">تعديل البيانات</string>
+    <string name="add_donation">" اضافة متبرع"</string>
+    <string name="add_doctor">أضافة طبيب</string>
 </resources>

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Toast;
-
 import com.Blood.types.Controller.Services;
 import com.Blood.types.View.Adapter.Adapter_Transport;
 import com.Blood.types.Model.ModelTransport;

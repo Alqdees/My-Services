@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/somar"
-            android:text="أضافة طبيب"
+            android:text="@string/add_doctor"
             android:textColor="@color/white"
             android:textSize="@dimen/_22sdp"
 

@@ -72,14 +72,8 @@ public class MainActivity extends AppCompatActivity {
         showData(Types);
 
     }
-
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.custemoptions, menu);
         MenuItem item = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) item.getActionView();
@@ -97,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
         });
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -134,7 +127,8 @@ public class MainActivity extends AppCompatActivity {
         db.collection(st).orderBy("name", Query.Direction.ASCENDING)
             .addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
-                public void onEvent(@Nullable QuerySnapshot value, FirebaseFirestoreException error) {
+                public void onEvent(@Nullable QuerySnapshot value,
+                                    FirebaseFirestoreException error) {
                     if (error != null) {
                         Toast.makeText(
                             MainActivity.this, error.getMessage(),
@@ -150,7 +144,8 @@ public class MainActivity extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
                     }
                 }
-            });
+            }
+            );
     }
 
 }

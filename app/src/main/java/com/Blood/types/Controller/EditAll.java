@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class EditAll {
 
   private String [] bloodTypes;
-  private String realNumber, collection,name,location,type,presence,specialization,title,from,time,nameProfession;
+  private String realNumber, collection,name,location,type,presence,specialization,title,from,time,nameProfession,number;
 
   private Context ctx;
   private FirebaseAuth mAuth;
@@ -56,6 +56,7 @@ public class EditAll {
 
   }
   public void getData(String service, String num) {
+    this.number = num;
     if (service.equals(ctx.getString(R.string.blood_type))) {
 
       for (String s : bloodTypes) {
@@ -143,7 +144,6 @@ public class EditAll {
                          from = document.getString("from");
                          time = document.getString("time");
                          type = document.getString("type");
-
                          break;
                        case "professions":
                          name = document.getString("name");
@@ -176,10 +176,6 @@ public class EditAll {
         });
   }
   private void sendSMSCode(String realNumber) {
-
-
-
-
     PhoneAuthOptions options =
         PhoneAuthOptions.newBuilder(mAuth)
             .setPhoneNumber("+964"+realNumber)             // Phone number to verify
@@ -223,7 +219,7 @@ public class EditAll {
                 Toast.LENGTH_SHORT).show();
           }
 
-//          progressBar.setVisibility(View.INVISIBLE);
+          ((SelectActivity)ctx).progressBar.setVisibility(View.INVISIBLE);
         }
 
         @Override
@@ -239,7 +235,7 @@ public class EditAll {
               intent.putExtra("name",name);
               intent.putExtra("location",location);
               intent.putExtra("type",type);
-              intent.putExtra("isType",true);
+              intent.putExtra("isTypeUpData",true);
             }
           }
           switch (collection){
@@ -268,13 +264,10 @@ public class EditAll {
               intent.putExtra("nameProfession",nameProfession);
               break;
           }
-          intent.putExtra("number",realNumber);
+          intent.putExtra("number",number);
           intent.putExtra("collection",collection);
           intent.putExtra("verificationId",verificationId);
           ctx.startActivity(intent);
-
-
-
         }
       };
 

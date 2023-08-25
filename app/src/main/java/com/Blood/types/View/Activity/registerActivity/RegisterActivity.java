@@ -50,12 +50,9 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String AB_MINUS = "AB-";
     private static final String O_PLUS = "O+";
     private static final String O_MINUS = "O-";
-//    private static final String Doctor = "Doctor";
-//    private static final String line = "line";
-//    private static final String professions = "professions";
+
     private com.google.android.material.textfield.TextInputEditText
             ET_name,ET_number, ET_location;
-//    private String getName ,getLocation,getType;
     private FirebaseFirestore db;
     private ActionBar actionBar;
     private AutoCompleteTextView autoCompleteTextView;
@@ -359,14 +356,15 @@ public class RegisterActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                // here on failure update;
+                Log.d("onFailure...", "onFailure: " +e.getMessage());
             }
         });
     }
 
     private void updateAndgetData(){
-        actionBar.setTitle("تحديث المعلومات");
-        register.setText("تحديث");
+        actionBar.setTitle(R.string.update);
+        register.setText(R.string.update);
         deleted.setVisibility(View.VISIBLE);
         textView.setVisibility(View.VISIBLE);
         ET_name.setText(nname);
@@ -416,10 +414,9 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                     }
-                }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
+                    public void onFailure(@NonNull Exception e) {
 
                     }
                 });

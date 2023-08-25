@@ -6,12 +6,15 @@ import androidx.constraintlayout.utils.widget.MotionButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Blood.types.Controller.Services;
 import com.Blood.types.R;
 import com.Blood.types.View.Activity.SelectActivity;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 
@@ -19,9 +22,13 @@ public class Sendrequest extends AppCompatActivity {
 
     private TextInputEditText nameET,numberET,
             specializationET,timeET,titleET;
+    private String name ,number,time,specialization,title;
     private MotionButton sendRequest;
+    private TextView tv_title;
     private FirebaseFirestore db;
     private HashMap<String,Object> doctors;
+    private Intent intent;
+    private boolean isUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +36,7 @@ public class Sendrequest extends AppCompatActivity {
         setContentView(R.layout.activity_sendrequest);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-
+tv_title = findViewById(R.id.text);
         nameET = findViewById(R.id.name);
         numberET = findViewById(R.id.number);
         specializationET = findViewById(R.id.specialization);
@@ -37,10 +44,47 @@ public class Sendrequest extends AppCompatActivity {
         titleET = findViewById(R.id.title);
         sendRequest= findViewById(R.id.addRequest);
         db = FirebaseFirestore.getInstance();
+        intent= getIntent();
+        name = intent.getStringExtra("name");
+        number = intent.getStringExtra("number");
+        time = intent.getStringExtra("presence");
+        specialization = intent.getStringExtra("specialization");
+        title = intent.getStringExtra("title");
+        isUpdate= intent.getBooleanExtra("isEditMode",false);
 
-        sendRequest.setOnClickListener(v -> {
-            sendRequestDoctor();
-        });
+        if (isUpdate){
+            tv_title.setText(R.string.update);
+            nameET.setText(name);
+            numberET.setText(number);
+            specializationET.setText(specialization);
+            timeET.setText(time);
+            titleET.setText(title);
+            sendRequest.setText(R.string.update);
+            sendRequest.setOnClickListener(View -> {
+                updateDoctorInfo();
+            });
+
+
+        }else {
+            sendRequest.setOnClickListener(v -> {
+                sendRequestDoctor();
+            });
+        }
+
+    }
+
+    private void updateDoctorInfo()  {
+        String named = nameET.getText().toString();
+        String numberd = numberET.getText().toString();
+        String specializationd = specializationET.getText().toString();
+        String timed = timeET.getText().toString();
+        String titled = titleET.getText().toString();
+        HashMap<String,Object> data = new HashMap<String,Object>();
+        CollectionReference p = db.collection(Services.Doctor.name());
+        data.put("name",named);
+        data.put("nameProfession",prof);
+        data.put("number",numberd);
+        p.document(numberd).update(data);
     }
 
 

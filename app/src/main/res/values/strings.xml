@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Zab Township Guide</string>
+    <string name="app_name" translatable="false">AL Zab Township Guide</string>
     <string name="SpeechToText" translatable="false">Speech To Text</string>
     <string name="thanks" translatable="false">شكر وتقدير خاص لگروب ناحية الزاب الاسفل على دعمه هذا المشروع وكذلك شكر وتقدير لكل من ساهم ويساهم في نشر العمل الخيري في هذه المدينة المباركة</string>
     <string name="n_n">احمد شاكر  \n اي أضافة او فكرة تساعد بالعمل الخيري لاتتردد بالتواصل معي \n</string>
@@ -32,4 +32,14 @@
     <string name="alzab_city" translatable="false">Alzab City</string>
     <string name="update" translatable="false">Update</string>
     <string name="share" translatable="false">Share</string>
+    <string name="short_number" translatable="false">Short Number</string>
+
+    <!-- to toggle the open close button of the navigation drawer -->
+    <string name="nav_open" translatable="false">Open</string>
+    <string name="nav_close" translatable="false">Close</string>
+    <string name="who_can_donate_blood" translatable="false">Who Can Donate Blood ?</string>
+    <string name="share_app" translatable="false">Share App</string>
+    <string name="data_modification" translatable="false">Data Modification</string>
+    <string name="add_donation" translatable="false">Add Donation</string>
+    <string name="add_doctor" translatable="false">Add Doctor</string>
 </resources>

@@ -110,6 +110,7 @@ public class OtpActivity extends AppCompatActivity {
     }
 
     private void updateType()  {
+        // this method is complete
         progressBar.setVisibility(View.INVISIBLE);
         Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -122,11 +123,13 @@ public class OtpActivity extends AppCompatActivity {
     }
 
     private void updateProfessionsUser() {
+
+        // this is done
     progressBar.setVisibility(View.INVISIBLE);
     Intent intent = new Intent(getApplicationContext(), ProfessionActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     intent.putExtra("name", name);
-    intent.putExtra("profession", profession);
+    intent.putExtra("profession", nameProfession);
     intent.putExtra("number", number);
     intent.putExtra("isEditMode", true);
     startActivity(intent);
@@ -134,6 +137,7 @@ public class OtpActivity extends AppCompatActivity {
   }
 
   private void updateDoctorUser() {
+        // ! here
       progressBar.setVisibility(View.INVISIBLE);
       Intent intent = new Intent(getApplicationContext(), Sendrequest.class);
       intent.putExtra("name", name);
@@ -151,7 +155,7 @@ public class OtpActivity extends AppCompatActivity {
       intent.putExtra("name",name);
       intent.putExtra("number",number);
       intent.putExtra("location",location);
-      intent.putExtra("isEdit",true);
+      intent.putExtra("isEditMode",true);
       startActivity(intent);
   }
 
@@ -238,11 +242,16 @@ public class OtpActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
+        // ! Hard code this method ;
+
         users = new HashMap<>();
+        // HashMap<String,value> users.
+        // value = Object.
         users.put("name", name);
         users.put("number", number);
         users.put("type", type);
         users.put("location", location);
+        // this code it is mean save data in document
         db.collection(type).document(number).set(users).
                                     addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
@@ -270,7 +279,6 @@ public class OtpActivity extends AppCompatActivity {
     }
 
     private void getObj() {
-      
         et1 = findViewById(R.id.inputotp1);
         progressBar = findViewById(R.id.prograss);
         btnsubmit = findViewById(R.id.btnsubmit);
@@ -281,7 +289,7 @@ public class OtpActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         isRegister = getIntent().getBooleanExtra("isRegister",false);
         isSatota = getIntent().getBooleanExtra("isSatota",false);
-        isType = getIntent().getBooleanExtra("isType",false);
+        isType = getIntent().getBooleanExtra("isTypeUpData",false);
         isDoctor = getIntent().getBooleanExtra("isDoctor",false);
         isLine = getIntent().getBooleanExtra("isLine",false);
         isProfessionsUpdate = getIntent().getBooleanExtra("isProfessions",false);

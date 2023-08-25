@@ -28,6 +28,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -56,39 +58,36 @@ public class ProfessionActivity extends AppCompatActivity {
     number = intent.getStringExtra("number");
     if (isEditMode){
       editInfo();
+    }else {
+        sendRequest.setOnClickListener(View->{
+            name = nameET.getText().toString();
+            number = numberET.getText().toString();
+            profession = nameProfession.getText().toString();
+
+
+            if (TextUtils.isEmpty(name) ||
+                    TextUtils.isEmpty(number)
+                    || TextUtils.isEmpty(profession) || number.isEmpty())
+            {
+
+                Toast.makeText(ProfessionActivity.this,
+                        "أحد الحقول فارغ", Toast.LENGTH_SHORT).show();
+                return;
+
+            }else if (number.length() < 11){
+                Toast.makeText(
+                        ProfessionActivity.this,
+                        "الرقم قصير", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // this is to register user blood donation
+            else {
+                progressBar.setVisibility(android.view.View.VISIBLE);
+                getNumberUser(number);
+            }
+        });
     }
-
-
-    initVariable();
-    sendRequest.setOnClickListener(View->{
-          name = nameET.getText().toString();
-          number = numberET.getText().toString();
-          profession = nameProfession.getText().toString();
-
-
-          if (TextUtils.isEmpty(name) ||
-              TextUtils.isEmpty(number)
-              || TextUtils.isEmpty(profession) || number.isEmpty())
-          {
-
-            Toast.makeText(ProfessionActivity.this,
-                "أحد الحقول فارغ", Toast.LENGTH_SHORT).show();
-            return;
-
-          }else if (number.length() < 11){
-            Toast.makeText(
-                ProfessionActivity.this,
-                "الرقم قصير", Toast.LENGTH_LONG).show();
-            return;
-          }
-
-          // this is to register user blood donation
-          else {
-            progressBar.setVisibility(android.view.View.VISIBLE);
-            getNumberUser(number);
-          }
-    }
-    );
   }
 
   private void editInfo() {
@@ -99,9 +98,34 @@ public class ProfessionActivity extends AppCompatActivity {
     numberET.setText(number);
 
     sendRequest.setOnClickListener((View ->{
-
+updateProfession();
     }));
 
+  }
+
+  private void updateProfession() {
+      String named = nameET.getText().toString();
+      String prof = nameProfession.getText().toString();
+      String numberd = numberET.getText().toString();
+      HashMap<String,Object> data = new HashMap<String,Object>();
+      CollectionReference p = db.collection(Services.professions.name());
+      data.put("name",named);
+      data.put("nameProfession",prof);
+      data.put("number",numberd);
+      p.document(numberd).update(data)
+              .addOnCompleteListener(new OnCompleteListener<Void>() {
+          @Override
+          public void onComplete(@NonNull Task<Void> task) {
+              if (task.isSuccessful()){
+                  Toast.makeText(ProfessionActivity.this, "تم التحديث", Toast.LENGTH_SHORT).show();
+              }
+          }
+      }).addOnFailureListener(new OnFailureListener() {
+                  @Override
+                  public void onFailure(@NonNull Exception e) {
+                      Toast.makeText(ProfessionActivity.this, "فشل التحديث ", Toast.LENGTH_SHORT).show();
+                  }
+              });
   }
 
 
@@ -144,10 +168,7 @@ public class ProfessionActivity extends AppCompatActivity {
           progressBar.setVisibility(View.INVISIBLE);
         }
       });
-
-
   }
-
 
   private void sendVerificationCode(String phoneNumber) {
 
