@@ -82,9 +82,17 @@ tv_title = findViewById(R.id.text);
         HashMap<String,Object> data = new HashMap<String,Object>();
         CollectionReference p = db.collection(Services.Doctor.name());
         data.put("name",named);
-        data.put("nameProfession",prof);
         data.put("number",numberd);
-        p.document(numberd).update(data);
+        data.put("presence",timed);
+        data.put("specialization",specializationd);
+        data.put("title",titled);
+        p.document(numberd).update(data).addOnCompleteListener( is -> {
+            if( is.isSuccessful()){
+                Toast.makeText(Sendrequest.this,
+                        "تم التحديث",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

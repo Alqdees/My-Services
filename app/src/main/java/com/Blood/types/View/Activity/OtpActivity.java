@@ -61,7 +61,7 @@ public class OtpActivity extends AppCompatActivity {
                 PhoneAuthCredential phoneAuthCredential =
                         PhoneAuthProvider.getCredential(verificationId, getuserotp);
                 progressBar.setVisibility(View.VISIBLE);
-                btnsubmit.setVisibility(View.INVISIBLE);
+//                btnsubmit.setVisibility(View.INVISIBLE);
 
                 FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -95,7 +95,7 @@ public class OtpActivity extends AppCompatActivity {
                                     }
                                 }
                                 else {
-                                    btnsubmit.setVisibility(View.VISIBLE);
+//                                    btnsubmit.setVisibility(View.VISIBLE);
                                     progressBar.setVisibility(View.INVISIBLE);
                                     Toast.makeText(OtpActivity.this,
                                         R.string.Error_otp, Toast.LENGTH_SHORT).show();
@@ -137,7 +137,7 @@ public class OtpActivity extends AppCompatActivity {
   }
 
   private void updateDoctorUser() {
-        // ! here
+        // ! here is Complete
       progressBar.setVisibility(View.INVISIBLE);
       Intent intent = new Intent(getApplicationContext(), Sendrequest.class);
       intent.putExtra("name", name);
@@ -150,6 +150,8 @@ public class OtpActivity extends AppCompatActivity {
   }
 
   private void updateSatotaUser() {
+
+// ! here is Complete
       progressBar.setVisibility(View.INVISIBLE);
       Intent intent = new Intent(getApplicationContext(), SatotaRegisterActivity.class);
       intent.putExtra("name",name);
@@ -160,6 +162,7 @@ public class OtpActivity extends AppCompatActivity {
   }
 
   private void updateLineUser() {
+      // $ here work
       Intent intent = new Intent(getApplicationContext(), LineActivity.class);
       intent.putExtra("name", name);
       intent.putExtra("number",number);
@@ -174,7 +177,7 @@ public class OtpActivity extends AppCompatActivity {
     FirebaseMessaging.getInstance().getToken()
         .addOnCompleteListener(task -> {
           if (!task.isSuccessful()) {
-            Log.d("initVariable", Objects.requireNonNull(task.getException().getMessage()));
+            Log.d("initVariable", Objects.requireNonNull(Objects.requireNonNull(task.getException()).getMessage()));
             return;
           }
           users = new HashMap<>();
@@ -293,7 +296,7 @@ public class OtpActivity extends AppCompatActivity {
         isDoctor = getIntent().getBooleanExtra("isDoctor",false);
         isLine = getIntent().getBooleanExtra("isLine",false);
         isProfessionsUpdate = getIntent().getBooleanExtra("isProfessions",false);
-        isProfessions = getIntent().getBooleanExtra("prof",false);
+        isProfessions = getIntent().getBooleanExtra(Services.professions.name(), false);
         realNumber = getIntent().getStringExtra("realNumber");
         verificationId = getIntent().getStringExtra("verificationId");
         name = getIntent().getStringExtra("name");
@@ -308,7 +311,7 @@ public class OtpActivity extends AppCompatActivity {
         presence = getIntent().getStringExtra("presence");
         specialization = getIntent().getStringExtra("specialization");
         collection = getIntent().getStringExtra("collection");
-        isSatotaUpDate = getIntent().getBooleanExtra("isSatotaUpDate",false);
+        isSatotaUpDate = getIntent().getBooleanExtra(Services.Satota.name(), false);
         
     }
     

@@ -31,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -40,8 +41,9 @@ public class SatotaRegisterActivity extends AppCompatActivity {
   private MotionButton addSatota;
   private FirebaseFirestore db;
   private FirebaseAuth mAuth;
-
+private boolean isEdit;
   private ProgressBar progressBar;
+  private Intent intent;
   private String name,number,location;
   private ActionBar actionBar;
   @Override
@@ -51,8 +53,29 @@ public class SatotaRegisterActivity extends AppCompatActivity {
     actionBar = getSupportActionBar();
     actionBar.hide();
     setContentView(R.layout.activity_satota);
-
     getAllObject();
+    intent = getIntent();
+
+    isEdit = intent.getBooleanExtra("isEditMode",false);
+
+    if (isEdit){
+      name = intent.getStringExtra("name");
+      number = intent.getStringExtra("number");
+      location = intent.getStringExtra("location");
+      E_name.setText(name);
+      E_number.setText(number);
+      E_locationWork.setText(location);
+
+      addSatota.setText(R.string.update);
+      addSatota.setOnClickListener(View -> {
+        updateSatota();
+      }
+      );
+
+    }
+
+
+
 
     addSatota.setOnClickListener(View ->{
 
@@ -81,6 +104,29 @@ public class SatotaRegisterActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         getNumberUser(number);
+      }
+    });
+
+  }
+
+  private void updateSatota() {
+    name = "";
+    number = "";
+    location = "";
+
+    name = E_name.getText().toString();
+    number = E_number.getText().toString();
+    location = E_locationWork.getText().toString();
+
+    HashMap<String , Object > data = new HashMap<>();
+
+    data.put("name", name);
+    data.put("number",number);
+    data.put("location", location);
+    CollectionReference update = db.collection(Services.Satota.name());
+    update.document(number).update(data).addOnCompleteListener( isUpdated ->{
+      if (isUpdated.isSuccessful()){
+        Toast.makeText(this, "تم التحديث", Toast.LENGTH_SHORT).show();
       }
     });
 
