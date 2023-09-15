@@ -19,6 +19,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.Blood.types.Controller.Constant;
 import com.Blood.types.R;
 import com.Blood.types.View.Activity.registerActivity.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -59,7 +61,7 @@ public class TypeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private ActionBar actionBar;
-    private Button AddDonation;
+    private Button AddDonation,Who;
     private String [] types;
     private ProgressBar progressBar;
     @SuppressLint("MissingInflatedId")
@@ -146,35 +148,40 @@ public class TypeActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        findViewById(R.id.edit).setOnClickListener((View v) ->{
-            View view = LayoutInflater.from(TypeActivity.this).inflate(
-                R.layout.dialog_setnumber,
-                null,
-                false);
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            @SuppressLint({"MissingInflatedId", "LocalSuppress"})
-            com.google.android.material.textfield.TextInputEditText
-                edit = view.findViewById(R.id.number);
-            @SuppressLint({"MissingInflatedId", "LocalSuppress"})
-            MotionButton search = view.findViewById(R.id.searchNumber);
-            builder.setView(view);
-            AlertDialog dialog = builder.create();
-            search.setOnClickListener((View view2) ->{
-                number = edit.getText().toString().trim();
-                if (number.isEmpty()){
+//        findViewById(R.id.edit).setOnClickListener((View v) ->{
+//            View view = LayoutInflater.from(TypeActivity.this).inflate(
+//                R.layout.dialog_setnumber,
+//                null,
+//                false);
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+//            com.google.android.material.textfield.TextInputEditText
+//                edit = view.findViewById(R.id.number);
+//            @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+//            MotionButton search = view.findViewById(R.id.searchNumber);
+//            builder.setView(view);
+//            AlertDialog dialog = builder.create();
+//            search.setOnClickListener((View view2) ->{
+//                number = edit.getText().toString().trim();
+//                if (number.isEmpty()){
+//
+//                    dialog.dismiss();
+//                    return;
+//                }
+//                getNumberUser(number);
+//                progressBar.setVisibility(View.VISIBLE);
+//                dialog.dismiss();
+//
+//            });
+//            dialog.show();
+//
+//        });
+Who.setOnClickListener(View -> {
 
-                    dialog.dismiss();
-                    return;
-                }
-                getNumberUser(number);
-                progressBar.setVisibility(View.VISIBLE);
-                dialog.dismiss();
-
-            });
-            dialog.show();
-
-        });
-
+    Intent intent = new Intent(Intent.ACTION_VIEW);
+    intent.setData(Uri.parse(Constant.Link));
+    startActivity(intent);
+});
     }
     private void getNumberUser(String nb) {
 
@@ -341,6 +348,7 @@ public class TypeActivity extends AppCompatActivity {
         AB_Minus = findViewById(R.id.ABminuse);
         O_Plus = findViewById(R.id.Opluse);
         O_Minus = findViewById(R.id.Ominuse);
+        Who = findViewById(R.id.who);
     }
 
     @SuppressLint("HardwareIds")

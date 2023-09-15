@@ -168,7 +168,7 @@
     <RelativeLayout
         android:id="@+id/tool2"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -176,7 +176,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addDonation"
-            android:layout_width="@dimen/_120sdp"
+            android:layout_width="@dimen/_160sdp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
            android:layout_marginTop="@dimen/_6sdp"
@@ -186,21 +186,19 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_25sdp" />
 
+
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/edit"
-            android:layout_width="@dimen/_160sdp"
+            android:id="@+id/who"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addDonation"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_16sdp"
             android:background="@drawable/buttonselect"
+            android:layout_below="@+id/addDonation"
             android:fontFamily="@font/somar"
-            android:paddingStart="@dimen/_6sdp"
-            android:paddingEnd="@dimen/_6sdp"
-            android:text="@string/edit_info"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:padding="@dimen/_6sdp"
+            android:text="@string/who_can_donate_blood"
             android:textColor="@color/black"
             android:textSize="@dimen/_25sdp" />
     </RelativeLayout>

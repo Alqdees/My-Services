@@ -402,17 +402,12 @@ public class RegisterActivity extends AppCompatActivity {
                                                 startActivity(new Intent(getApplicationContext(),TypeActivity.class));
                                                 finish();
                                             }
-
                                         }
-
                                     });
                                     break;
                                 }
-
                             }
                         }
-
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -423,7 +418,5 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
 }

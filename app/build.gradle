@@ -8,8 +8,8 @@ android {
         applicationId "com.Blood.types"
         minSdk 22
         targetSdk 34
-        versionCode 19
-        versionName "5.3"
+        versionCode 20
+        versionName "5.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -29,7 +29,7 @@ android {
 }
 dependencies {
 
-    implementation 'com.google.firebase:firebase-config:21.4.0'
+    implementation 'com.google.firebase:firebase-config:21.4.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.firebase:firebase-firestore:24.6.1'

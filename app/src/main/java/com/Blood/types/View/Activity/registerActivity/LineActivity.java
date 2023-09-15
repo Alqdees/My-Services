@@ -16,18 +16,24 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.HashMap;
+import java.util.Objects;
 
 public class LineActivity extends AppCompatActivity {
     private TextInputEditText nameET,numberET,
             typeEt,timeET,fromAndToEt;
     private String name,number,type,time,from;
-    private MotionButton sendRequest;
+    private MotionButton sendRequest,delete;
     private ActionBar actionBar;
     private FirebaseFirestore db;
     private Intent intent;
     private boolean isEdit;
+    private DocumentReference doc;
     private HashMap<String,Object> lines;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +47,13 @@ public class LineActivity extends AppCompatActivity {
         numberET = findViewById(R.id.number);
         typeEt = findViewById(R.id.type);
         timeET = findViewById(R.id.Time);
+        delete = findViewById(R.id.delete);
+        delete.setVisibility(View.INVISIBLE);
         fromAndToEt = findViewById(R.id.fromAndTo);
         sendRequest= findViewById(R.id.addRequest);
-//        intent.putExtra("name", name);
-//        intent.putExtra("number",number);
-//        intent.putExtra("type", type);
-//        intent.putExtra("time", time);
-//        intent.putExtra("from", from);
-//        intent.putExtra("isEditMode", true);
-
         isEdit = intent.getBooleanExtra("isEditMode",false);
         if (isEdit){
+            delete.setVisibility(View.VISIBLE);
             name = intent.getStringExtra("name");
             number = intent.getStringExtra("number");
             type = intent.getStringExtra("type");
@@ -87,9 +89,29 @@ public class LineActivity extends AppCompatActivity {
                               "تم التحديث",
                               Toast.LENGTH_SHORT).show();
                   }
-                        }
+         }
                 );
+            });
+            delete.setOnClickListener(View -> {
+                CollectionReference collectionRef = db.collection("line");
+                collectionRef.get().addOnCompleteListener(v ->{
+                    if (v.isSuccessful()) {
+                        for (QueryDocumentSnapshot snap : v.getResult()) {
 
+                            if (Objects.equals(snap.getString("number"), number)) {
+                                String id = snap.getId();
+                                doc = db.collection("line").document(id);
+                                doc.delete().addOnCompleteListener( isComplete -> {
+                                   if (isComplete.isSuccessful()){
+                                       Toast.makeText(this, R.string.delete, Toast.LENGTH_SHORT).show();
+                                       intent = new  Intent(this,SelectActivity.class);
+                                       finish();
+                                   }
+                                });
+                            }
+                        }
+                    }
+                });
             });
         }else {
             sendRequest.setOnClickListener(new View.OnClickListener() {

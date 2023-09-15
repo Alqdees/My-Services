@@ -35,4 +35,6 @@
     <string name="data_modification">تعديل البيانات</string>
     <string name="add_donation">" اضافة متبرع"</string>
     <string name="add_doctor">أضافة طبيب</string>
+    <string name="delete">حذف</string>
+    <string name="addRequest">تقديم طلب</string>
 </resources>

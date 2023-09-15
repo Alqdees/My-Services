@@ -42,4 +42,6 @@
     <string name="data_modification" translatable="false">Data Modification</string>
     <string name="add_donation" translatable="false">Add Donation</string>
     <string name="add_doctor" translatable="false">Add Doctor</string>
+    <string name="delete" translatable="false">delete</string>
+    <string name="addRequest" translatable="false">request</string>
 </resources>
