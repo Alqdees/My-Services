@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.Blood.types.Controller.Services;
 import com.Blood.types.R;
 import com.Blood.types.View.Activity.OtpActivity;
+import com.Blood.types.View.Activity.SelectActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -37,10 +39,10 @@ public class ProfessionActivity extends AppCompatActivity {
   private FirebaseFirestore db;
   private FirebaseAuth mAuth;
   private TextInputEditText nameET,numberET,nameProfession;
-
+    private DocumentReference doc;
   private String name,number,profession;
   private ProgressBar progressBar;
-  private MotionButton sendRequest;
+  private MotionButton sendRequest,delete;
   private ActionBar actionBar;
   private boolean isEditMode;
   private Intent intent;
@@ -92,7 +94,7 @@ public class ProfessionActivity extends AppCompatActivity {
 
   private void editInfo() {
     sendRequest.setText(R.string.update);
-
+delete.setVisibility(View.VISIBLE);
     nameET.setText(name);
     nameProfession.setText(profession);
     numberET.setText(number);
@@ -100,6 +102,27 @@ public class ProfessionActivity extends AppCompatActivity {
     sendRequest.setOnClickListener((View ->{
 updateProfession();
     }));
+    delete.setOnClickListener(View -> {
+        CollectionReference collectionRef = db.collection("professions");
+        collectionRef.get().addOnCompleteListener(v ->{
+            if (v.isSuccessful()) {
+                for (QueryDocumentSnapshot snap : v.getResult()) {
+
+                    if (Objects.equals(snap.getString("number"), number)) {
+                        String id = snap.getId();
+                        doc = db.collection("professions").document(id);
+                        doc.delete().addOnCompleteListener( isComplete -> {
+                            if (isComplete.isSuccessful()){
+                                Toast.makeText(this, R.string.delete, Toast.LENGTH_SHORT).show();
+                                intent = new  Intent(this, SelectActivity.class);
+                                finish();
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    });
 
   }
 
@@ -230,6 +253,8 @@ updateProfession();
     sendRequest = findViewById(R.id.addRequest);
     progressBar =findViewById(R.id.progress);
     progressBar.setVisibility(View.GONE);
+    delete = findViewById(R.id.delete);
+    delete.setVisibility(View.INVISIBLE);
 
   }
 
