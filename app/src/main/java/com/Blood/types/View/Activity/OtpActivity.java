@@ -150,7 +150,7 @@ public class OtpActivity extends AppCompatActivity {
   }
 
   private void updateSatotaUser() {
-
+      Log.d("updateSatotaUser()", "updateSatotaUser: ");
 // ! here is Complete
       progressBar.setVisibility(View.INVISIBLE);
       Intent intent = new Intent(getApplicationContext(), SatotaRegisterActivity.class);
@@ -311,7 +311,7 @@ public class OtpActivity extends AppCompatActivity {
         presence = getIntent().getStringExtra("presence");
         specialization = getIntent().getStringExtra("specialization");
         collection = getIntent().getStringExtra("collection");
-        isSatotaUpDate = getIntent().getBooleanExtra(Services.Satota.name(), false);
+        isSatotaUpDate = getIntent().getBooleanExtra("isSatotaUpDate", false);
         
     }
     

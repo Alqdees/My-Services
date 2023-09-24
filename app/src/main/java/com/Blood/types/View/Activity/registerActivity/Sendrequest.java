@@ -15,17 +15,22 @@ import com.Blood.types.R;
 import com.Blood.types.View.Activity.SelectActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Sendrequest extends AppCompatActivity {
 
     private TextInputEditText nameET,numberET,
             specializationET,timeET,titleET;
     private String name ,number,time,specialization,title;
-    private MotionButton sendRequest;
+    private MotionButton sendRequest,delete;
     private TextView tv_title;
     private FirebaseFirestore db;
+    private DocumentReference doc;
     private HashMap<String,Object> doctors;
     private Intent intent;
     private boolean isUpdate;
@@ -36,7 +41,9 @@ public class Sendrequest extends AppCompatActivity {
         setContentView(R.layout.activity_sendrequest);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-tv_title = findViewById(R.id.text);
+        delete = findViewById(R.id.delete);
+        delete.setVisibility(View.INVISIBLE);
+        tv_title = findViewById(R.id.text);
         nameET = findViewById(R.id.name);
         numberET = findViewById(R.id.number);
         specializationET = findViewById(R.id.specialization);
@@ -54,6 +61,7 @@ tv_title = findViewById(R.id.text);
 
         if (isUpdate){
             tv_title.setText(R.string.update);
+            delete.setVisibility(View.VISIBLE);
             nameET.setText(name);
             numberET.setText(number);
             specializationET.setText(specialization);
@@ -62,6 +70,28 @@ tv_title = findViewById(R.id.text);
             sendRequest.setText(R.string.update);
             sendRequest.setOnClickListener(View -> {
                 updateDoctorInfo();
+            });
+            delete.setOnClickListener(View ->{
+                CollectionReference collectionRef = db.collection(Services.Doctor.name());
+                collectionRef.get().addOnCompleteListener(v ->{
+                    if (v.isSuccessful()) {
+                        for (QueryDocumentSnapshot snap : v.getResult()) {
+
+                            if (Objects.equals(snap.getString("number"), number)) {
+                                String id = snap.getId();
+                                doc = db.collection(Services.Doctor.name()).document(id);
+                                doc.delete().addOnCompleteListener( isComplete -> {
+                                    if (isComplete.isSuccessful()){
+                                        Toast.makeText(this, R.string.delete, Toast.LENGTH_SHORT).show();
+                                        intent = new  Intent(this, SelectActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
             });
 
 
@@ -109,7 +139,7 @@ tv_title = findViewById(R.id.text);
         doctors.put("presence",time);
         doctors.put("specialization",specialization);
         doctors.put("title",title);
-        doctors.put("bool",false);
+        doctors.put("bool",true);
 
         db.collection(Services.Doctor.name()).document(number)
             .set(doctors).

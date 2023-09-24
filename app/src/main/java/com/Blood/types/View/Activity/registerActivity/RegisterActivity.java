@@ -400,6 +400,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(RegisterActivity.this, "تم الحذف ", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(getApplicationContext(),TypeActivity.class));
+                                                startActivity(intent);
                                                 finish();
                                             }
                                         }

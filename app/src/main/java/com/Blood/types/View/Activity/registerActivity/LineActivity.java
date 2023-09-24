@@ -105,6 +105,7 @@ public class LineActivity extends AppCompatActivity {
                                    if (isComplete.isSuccessful()){
                                        Toast.makeText(this, R.string.delete, Toast.LENGTH_SHORT).show();
                                        intent = new  Intent(this,SelectActivity.class);
+                                       startActivity(intent);
                                        finish();
                                    }
                                 });
@@ -133,7 +134,7 @@ public class LineActivity extends AppCompatActivity {
                         lines.put("type",type);
                         lines.put("time",time);
                         lines.put("from",from);
-                        lines.put("bool",false);
+                        lines.put("bool",true);
 
                         db.collection(Services.line.name())
                                 .document(number).set(lines)

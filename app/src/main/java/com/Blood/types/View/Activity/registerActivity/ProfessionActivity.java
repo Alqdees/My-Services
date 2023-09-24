@@ -115,6 +115,7 @@ updateProfession();
                             if (isComplete.isSuccessful()){
                                 Toast.makeText(this, R.string.delete, Toast.LENGTH_SHORT).show();
                                 intent = new  Intent(this, SelectActivity.class);
+                                startActivity(intent);
                                 finish();
                             }
                         });
