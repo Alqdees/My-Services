@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.MotionButton;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -56,13 +57,17 @@ public class OtpActivity extends AppCompatActivity {
 
         btnsubmit.setOnClickListener((View v) ->{
             progressBar.setVisibility(View.VISIBLE);
+            if (TextUtils.isEmpty(et1.getText().toString())){
+                System.out.println(" _____________________ out");
+                progressBar.setVisibility(View.INVISIBLE);
+                return;
+            }
             if (!verificationId.isEmpty() || verificationId != null|| !verificationId.equals("")){
                 String getuserotp = et1.getText().toString() ;
                 PhoneAuthCredential phoneAuthCredential =
                         PhoneAuthProvider.getCredential(verificationId, getuserotp);
                 progressBar.setVisibility(View.VISIBLE);
 //                btnsubmit.setVisibility(View.INVISIBLE);
-
                 FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override

@@ -3,6 +3,14 @@ plugins {
     id 'com.google.gms.google-services'
 }
 android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\Ahmed\\Desktop\\key.jks')
+            storePassword '75460ahmed'
+            keyPassword '75460ahmed'
+            keyAlias 'key0'
+        }
+    }
     compileSdk 34
     defaultConfig {
         applicationId "com.Blood.types"
