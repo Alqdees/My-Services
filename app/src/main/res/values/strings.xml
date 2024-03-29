@@ -26,7 +26,7 @@
     <string name="internal_transfer" translatable="false">Internal Transfer</string>
     <string name="locationWork" translatable="false">Location Work</string>
     <string name="satota" translatable="false">Satota</string>
-    <string name="edit" translatable="false">edit</string>
+    <string name="edit" translatable="false">Edit and Delete</string>
     <string name="select_service" translatable="false">select Service</string>
     <string name="transmission_lines" translatable="false">"Line  "</string>
     <string name="alzab_city" translatable="false">Alzab City</string>
@@ -44,4 +44,7 @@
     <string name="add_doctor" translatable="false">Add Doctor</string>
     <string name="delete" translatable="false">delete</string>
     <string name="addRequest" translatable="false">request</string>
+    <string name="note" translatable="false">Here to Edit your Information And Delete Your Information</string>
+    <string name="d" translatable="false">If the deletion process does not succeed, request deletion from here</string>
+    <string name="request_delete" translatable="false">Request Delete</string>
 </resources>

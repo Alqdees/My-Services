@@ -27,7 +27,7 @@
 
         <androidx.constraintlayout.utils.widget.MotionButton
             android:id="@+id/edit"
-            android:layout_width="@dimen/_50sdp"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/_50sdp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"

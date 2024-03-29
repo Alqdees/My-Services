@@ -23,7 +23,7 @@
     <string name="internal_transfer">نقل داخلي</string>
     <string name="locationWork">المنطقة</string>
     <string name="satota">ستوتة للأجرة</string>
-    <string name="edit">تعديل</string>
+    <string name="edit">تعديل و حذف</string>
     <string name="select_service">اخنر الخدمة</string>
     <string name="transmission_lines">الخطوط</string>
     <string name="alzab_city">ناحية الزاب</string>
@@ -37,4 +37,7 @@
     <string name="add_doctor">أضافة طبيب</string>
     <string name="delete">حذف</string>
     <string name="addRequest">تقديم طلب</string>
+    <string name="note">هنا لتحرير وحذف المعلومات الخاصة بك</string>
+    <string name="d">في حال لم تنجح عملية الحذف أطلب الحذف من هنا</string>
+    <string name="request_delete">طلب حذف</string>
 </resources>

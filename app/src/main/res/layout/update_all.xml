@@ -2,24 +2,41 @@
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-        <com.google.android.material.textfield.TextInputLayout
+    <TextView
+        android:id="@+id/description_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:textSize="@dimen/_22sdp"
+        android:textAlignment="center"
+        android:textColor= "#780D0D"
+        android:fontFamily="@font/somar"
+        android:text="@string/note"
+         />
+
+    <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/labelTest"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+
             android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_alignParentTop="true"
+
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:hint="@string/input_number"
             android:textColorHint="@color/black"
-            app:hintTextColor="@color/black">
+            app:hintTextColor="@color/black"
+            android:layout_below="@+id/description_dialog"
+            >
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -78,6 +95,37 @@
             android:padding="@dimen/_5sdp"
             android:textSize="@dimen/_18sdp"
             android:textStyle="bold" />
+    <TextView
+        android:id="@+id/d"
+        android:layout_below="@+id/searchNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:textSize="@dimen/_22sdp"
+        android:textAlignment="center"
+        android:textColor= "#780D0D"
+        android:fontFamily="@font/somar"
+        android:text="@string/d"
+
+        />
+    <androidx.constraintlayout.utils.widget.MotionButton
+        android:id="@+id/requestDelete"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/d"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:background="@drawable/buttonselect"
+        android:fontFamily="@font/somar"
+        android:text="@string/request_delete"
+        android:textColor="@color/black"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:padding="@dimen/_4sdp"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

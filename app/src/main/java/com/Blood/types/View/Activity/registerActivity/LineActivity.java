@@ -119,7 +119,6 @@ public class LineActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     lines = new HashMap<>();
-
                     String name = nameET.getText().toString();
                     String number = numberET.getText().toString();
                     String type = typeEt.getText().toString();
@@ -128,14 +127,12 @@ public class LineActivity extends AppCompatActivity {
                     if (name.isEmpty() || number.isEmpty() || type.isEmpty() || time.isEmpty() || from.isEmpty() ){
                         Toast.makeText(LineActivity.this, R.string.field_error, Toast.LENGTH_SHORT).show();
                     }else {
-
                         lines.put("name",name);
                         lines.put("number",number);
                         lines.put("type",type);
                         lines.put("time",time);
                         lines.put("from",from);
                         lines.put("bool",true);
-
                         db.collection(Services.line.name())
                                 .document(number).set(lines)
                                 .addOnCompleteListener(
@@ -149,7 +146,6 @@ public class LineActivity extends AppCompatActivity {
                                                     startActivity(new Intent(LineActivity.this, SelectActivity.class));
                                                     finish();
                                                 }
-
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -157,16 +153,9 @@ public class LineActivity extends AppCompatActivity {
                                         Log.d("lines_Exception", e.getMessage());
                                     }
                                 });
-
                     }
-
-
-
                 }
             });
-
         }
-
-
     }
 }

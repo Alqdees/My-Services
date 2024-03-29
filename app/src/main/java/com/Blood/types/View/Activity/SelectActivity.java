@@ -158,6 +158,7 @@ public class SelectActivity extends AppCompatActivity{
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         MotionButton search = view.findViewById(R.id.searchNumber);
+        MotionButton request = view.findViewById(R.id.requestDelete);
         AutoCompleteTextView autoCompleteTextView = view.findViewById(R.id.typesAuto);
         autoCompleteTextView.setAdapter(arrayAdapter);
 
@@ -178,6 +179,9 @@ public class SelectActivity extends AppCompatActivity{
                     progressBar.setVisibility(android.view.View.VISIBLE);
                     dialog.dismiss();
             }
+
+        });
+        request.setOnClickListener(View ->{
 
         });
     }
