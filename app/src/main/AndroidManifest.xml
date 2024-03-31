@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
         <activity
+            android:name=".View.Activity.RequestDeleteActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.Activity.SatotUsertActivity"
             android:exported="false" />
         <activity

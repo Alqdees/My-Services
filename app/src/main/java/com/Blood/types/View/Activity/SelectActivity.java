@@ -10,6 +10,8 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +36,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+
+import java.util.List;
+
 public class SelectActivity extends AppCompatActivity{
 
     private ActionBar actionBar;
@@ -93,14 +98,43 @@ public class SelectActivity extends AppCompatActivity{
          });
 
         share.setOnClickListener(View -> {
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.setType("text/plain");
-            sendIntent.putExtra(Intent.EXTRA_TEXT,
-                    "https://play.google.com/store/apps/details?id=com.Blood.types");
-            sendIntent.putExtra(Intent.EXTRA_TITLE,
-                    "This is a link to App in Google Play");
-            startActivity(sendIntent);
+
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+
+            // Set the type of data (in this case, a URL)
+            shareIntent.setType("text/plain");
+
+            // Set the URL you want to share
+            String urlToShare = "https://play.google.com/store/apps/details?id=com.Blood.types";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, urlToShare);
+
+            // Get a list of all apps that can handle the share Intent
+            PackageManager pm = getPackageManager();
+            @SuppressLint("QueryPermissionsNeeded")
+            List<ResolveInfo> activityList = pm.queryIntentActivities(shareIntent, 0);
+
+            // Check if the list is not empty
+            if (!activityList.isEmpty()) {
+                // Create a chooser Intent to show the user all available options
+                Intent chooserIntent = Intent.createChooser(shareIntent, "Share via");
+                startActivity(chooserIntent);
+            } else {
+                // If no apps are available to handle the Intent, show a message to the user
+                Toast.makeText(this, "No apps available to share", Toast.LENGTH_SHORT).show();
+            }
+
+            // Finish the activity
+//            finish();
+
+
+//            Intent sendIntent = new Intent();
+//            sendIntent.setAction(Intent.ACTION_SEND);
+//            sendIntent.setType("text/plain");
+//            sendIntent.putExtra(Intent.EXTRA_TEXT,
+//                    "https://play.google.com/store/apps/details?id=com.Blood.types");
+//            sendIntent.putExtra(Intent.EXTRA_TITLE,
+//                    "This is a link to App in Google Play");
+//            startActivity(sendIntent);
 
         });
 
@@ -182,6 +216,9 @@ public class SelectActivity extends AppCompatActivity{
 
         });
         request.setOnClickListener(View ->{
+            startActivity(new Intent(
+                    SelectActivity.this,
+                    RequestDeleteActivity.class));
 
         });
     }

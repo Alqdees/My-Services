@@ -57,10 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private AutoCompleteTextView autoCompleteTextView;
     private androidx.constraintlayout.utils.widget.MotionButton register,deleted;
-    private String name,nname,nnumber,llocation,ttype;
-    private String number;
-    private String type;
-    private String location,realNumber;
+    private String name,nname,nnumber,llocation,ttype, number,type,location,realNumber;
+
+
     private FirebaseAuth mAuth;
     private String Type;
     private String[] types;

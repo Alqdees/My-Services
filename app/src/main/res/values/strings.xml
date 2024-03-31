@@ -47,4 +47,6 @@
     <string name="note" translatable="false">Here to Edit your Information And Delete Your Information</string>
     <string name="d" translatable="false">If the deletion process does not succeed, request deletion from here</string>
     <string name="request_delete" translatable="false">Request Delete</string>
+    <string name="descrebtion" translatable="false">Details, whether modification or deletion and what type of services do you want?</string>
+    <string name="send_Request" translatable="false">Send Request</string>
 </resources>

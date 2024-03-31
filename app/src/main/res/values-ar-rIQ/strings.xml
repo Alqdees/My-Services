@@ -40,4 +40,6 @@
     <string name="note">هنا لتحرير وحذف المعلومات الخاصة بك</string>
     <string name="d">في حال لم تنجح عملية الحذف أطلب الحذف من هنا</string>
     <string name="request_delete">طلب حذف</string>
+    <string name="descrebtion">تفاصيل ما اذا كان تعديل او حذف وفي اي نوع من الخدمات تريد ؟</string>
+    <string name="send_Request">"أرسال طلب "</string>
 </resources>
