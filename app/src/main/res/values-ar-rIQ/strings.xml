@@ -42,4 +42,5 @@
     <string name="request_delete">طلب حذف</string>
     <string name="descrebtion">تفاصيل ما اذا كان تعديل او حذف وفي اي نوع من الخدمات تريد ؟</string>
     <string name="send_Request">"أرسال طلب "</string>
+    <string name="through_social_media">التواص الاجتماعي</string>
 </resources>
