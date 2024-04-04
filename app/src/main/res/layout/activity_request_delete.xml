@@ -87,20 +87,21 @@
                 android:shadowColor="@color/black"
                 />
         </com.google.android.material.textfield.TextInputLayout>
+
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/social"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/social"
-            android:gravity="center"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
             android:layout_below="@+id/registerBtn"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="@string/through_social_media"
             android:textColor="@color/blue"
             android:textSize="@dimen/_14sdp"
-            android:textStyle="bold"
-            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
-            android:text="@string/through_social_media"
-        />
+            android:textStyle="bold" />
 
         <androidx.constraintlayout.utils.widget.MotionButton
             android:id="@+id/registerBtn"
@@ -120,11 +121,11 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/social"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:gravity="center"
+            android:layout_marginBottom="@dimen/_14sdp"
             android:orientation="horizontal">
 
             <ImageView
@@ -132,8 +133,7 @@
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_margin="@dimen/_10sdp"
-                android:src="@drawable/whatsapp"
-                />
+                android:src="@drawable/whatsapp" />
 
             <ImageView
                 android:id="@+id/telegram"
