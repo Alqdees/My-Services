@@ -115,8 +115,7 @@
             android:background="@drawable/buttonselect"
             android:text="@string/send_Request"
             android:textSize="22sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="wrap_content"

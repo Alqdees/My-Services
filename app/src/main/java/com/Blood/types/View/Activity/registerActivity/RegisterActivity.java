@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String [] bloods;
 
     @SuppressLint({"HardwareIds", "MissingInflatedId"})
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
