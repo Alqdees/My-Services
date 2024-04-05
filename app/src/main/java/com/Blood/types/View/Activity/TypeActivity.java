@@ -321,23 +321,23 @@ Who.setOnClickListener(View -> {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.developers){
-            showDialogIfo();
-        }
+//        int id = item.getItemId();
+//
+//        if (id == R.id.developers){
+//            showDialogIfo();
+//        }
 
 
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void showDialogIfo() {
-        View v = LayoutInflater.from(this).inflate(R.layout.dialog_info,null,false);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(v);
-        builder.create().show();
-    }
+//    private void showDialogIfo() {
+//        View v = LayoutInflater.from(this).inflate(R.layout.dialog_info,null,false);
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setView(v);
+//        builder.create().show();
+//    }
     private void initialization() {
 //        mAuth = FirebaseAuth.getInstance();
         A_plus = findViewById(R.id.Aplus);

@@ -50,4 +50,5 @@
     <string name="descrebtion" translatable="false">Details, whether modification or deletion and what type of services do you want?</string>
     <string name="send_Request" translatable="false">Send Request</string>
     <string name="through_social_media" translatable="false">Social Media</string>
+    <string name="send_a_request_to_support" translatable="false">Send a Request to Support</string>
 </resources>

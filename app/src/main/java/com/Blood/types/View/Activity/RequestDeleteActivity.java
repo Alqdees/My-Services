@@ -3,17 +3,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.utils.widget.MotionButton;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.Blood.types.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.HashMap;
 
 public class RequestDeleteActivity extends AppCompatActivity {
@@ -38,74 +35,46 @@ public class RequestDeleteActivity extends AppCompatActivity {
         });
 
 tv_whatsapp.setOnClickListener((View) ->{
-//
     sendSocial("https://api.whatsapp.com/send?phone=+9647824854526" );
-//    Intent intent = new Intent(Intent.ACTION_VIEW);
-//
-//    // Set the data URI to the WhatsApp URI scheme with the phone number
-//    // Replace the country code prefix (+xx) with the appropriate country code
-//    // For example, for the US, it would be "1" as in "+11234567890"
-//    Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=+9647824854526" );
-//    intent.setData(uri);
-//
-//    // Add flags to the Intent to make sure it opens the WhatsApp app
-//    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//
-//    // Start the Intent
-//    startActivity(intent);
 });
 tv_messenger.setOnClickListener((View) ->{
     sendSocial("https://m.me/AH95ED");
-//    Intent intent = new Intent(Intent.ACTION_VIEW);
-//
-//    // Set the data URI to the Telegram URI scheme with your username
-//    intent.setData(Uri.parse("https://m.me/AH95ED"));
-//
-//    // Add flags to the Intent to make sure it opens the Telegram app
-//    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//
-//    // Start the Intent
-//    startActivity(intent);
+
 });
 
 tv_telegram.setOnClickListener((View) ->{
 
     sendSocial("https://m.me/AH95ED");
-//    Intent intent = new Intent(Intent.ACTION_VIEW);
-//
-//    // Set the data URI to the Telegram URI scheme with your username
-//    intent.setData(Uri.parse("https://t.me/Ah9_5D"));
-//
-//    // Add flags to the Intent to make sure it opens the Telegram app
-//    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//
-//    // Start the Intent
-//    startActivity(intent);
+
 });
 btn_request.setOnClickListener((View) ->{
 
-    String number = Et_number.getText().toString();
-    String name = Et_name.getText().toString();
-    String description = Et_des.getText().toString();
-    if (name.isEmpty() || description.isEmpty() || number.isEmpty()){
-        Toast.makeText(this, "Check All Filed", Toast.LENGTH_SHORT).show();
-        return;
-    }
-    HashMap<String, String> hashMap = new HashMap<>();
-
-    // Set values in the HashMap
-    hashMap.put("name", name);
-    hashMap.put("number",number );
-    hashMap.put("description",description );
-    databaseReference.child("Edit").child(number).setValue(hashMap).addOnCompleteListener((T)->{
-        Toast.makeText(this, ""+T.isSuccessful(), Toast.LENGTH_SHORT).show();
-    }).addOnFailureListener((F) -> {
-        Toast.makeText(this, ""+F.getMessage(), Toast.LENGTH_SHORT).show();
-
-    });
+sendData();
 });
 
 
+    }
+
+    private void sendData() {
+        String number = Et_number.getText().toString();
+        String name = Et_name.getText().toString();
+        String description = Et_des.getText().toString();
+        if (name.isEmpty() || description.isEmpty() || number.isEmpty()){
+            Toast.makeText(this, "Check All Filed", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        HashMap<String, String> hashMap = new HashMap<>();
+
+        // Set values in the HashMap
+        hashMap.put("name", name);
+        hashMap.put("number",number );
+        hashMap.put("description",description );
+        databaseReference.child("Edit").child(number).setValue(hashMap).addOnCompleteListener((T)->{
+            Toast.makeText(this, ""+T.isSuccessful(), Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener((F) -> {
+            Toast.makeText(this, ""+F.getMessage(), Toast.LENGTH_SHORT).show();
+
+        });
     }
 
 
