@@ -44,7 +44,7 @@ tv_messenger.setOnClickListener((View) ->{
 
 tv_telegram.setOnClickListener((View) ->{
 
-    sendSocial("https://m.me/AH95ED");
+    sendSocial("https://t.me/Ah9_5D");
 
 });
 btn_request.setOnClickListener((View) ->{

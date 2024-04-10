@@ -21,32 +21,40 @@
 
     <RelativeLayout
         android:id="@+id/bloodType"
-        android:layout_width="@dimen/_300sdp"
-        android:layout_height="@dimen/_320sdp"
+        android:layout_width="@dimen/_330sdp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="-29dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_20sdp"
+
         android:background="@drawable/buttonselect"
         android:padding="@dimen/_8sdp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
             android:fontFamily="@font/somar"
             android:text="فصائل الدم"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/_28sdp"
 
-            />
+            android:textSize="@dimen/_28sdp" />
 
         <LinearLayout
+
             android:id="@+id/liner1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_40sdp"
             android:orientation="horizontal"
             android:padding="@dimen/_2sdp">
 
@@ -78,6 +86,7 @@
             android:layout_below="@+id/liner1"
             android:layout_marginTop="@dimen/_22sdp"
             android:orientation="horizontal"
+
             android:padding="@dimen/_2sdp">
 
             <com.google.android.material.button.MaterialButton

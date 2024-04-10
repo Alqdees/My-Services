@@ -398,10 +398,12 @@ public class RegisterActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                Toast.makeText(RegisterActivity.this, "تم الحذف ", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(getApplicationContext(),TypeActivity.class));
-                                                startActivity(intent);
-                                                finish();
+                                                Toast.makeText(RegisterActivity.this, "تم الحذف ",
+                                                        Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(getApplicationContext(),
+                                                        TypeActivity.class));
+
+
                                             }
                                         }
                                     });
@@ -413,7 +415,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
+                        Toast.makeText(RegisterActivity.this, e.getMessage(),
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
 
