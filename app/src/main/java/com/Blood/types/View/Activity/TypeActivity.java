@@ -57,7 +57,7 @@ public class TypeActivity extends AppCompatActivity {
             O_Plus,
             O_Minus;
     private Intent intent;
-    private static final String Type = "type";
+    static final String Type = "type";
     private FirebaseAuth mAuth;
 
     private ActionBar actionBar;

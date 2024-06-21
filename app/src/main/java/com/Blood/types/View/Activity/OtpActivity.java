@@ -285,12 +285,16 @@ public class OtpActivity extends AppCompatActivity {
 
 
     }
+    private void register () {
+
+    }
 
     private void getObj() {
         et1 = findViewById(R.id.inputotp1);
         progressBar = findViewById(R.id.prograss);
         btnsubmit = findViewById(R.id.btnsubmit);
         actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.hide();
         progressBar.setVisibility(View.INVISIBLE);
         mAuth = FirebaseAuth.getInstance();
@@ -300,6 +304,7 @@ public class OtpActivity extends AppCompatActivity {
         isType = getIntent().getBooleanExtra("isTypeUpData",false);
         isDoctor = getIntent().getBooleanExtra("isDoctor",false);
         isLine = getIntent().getBooleanExtra("isLine",false);
+        isLine = getIntent().getBooleanExtra("isRegLine",false);
         isProfessionsUpdate = getIntent().getBooleanExtra("isProfessions",false);
         isProfessions = getIntent().getBooleanExtra(Services.professions.name(), false);
         realNumber = getIntent().getStringExtra("realNumber");

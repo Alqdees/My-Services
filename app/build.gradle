@@ -14,10 +14,10 @@ android {
     compileSdk 34
     defaultConfig {
         applicationId "com.Blood.types"
-        minSdk 22
+        minSdk 23
         targetSdk 34
-        versionCode 22
-        versionName "6.1"
+        versionCode 23
+        versionName "6.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -37,26 +37,28 @@ android {
 }
 dependencies {
 
-    implementation 'com.google.firebase:firebase-config:21.6.3'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.firebase:firebase-config:22.0.0'
+//    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.firebase:firebase-firestore:24.11.0'
-    implementation 'com.google.android.material:material:1.11.0'
-    implementation 'com.google.firebase:firebase-messaging:23.4.1'
+    implementation 'com.google.firebase:firebase-firestore:25.0.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.firebase:firebase-messaging:24.0.0'
     implementation 'androidx.navigation:navigation-runtime:2.7.7'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     testImplementation 'junit:junit:4.13.2'
-    implementation platform('com.google.firebase:firebase-bom:31.4.0')
+    implementation platform('com.google.firebase:firebase-bom:33.1.1')
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'androidx.browser:browser:1.8.0'
-    implementation 'com.intuit.sdp:sdp-android:1.1.0'
-    implementation 'com.google.firebase:firebase-auth:22.3.1'
-    implementation 'com.google.android.gms:play-services-location:21.2.0'
+    implementation 'com.intuit.sdp:sdp-android:1.1.1'
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'com.google.firebase:firebase-auth:23.0.0'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
     implementation 'com.google.firebase:firebase-dynamic-module-support:16.0.0-beta03'
-    implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
-    implementation 'com.google.android.gms:play-services-auth:21.0.0'
-    implementation 'com.google.android.gms:play-services-auth-api-phone:18.0.2'
-    implementation 'com.google.firebase:firebase-database:20.3.1'
+    implementation 'com.google.android.gms:play-services-safetynet:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth:21.2.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:18.1.0'
+    implementation 'com.google.firebase:firebase-database:21.0.0'
 
 
 }

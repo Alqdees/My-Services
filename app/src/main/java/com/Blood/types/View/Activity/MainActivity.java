@@ -3,15 +3,12 @@ package com.Blood.types.View.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SearchView;
@@ -32,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Model> models;
     private RecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
-//    private ExtendedFloatingActionButton edit;
     private FirebaseFirestore db;
     private Intent intent;
     private String Types;
