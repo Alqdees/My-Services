@@ -43,8 +43,8 @@ public class OtpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ActionBar actionBar;
     private boolean isSatotaUpDate,isProfessions,
-        isRegister,isProfessionsUpdate,isSatota,
-        isLine,isDoctor,isType;
+        isRegister,isProfessionsUpdate,isSatota,isRegLine,
+        isLine,isDoctor,isType,status;
     private FirebaseFirestore db;
     private HashMap<String,Object> professions;
     private HashMap<String,Object> users;
@@ -54,7 +54,6 @@ public class OtpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
         getObj();
-
         btnsubmit.setOnClickListener((View v) ->{
             progressBar.setVisibility(View.VISIBLE);
             if (TextUtils.isEmpty(et1.getText().toString())){
@@ -62,6 +61,7 @@ public class OtpActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
                 return;
             }
+
             if (!verificationId.isEmpty() || verificationId != null|| !verificationId.equals("")){
                 String getuserotp = et1.getText().toString() ;
                 PhoneAuthCredential phoneAuthCredential =
@@ -98,6 +98,10 @@ public class OtpActivity extends AppCompatActivity {
                                       // here to update Blood Type user
                                     updateType();
                                     }
+                                    if (isRegLine){
+                                     registerLine();
+                                    }
+
                                 }
                                 else {
 //                                    btnsubmit.setVisibility(View.VISIBLE);
@@ -112,6 +116,39 @@ public class OtpActivity extends AppCompatActivity {
               }
 
         });
+    }
+
+    private void registerLine() {
+        HashMap<String,Object> lines = new HashMap<String,Object>();
+        lines.put("name",name);
+                        lines.put("number",number);
+                        lines.put("type",type);
+                        lines.put("time",time);
+                        lines.put("from",from);
+                        lines.put("bool",status);
+                        db.collection(Services.line.name())
+                                .document(number).set(lines)
+                                .addOnCompleteListener(
+                                        new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()){
+                                                    Toast.makeText(
+                                                            OtpActivity.this,
+                                                            R.string.register_done, Toast.LENGTH_LONG).show();
+                                                    startActivity(new Intent(
+                                                            OtpActivity.this,
+                                                            SelectActivity.class)
+                                                    );
+                                                    finish();
+                                                }
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("lines_Exception", Objects.requireNonNull(e.getMessage()));
+                                    }
+                                });
     }
 
     private void updateType()  {
@@ -285,9 +322,6 @@ public class OtpActivity extends AppCompatActivity {
 
 
     }
-    private void register () {
-
-    }
 
     private void getObj() {
         et1 = findViewById(R.id.inputotp1);
@@ -304,7 +338,7 @@ public class OtpActivity extends AppCompatActivity {
         isType = getIntent().getBooleanExtra("isTypeUpData",false);
         isDoctor = getIntent().getBooleanExtra("isDoctor",false);
         isLine = getIntent().getBooleanExtra("isLine",false);
-        isLine = getIntent().getBooleanExtra("isRegLine",false);
+        isRegLine = getIntent().getBooleanExtra("isRegLine",false);
         isProfessionsUpdate = getIntent().getBooleanExtra("isProfessions",false);
         isProfessions = getIntent().getBooleanExtra(Services.professions.name(), false);
         realNumber = getIntent().getStringExtra("realNumber");
@@ -322,7 +356,7 @@ public class OtpActivity extends AppCompatActivity {
         specialization = getIntent().getStringExtra("specialization");
         collection = getIntent().getStringExtra("collection");
         isSatotaUpDate = getIntent().getBooleanExtra("isSatotaUpDate", false);
-        
+        status = getIntent().getBooleanExtra("bool",false);
     }
-    
+
 }

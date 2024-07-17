@@ -20,12 +20,14 @@
             android:layout_centerInParent="true"
             android:fontFamily="@font/somar"
             android:text="أضافة خط نقل"
+
             android:textColor="@color/white"
             android:textSize="@dimen/_22sdp"
 
             />
 
     </RelativeLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"

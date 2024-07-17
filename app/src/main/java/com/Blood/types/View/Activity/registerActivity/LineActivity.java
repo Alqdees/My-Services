@@ -141,35 +141,7 @@ public class LineActivity extends AppCompatActivity {
                     }else {
 
                         getNumberUser(number);
-//                        lines.put("name",name);
-//                        lines.put("number",number);
-//                        lines.put("type",type);
-//                        lines.put("time",time);
-//                        lines.put("from",from);
-//                        lines.put("bool",true);
-//                        db.collection(Services.line.name())
-//                                .document(number).set(lines)
-//                                .addOnCompleteListener(
-//                                        new OnCompleteListener<Void>() {
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<Void> task) {
-//                                                if (task.isSuccessful()){
-//                                                    Toast.makeText(
-//                                                            LineActivity.this,
-//                                                            R.string.register_done, Toast.LENGTH_LONG).show();
-//                                                    startActivity(new Intent(
-//                                                            LineActivity.this,
-//                                                            SelectActivity.class)
-//                                                    );
-//                                                    finish();
-//                                                }
-//                                            }
-//                                        }).addOnFailureListener(new OnFailureListener() {
-//                                    @Override
-//                                    public void onFailure(@NonNull Exception e) {
-//                                        Log.d("lines_Exception", Objects.requireNonNull(e.getMessage()));
-//                                    }
-//                                });
+//
                     }
                 }
             });
@@ -238,6 +210,7 @@ public class LineActivity extends AppCompatActivity {
                 @Override
                 public void onVerificationFailed(FirebaseException e) {
 
+                    Log.e("onVerificationFailed", "Verification failed " + e.getMessage());
 
                     Toast.makeText(
                             LineActivity.this,
